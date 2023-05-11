@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { NavMenu } from "./NavMenu";
 
 export class Counter extends Component {
   static displayName = Counter.name;
@@ -11,21 +12,28 @@ export class Counter extends Component {
 
   incrementCounter() {
     this.setState({
-      currentCount: this.state.currentCount + 1
+      currentCount: this.state.currentCount + 1,
     });
   }
 
   render() {
     return (
-      <div>
-        <h1>Counter</h1>
+      <>
+        <NavMenu />
+        <div>
+          <h1>Counter</h1>
 
-        <p>This is a simple example of a React component.</p>
+          <p>This is a simple example of a React component.</p>
 
-        <p aria-live="polite">Current count: <strong>{this.state.currentCount}</strong></p>
+          <p aria-live="polite">
+            Current count: <strong>{this.state.currentCount}</strong>
+          </p>
 
-        <button className="btn btn-primary" onClick={this.incrementCounter}>Increment</button>
-      </div>
+          <button className="btn btn-primary" onClick={this.incrementCounter}>
+            Increment
+          </button>
+        </div>
+      </>
     );
   }
 }

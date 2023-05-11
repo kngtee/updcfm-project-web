@@ -1,14 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* stiletto: {
+  50: #fcf6f4;
+  100: #faebe9;
+  200: #f5d8d6;
+  300: #edb8b4;
+  400: #e28f8a;
+  500: #d36360;
+  600: #bd4143;
+  700: #a73439;
+  800: #852c32;
+  900: #732830;
+  950: #3f1216;
+} */
+
 /* Provide sufficient contrast against white background */
-a {
+/*a {
   color: #0366d6;
-}
+}*/
 
 code {
-  color: #E01A76;
+  color: #e01a76;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+body {
+  background-color: #f8f7ff;
+  padding: 20px 50px;
 }
