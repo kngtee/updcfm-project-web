@@ -26,7 +26,7 @@ export class NavMenu extends Component {
   render() {
     return (
       <header className="">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between px-8 py-4">
           <NavLink
             tag={Link}
             className="font-bold text-lg text-[#d36360] hover:text-[#bd4143]"
