@@ -6,7 +6,6 @@ builder.Services.AddHttpClient("api", client =>
     client.BaseAddress = new Uri("https://cpc.custodianplc.com.ng");
 
     client.DefaultRequestHeaders.Add("Accept", "application/json");
-    client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 
 builder.Services.AddControllersWithViews();
@@ -23,6 +22,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseCors();
 
 
 app.MapControllerRoute(

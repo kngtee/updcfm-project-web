@@ -1,6 +1,7 @@
 import React, {useState } from "react";
 import estate from "../assets/estate.jpg";
 import axios from "axios";
+import { stringToBase64 } from "../Services/Converter";
 
 function Login() {
   const [email, setEmail] = useState('')
@@ -8,7 +9,17 @@ function Login() {
 
   function handleSubmit(event){
     event.preventDefault();
-    axios.post('', {email, password})
+
+    const encodedPassword = stringToBase64(password);
+    const headers = {
+      headers:{
+        "x-access-pwd":`Bearer ${encodedPassword}`
+      }
+    }
+
+  
+
+    axios.post('api/auths', {email}, headers)
     .then(res => console.log(res))
     .catch(err => console.log(err));
   
