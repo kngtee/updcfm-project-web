@@ -1,34 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./custom.css";
-import { Login } from "./components/Login";
-import { Home } from "./components/Home";
-import { Counter } from "./components/Counter";
-import { FetchData } from "./components/FetchData";
-import SalesOverView from "./components/SalesOverView";
+import Login from "./components/Login";
+import Home from "./components/Home";
 
-export default class App extends Component {
-  static displayName = App.name;
-
-  render() {
-    return (
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/counter" element={<Counter />} />
-        <Route path="/fetch-data" element={<FetchData />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Sales" element={<SalesOverView />} />
-      </Routes>
-
-      // <Layout>
-      //   <Routes>
-      //     {AppRoutes.map((route, index) => {
-      //       const { element, ...rest } = route;
-      //       return <Route key={index} {...rest} element={element} />;
-      //     })}
-      //   </Routes>
-      //   <Route path="/login" element={<Login />} />
-      // </Layout>
-    );
-  }
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+    </Routes>
+  );
 }
+export default App;
