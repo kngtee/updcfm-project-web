@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import { NavLink } from "reactstrap";
 import { Link } from "react-router-dom";
 import { MdNotifications, MdSettings, MdExitToApp } from "react-icons/md";
 import "./NavMenu.css";
 import ProfilePic from "../assets/profilepic.png";
 
-export class NavMenu extends Component {
-  static displayName = NavMenu.name;
+function NavMenu() {
+  
 
   // constructor(props) {
   //   super(props);
@@ -23,7 +23,7 @@ export class NavMenu extends Component {
   //   });
   // }
 
-  render() {
+  
     return (
       <header className="">
         <div className="flex items-center justify-between px-8 py-4">
@@ -107,4 +107,4 @@ export class NavMenu extends Component {
       </header>
     );
   }
-}
+export default NavMenu;
