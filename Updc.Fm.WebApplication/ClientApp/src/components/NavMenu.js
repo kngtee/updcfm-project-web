@@ -37,7 +37,7 @@ export class NavMenu extends Component {
 
           <div className="flex flex-row space-x-0">
             <div className="px-6 py-2 text-sm font-medium text-[#a73439] hover:bg-[#bd4143] hover:text-white rounded-full ">
-              <NavLink tag={Link} className="" to="/">
+              <NavLink tag={Link} className="" to="/Admin">
                 Admin
               </NavLink>
             </div>
@@ -77,6 +77,15 @@ export class NavMenu extends Component {
                 loading="lazy"
               />
             </div>
+          </div>
+        </div>
+        <div className="flex justify-center pt-5">
+          <div className='flex flex-row w-2/4'>
+            <hr style={{
+              width:'50rem', 
+              border:'solid 1.5px  #D9D9D9',
+              borderRadius:'2px'
+              }}/>
           </div>
         </div>
 

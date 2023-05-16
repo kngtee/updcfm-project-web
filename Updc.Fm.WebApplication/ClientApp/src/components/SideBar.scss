@@ -1,0 +1,18 @@
+.sideBarBorder{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    .Sidebar{
+        border: solid 1.5px #A73439;
+        width: 95%;
+        min-height: 550px;
+        top: 40px;
+        position: absolute;
+        display: flex;
+        border-radius: 20px 20px 20px 20px;
+    }
+}
