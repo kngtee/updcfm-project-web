@@ -5,6 +5,7 @@ import { Login } from "./components/Login";
 import { Home } from "./components/Home";
 import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
+import SalesOverView from "./components/SalesOverView";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -16,6 +17,7 @@ export default class App extends Component {
         <Route path="/counter" element={<Counter />} />
         <Route path="/fetch-data" element={<FetchData />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/Sales" element={<SalesOverView />} />
       </Routes>
 
       // <Layout>
