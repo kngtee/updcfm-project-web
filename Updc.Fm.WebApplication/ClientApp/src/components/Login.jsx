@@ -4,11 +4,12 @@ import axios from "axios";
 
 function Login() {
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [password, setPassword] = useState('');
+
 
   function handleSubmit(event){
     event.preventDefault();
-    axios.post('', {email, password})
+    axios.post('/api/auths', {email, password})
     .then(res => console.log(res))
     .catch(err => console.log(err));
   
@@ -16,19 +17,19 @@ function Login() {
 
   
   return (
-    <div className="h-screen flex flex-row">
+    <div className="h-screen flex md:flex-row sm:flex-col flex-col">
       {/* Left side of the screen */}
-      <div className="w-full">
+      <div className="sm:w-full">
         <img
           src={estate}
-          className="max-h-full w-full"
+          className="md:max-h-full md:w-full"
           alt="estate"
           loading="lazy"
         />
       </div>
       {/* Right side of the screen */}
-      <div className="flex w-full items-center justify-center bg-[#A73439]">
-        <div className="flex-col bg-white w-[50%] p-8 rounded shadow-md">
+      <div className="flex sm:w-full items-center justify-center bg-[#A73439]">
+        <div className="md:flex-col bg-white md:w-[50%] p-8 rounded shadow-md">
           <form className="space-y-3" onSubmit={handleSubmit}>
             <div>
               <label
