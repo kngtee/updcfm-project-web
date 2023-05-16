@@ -1,32 +1,34 @@
-import React, {useState } from "react";
-import estate from "../assets/estate.jpg";
-import axios from "axios";
-import { stringToBase64 } from "../Services/Converter";
+import React, { useState } from 'react';
+import estate from '../assets/estate.jpg';
+import axios from 'axios';
+import { stringToBase64 } from '../Services/Converter';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
 
-  function handleSubmit(event){
+  function handleSubmit(event) {
     event.preventDefault();
 
     const encodedPassword = stringToBase64(password);
     const headers = {
-      headers:{
-        "x-access-pwd":`Bearer ${encodedPassword}`
-      }
-    }
+      headers: {
+        'x-access-pwd': `Bearer ${encodedPassword}`,
+      },
+    };
 
-  
-
-    axios.post('api/auths', {email}, headers)
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
-  
+    axios
+      .post('api/auths', { email }, headers)
+      .then((res) => {
+        localStorage.setItem('token', res.data.token);
+        navigate('/');
+      })
+      .catch((err) => console.log(err));
   }
 
-  
   return (
     <div className="h-screen flex md:flex-row sm:flex-col flex-col">
       {/* Left side of the screen */}
@@ -58,7 +60,7 @@ function Login() {
                   required
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   className="block w-full p-1.5 rounded border-0 bg-[#D9D9D9] shadow-sm"
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -78,7 +80,7 @@ function Login() {
                   autoComplete="current-password"
                   required
                   className="block w-full p-1.5 rounded border-0 bg-[#D9D9D9] shadow-sm"
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="flex items-center pt-2 justify-between align-middle">
