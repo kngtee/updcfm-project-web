@@ -8,18 +8,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/Login" element={<Login />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
-
-    // <Layout>
-    //   <Routes>
-    //     {AppRoutes.map((route, index) => {
-    //       const { element, ...rest } = route;
-    //       return <Route key={index} {...rest} element={element} />;
-    //     })}
-    //   </Routes>
-    //   <Route path="/login" element={<Login />} />
-    // </Layout>
   );
 }
 export default App;
