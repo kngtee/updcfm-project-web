@@ -1,5 +1,5 @@
 import React, {useState } from "react";
-import estate from "../assets/estate.jpg";
+import estate from "../assets/img/estate.jpg";
 import axios from "axios";
 import { stringToBase64 } from "../Services/Converter";
 
@@ -17,8 +17,6 @@ function Login() {
         "x-access-pwd":`Bearer ${encodedPassword}`
       }
     }
-
-  
 
     axios.post('api/auths', {email}, headers)
     .then(res => console.log(res))
