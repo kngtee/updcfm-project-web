@@ -13,6 +13,7 @@ function Home({ navigation }) {
       setToken(token);
     } else {
       navigate('login');
+      
     }
   }, [token]);
   return (

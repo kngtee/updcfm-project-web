@@ -25,6 +25,7 @@ function Login() {
       .then((res) => {
         localStorage.setItem('token', res.data.token);
         navigate('/');
+        
       })
       .catch((err) => console.log(err));
   }
