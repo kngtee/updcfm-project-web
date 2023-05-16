@@ -15,10 +15,10 @@ function Login() {
 
     const encodedPassword = stringToBase64(password);
     const headers = {
-      headers: {
-        'x-access-pwd': `Bearer ${encodedPassword}`,
-      },
-    };
+      headers:{
+        "x-access-pwd":`Bearer ${encodedPassword}`
+      }
+    }
 
     axios
       .post('api/auths', { email }, headers)
@@ -28,7 +28,14 @@ function Login() {
         
       })
       .catch((err) => console.log(err));
+  
+
+    axios.post('api/auths', {email}, headers)
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+  
   }
+
 
   return (
     <div className="h-screen flex md:flex-row sm:flex-col flex-col">
