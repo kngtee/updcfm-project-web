@@ -3,18 +3,24 @@ import NavMenu from './NavMenu';
 import { MdHomeWork, MdPayments, MdPerson2 } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
-function Home({ navigation }) {
+const Home = ({ navigation }) => {
   const [token, setToken] = useState('');
   const navigate = useNavigate();
   useEffect(() => {
-    const getToken = localStorage.getItem('token');
+    // eslint-disable-next-line
+    const getLocalToken = () =>{
+      const getToken = localStorage.getItem('token');
+  
+      if (getToken !== null || getToken !== '') {
+        setToken(token);
+      } else {
+        navigate('login');
+        
+      }
 
-    if (getToken !== null || getToken !== '') {
-      setToken(token);
-    } else {
-      navigate('login');
-      
+      getLocalToken();
     }
+    // eslint-disable-next-line
   }, [token]);
   return (
     <>

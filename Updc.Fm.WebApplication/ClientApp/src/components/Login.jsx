@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import estate from '../assets/estate.jpg';
+import estate from '../assets/img/estate.jpg';
 import axios from 'axios';
 import { stringToBase64 } from '../Services/Converter';
 import { useNavigate } from 'react-router-dom';
