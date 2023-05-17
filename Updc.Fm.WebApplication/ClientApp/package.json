@@ -3,12 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "@mui/icons-material": "^5.11.16",
-    "bootstrap": "^5.2.3",
-=======
     "axios": "^1.4.0",
->>>>>>> 2ddc27f5b1c566e2056ecba5d74e277631395d8c
     "http-proxy-middleware": "^2.0.6",
     "jquery": "^3.6.0",
     "js-base64": "^3.7.5",

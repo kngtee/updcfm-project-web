@@ -1,27 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import NavMenu from '../components/NavMenu';
 import { MdHomeWork, MdPayments, MdPerson2 } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
 
-const Home = ({ navigation }) => {
-  const [token, setToken] = useState('');
-  const navigate = useNavigate();
-  useEffect(() => {
-    // eslint-disable-next-line
-    const getLocalToken = () =>{
-      const getToken = localStorage.getItem('token');
-  
-      if (getToken !== null || getToken !== '') {
-        setToken(token);
-      } else {
-        navigate('login');
-        
-      }
-
-      getLocalToken();
-    }
-    // eslint-disable-next-line
-  }, [token]);
+const Home = () => {
   return (
     <>
       <NavMenu />
@@ -53,5 +34,5 @@ const Home = ({ navigation }) => {
       </div>
     </>
   );
-}
+};
 export default Home;

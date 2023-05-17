@@ -1,41 +1,25 @@
 import React, { useState } from 'react';
 import estate from '../assets/img/estate.jpg';
-import axios from 'axios';
-import { stringToBase64 } from '../Services/Converter';
+import { useAuth } from '../components/Auth/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { handleLogin } = useAuth();
 
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   function handleSubmit(event) {
     event.preventDefault();
-
-    const encodedPassword = stringToBase64(password);
-    const headers = {
-      headers:{
-        "x-access-pwd":`Bearer ${encodedPassword}`
-      }
-    }
-
-    axios
-      .post('api/auths', { email }, headers)
-      .then((res) => {
-        localStorage.setItem('token', res.data.token);
-        navigate('/');
-        
-      })
-      .catch((err) => console.log(err));
-  
-
-    axios.post('api/auths', {email}, headers)
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
-  
+    const payload = {
+      email,
+      password,
+    };
+    
+    handleLogin(payload);
   }
-
 
   return (
     <div className="h-screen flex md:flex-row sm:flex-col flex-col">
