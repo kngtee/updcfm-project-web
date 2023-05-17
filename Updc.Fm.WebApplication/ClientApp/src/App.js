@@ -3,8 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import './custom.css';
 import Login from './Pages/Login';
 import Home from './Pages/Home';
-import { ProtectedRoute } from './components/Auth/ProtectedRoute';
-import { AuthProvider } from './components/Auth/hooks/useAuth';
+import { ProtectedRoute } from './Auth/ProtectedRoute';
+import { AuthProvider } from './Auth/hooks/useAuth';
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import { createContext, useContext, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { stringToBase64 } from '../../../Services/Converter';
+import { stringToBase64 } from '../../Services/Converter';
 import axios from 'axios';
 import { useLocalStorage } from './useLocalStorage';
 const AuthContext = createContext(null);

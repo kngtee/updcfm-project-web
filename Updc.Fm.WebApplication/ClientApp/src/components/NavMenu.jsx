@@ -5,7 +5,7 @@ import { MdNotifications, MdSettings } from 'react-icons/md';
 import './NavMenu.css';
 import ProfilePic from '../assets/img/profilepic.png';
 import LogoutIcon from '../assets/img/logout-circle.svg';
-import { useAuth } from './Auth/hooks/useAuth';
+import { useAuth } from '../Auth/hooks/useAuth';
 
 const NavMenu = () => {
   const { handleLogout } = useAuth();
