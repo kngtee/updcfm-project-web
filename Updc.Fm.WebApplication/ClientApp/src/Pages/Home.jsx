@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import NavMenu from './NavMenu';
+import NavMenu from '../components/NavMenu';
 import { MdHomeWork, MdPayments, MdPerson2 } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
