@@ -1,5 +1,4 @@
 import { createContext, useContext, useMemo } from 'react';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { stringToBase64 } from '../../../Services/Converter';
 import axios from 'axios';
@@ -41,6 +40,7 @@ export const AuthProvider = ({ children }) => {
       handleLogout,
     }),
 
+    // eslint-disable-next-line
     [token],
   );
 

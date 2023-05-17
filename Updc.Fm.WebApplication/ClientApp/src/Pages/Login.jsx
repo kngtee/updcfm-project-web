@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import estate from '../assets/img/estate.jpg';
 import { useAuth } from '../components/Auth/hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+
 
 function Login() {
   const { handleLogin } = useAuth();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
