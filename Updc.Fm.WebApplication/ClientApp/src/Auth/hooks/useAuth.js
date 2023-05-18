@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { stringToBase64 } from '../../Services/Converter';
 import axios from 'axios';
 import { useLocalStorage } from './useLocalStorage';
+import { errorMessage, successMessage } from '../../toast-message/toastMessage';
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
@@ -24,8 +25,15 @@ export const AuthProvider = ({ children }) => {
       .then((res) => {
         setToken(res.data.token);
         navigate('/');
+        successMessage({
+          message: 'Login successful.',
+          title: 'Login Attempt.',
+        });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err.message);
+        errorMessage({ title: 'Something went wrong', message: err.message });
+      });
   };
 
   const handleLogout = () => {
