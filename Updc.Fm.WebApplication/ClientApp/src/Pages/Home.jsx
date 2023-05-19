@@ -24,9 +24,11 @@ const Home = () => {
           </div>
         </div>
         <div>
-          <div className="inline-flex items-center justify-center w-48 h-48 bg-[#a73439] hover:bg-[#bd4143] rounded-full text-white shadow-md shadow-rose-500/20">
-            <MdHomeWork className="w-14 h-14" />
-          </div>
+          <a href="/sales">
+            <div className="inline-flex items-center justify-center w-48 h-48 bg-[#a73439] hover:bg-[#bd4143] rounded-full text-white shadow-md shadow-rose-500/20">
+              <MdHomeWork className="w-14 h-14" />
+            </div>
+          </a>
           <div className="text-center pt-2 justify-center text-[#0F0F0F] text-lg font-semibold">
             Sales
           </div>
