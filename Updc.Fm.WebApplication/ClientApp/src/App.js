@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './custom.css';
 import Login from './Pages/Login';
 import Home from './Pages/Home';
+import Sales from './Pages/Sales'
 import { ProtectedRoute } from './Auth/ProtectedRoute';
 import { AuthProvider } from './Auth/hooks/useAuth';
 
@@ -26,6 +27,7 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
+        <Route path='/sales' element={<Sales />} />
       </Routes>
     </AuthProvider>
   );
