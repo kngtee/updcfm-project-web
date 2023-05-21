@@ -1,14 +1,14 @@
 import React from 'react'
 
 
-   const DropDownButton = () => {
+   const DropDownButton = (props) => {
    
   return (
     
-    <select style={{marginRight:'1rem'}} className='w-[250px] h-[45px] px-4 '>
-        <option>Select Unit</option>
-        <option>Select Estate</option>
-        <option>Bunmi</option>
+    <select  className='w-[180px] h-[40px] shadow-lg px-4 '>
+        <option>{props.first}</option>
+        <option>{props.second}</option>
+        <option>{props.third}</option>
     </select>
   );
 }
