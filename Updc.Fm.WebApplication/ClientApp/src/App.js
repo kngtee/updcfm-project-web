@@ -11,6 +11,9 @@ import { AuthProvider } from './Auth/hooks/useAuth';
 import Allocation from './Pages/Allocation';
 import Admin from './Pages/Admin';
 // import Admin from './Pages/Admin';
+import { Accounts } from './Pages/Accounts';
+import { InterventionJobs } from './Pages/InterventionJobs';
+import { SingleJob } from './Pages/SingleJob';
 
 function App() {
   return (
@@ -65,6 +68,9 @@ function App() {
           }
         />
         <Route path="/salesu" element={<SalesNewUnit />} />
+        <Route path="/accounts" element={<Accounts />} />
+        <Route path="/jobs" element={<InterventionJobs />} />
+        <Route path="/singlejob" element={<SingleJob />} />
       </Routes>
     </AuthProvider>
   );

@@ -26,7 +26,7 @@ const NavMenu = () => {
           </NavLink>
         </div>
         <div className="px-6 py-2 text-sm font-medium text-[#a73439] hover:bg-[#bd4143] hover:text-white rounded-full">
-          <NavLink tag={Link} className="" to="/">
+          <NavLink tag={Link} className="" to="/accounts">
             Account
           </NavLink>
         </div>

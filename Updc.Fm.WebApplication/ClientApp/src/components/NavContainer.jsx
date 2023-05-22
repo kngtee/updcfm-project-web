@@ -3,7 +3,7 @@ import SideNav from './SideNav';
 
 const NavContainer = ({ children, dashboard }) => {
   return (
-    <div className="flex flex-col divide-y w-screen max-h-screen overflow-hidden">
+    <div className="flex flex-col w-screen max-h-screen overflow-hidden">
       <div>
         <NavMenu />
       </div>

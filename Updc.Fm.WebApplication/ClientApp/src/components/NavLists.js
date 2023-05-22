@@ -84,3 +84,31 @@ export const allocationDashboard = {
     ],
   },
 };
+export const accountDashboard = {
+  overview: {
+    title: 'Accounts',
+    navs: [
+      {
+        name: 'Dashboard',
+        path: '',
+      },
+    ],
+  },
+  manage: {
+    title: 'Manage',
+    navs: [
+      {
+        name: 'Intervention Jobs',
+        path: '',
+      },
+      {
+        name: 'Service Charge',
+        path: '',
+      },
+      {
+        name: 'Vendors',
+        path: '',
+      },
+    ],
+  },
+};

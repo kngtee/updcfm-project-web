@@ -18,12 +18,14 @@ const Home = () => {
           </a>
         </div>
         <div>
-          <div className="inline-flex items-center justify-center w-48 h-48 bg-[#a73439] hover:bg-[#bd4143] rounded-full text-white shadow-md shadow-rose-500/20">
-            <MdPayments className="w-14 h-14" />
-          </div>
-          <div className="text-center pt-2 justify-center text-[#0F0F0F] text-lg font-semibold">
-            Account
-          </div>
+          <a href="/accounts">
+            <div className="inline-flex items-center justify-center w-48 h-48 bg-[#a73439] hover:bg-[#bd4143] rounded-full text-white shadow-md shadow-rose-500/20">
+              <MdPayments className="w-14 h-14" />
+            </div>
+            <div className="text-center pt-2 justify-center text-[#0F0F0F] text-lg font-semibold">
+              Account
+            </div>
+          </a>
         </div>
         <div>
           <a href="/sales">

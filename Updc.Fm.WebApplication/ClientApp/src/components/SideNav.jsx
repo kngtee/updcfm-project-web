@@ -26,7 +26,9 @@ const SideNav = ({ children, dashboard }) => {
             ))}
           </div>
         </div>
-        <div className="bg-[#fff] rounded-r-lg px-8">{children}</div>
+        <div className="bg-[#f8f7ff] rounded-r-lg px-8 overflow-y-auto">
+          {children}
+        </div>
       </div>
     </div>
   );
