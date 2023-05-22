@@ -18,3 +18,19 @@ export const salesDashboard = {
     ],
   },
 };
+
+export const adminDashboard = {
+  overview: {
+    title: 'Overview',
+    navs: [
+      {
+        name: 'Dashboard',
+        path: '',
+      },
+    ],
+  },
+  manage: {
+    title: 'Manage',
+    navs: [],
+  },
+};

@@ -1,14 +1,10 @@
-import React from 'react'
-import { NavMenu } from '../components/NavMenu'
-import SideBar from './SideBar';
+import React from 'react';
+import NavContainer from '../components/NavContainer';
+import { adminDashboard } from '../components/NavLists';
 
-function Admin(){
-        return(
-            <>
-                <NavMenu/>
-                <SideBar/>
-            </>
-        )
-    }
+const nav = adminDashboard;
+function Admin() {
+  return <NavContainer dashboard={adminDashboard}></NavContainer>;
+}
 
 export default Admin;
