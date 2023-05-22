@@ -1,13 +1,4 @@
-import React from 'react'
-const Sales = () => {
-
-  return (
-    <h2>SalesAllocation</h2>
-  )
-}
-
-export default Sales
-=======
+import React from 'react';
 import NavContainer from '../components/NavContainer';
 import { salesDashboard } from '../components/NavLists';
 
@@ -22,4 +13,4 @@ const Sales = () => {
 };
 
 export default Sales;
->>>>>>> c4a55db5d39723a63270cb75fe1251a5ec5196c5
+

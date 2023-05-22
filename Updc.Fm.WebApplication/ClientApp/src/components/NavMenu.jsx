@@ -5,10 +5,10 @@ import { MdNotifications, MdSettings } from 'react-icons/md';
 import './NavMenu.css';
 import ProfilePic from '../assets/img/profilepic.png';
 import LogoutIcon from '../assets/img/logout-circle.svg';
-import { useAuth } from '../Auth/hooks/useAuth';
+
 
 const NavMenu = () => {
-  const { handleLogout } = useAuth();
+
   return (
     <div className="h-[50px] flex items-center justify-between px-8 py-4">
       <NavLink
@@ -49,7 +49,7 @@ const NavMenu = () => {
           </NavLink>
         </div>
         <div className="inline-flex items-center justify-center w-8 h-8 bg-[#a73439] rounded-full text-white shadow-md shadow-rose-500/20">
-          <NavLink tag={Link} className="" onClick={handleLogout}>
+          <NavLink tag={Link} className="" >
             <img src={LogoutIcon} alt="logout" className="w-4 h-4" />
           </NavLink>
         </div>
