@@ -112,3 +112,50 @@ export const accountDashboard = {
     ],
   },
 };
+export const viewallJobs = {
+  overview: {
+    title: 'Intervention Jobs',
+    navs: [
+      {
+        name: 'View All',
+        path: '',
+      },
+    ],
+  },
+  manage: {
+    title: 'Manage',
+    navs: [],
+  },
+};
+export const singleJob = {
+  overview: {
+    title: 'JB001',
+    navs: [
+      {
+        name: 'Dashboard',
+        path: '',
+      },
+    ],
+  },
+  manage: {
+    title: 'Manage',
+    navs: [
+      {
+        name: 'Site Worker',
+        path: '',
+      },
+      {
+        name: 'Inspection',
+        path: '',
+      },
+      {
+        name: 'Work Order',
+        path: '',
+      },
+      {
+        name: 'Invoice',
+        path: '',
+      },
+    ],
+  },
+};

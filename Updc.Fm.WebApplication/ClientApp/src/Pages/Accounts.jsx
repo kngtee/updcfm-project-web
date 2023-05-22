@@ -12,7 +12,7 @@ export const Accounts = () => {
   return (
     <>
       <NavContainer dashboard={accounts}>
-        <div className="space-y-8 px-8 py-4">
+        <div className="space-y-8 px-4 py-8">
           {/* Breadcrumb */}
           <div className="flex flex-row" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-2 font-normal">
