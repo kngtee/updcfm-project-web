@@ -4,7 +4,9 @@ import { adminDashboard } from '../components/NavLists';
 
 const nav = adminDashboard;
 function Admin() {
-  return <NavContainer dashboard={adminDashboard}></NavContainer>;
+  return (
+    <NavContainer dashboard={adminDashboard}></NavContainer>
+  )
 }
 
 export default Admin;

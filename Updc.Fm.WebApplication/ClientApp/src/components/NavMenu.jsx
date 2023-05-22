@@ -21,17 +21,17 @@ const NavMenu = () => {
 
       <div className="flex md:flex-row space-x-0">
         <div className="px-6 py-2 text-sm font-medium text-[#a73439] hover:bg-[#bd4143] hover:text-white rounded-full ">
-          <NavLink tag={Link} className="" to="/">
+          <NavLink tag={Link} className="" to="/admin">
             Admin
           </NavLink>
         </div>
         <div className="px-6 py-2 text-sm font-medium text-[#a73439] hover:bg-[#bd4143] hover:text-white rounded-full">
-          <NavLink tag={Link} className="" to="/counter">
+          <NavLink tag={Link} className="" to="/">
             Account
           </NavLink>
         </div>
         <div className="px-6 py-2 text-sm font-medium text-[#a73439] hover:bg-[#bd4143] hover:text-white rounded-full">
-          <NavLink tag={Link} className="" to="/fetch-data">
+          <NavLink tag={Link} className="" to="/sales">
             Sales
           </NavLink>
         </div>

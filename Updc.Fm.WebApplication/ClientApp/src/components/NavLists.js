@@ -13,7 +13,23 @@ export const salesDashboard = {
     navs: [
       {
         name: 'Alocation',
-        path: '/new/resident',
+        path: '/sales/allocation',
+      },
+    ],
+  },
+};
+
+export const staffDashboard = {
+  overview: {
+    title: 'Staff',
+    navs: [],
+  },
+  manage: {
+    title: 'Manage',
+    navs: [
+      {
+        name: 'Create New Staff',
+        path: '',
       },
     ],
   },
@@ -21,7 +37,7 @@ export const salesDashboard = {
 
 export const adminDashboard = {
   overview: {
-    title: 'Overview',
+    title: 'Admin',
     navs: [
       {
         name: 'Dashboard',
@@ -31,6 +47,40 @@ export const adminDashboard = {
   },
   manage: {
     title: 'Manage',
-    navs: [],
+    navs: [
+      {
+        name: 'Staff',
+        path: '',
+      },
+      {
+        name: 'Cluster',
+        path: '',
+      },
+      {
+        name: 'Estate',
+        path: '',
+      },
+    ],
+  },
+};
+
+export const allocationDashboard = {
+  overview: {
+    title: 'Allocation',
+    navs: [
+      {
+        name: 'View All',
+        path: '',
+      },
+    ],
+  },
+  manage: {
+    title: 'Manage',
+    navs: [
+      {
+        name: 'New Unit',
+        path: '',
+      },
+    ],
   },
 };

@@ -4,11 +4,12 @@ import './custom.css';
 import Login from './Pages/Login';
 import Home from './Pages/Home';
 import Sales from './Pages/Sales';
-import SalesAllocation from './components/SalesAllocation';
 import SalesView from './components/SalesView';
 import SalesNewUnit from './components/SalesNewUnit';
 import { ProtectedRoute } from './Auth/ProtectedRoute';
 import { AuthProvider } from './Auth/hooks/useAuth';
+import Allocation from './Pages/Allocation';
+import Admin from './Pages/Admin';
 // import Admin from './Pages/Admin';
 
 function App() {
@@ -40,10 +41,18 @@ function App() {
           }
         />
         <Route
-          path="/salesa"
+          path="/sales/allocation"
           element={
             <ProtectedRoute>
-              <SalesAllocation />
+              <Allocation />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <Admin />
             </ProtectedRoute>
           }
         />
