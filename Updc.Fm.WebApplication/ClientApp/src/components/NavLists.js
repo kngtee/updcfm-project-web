@@ -90,7 +90,7 @@ export const accountDashboard = {
     navs: [
       {
         name: 'Dashboard',
-        path: '',
+        path: '/accounts',
       },
     ],
   },
@@ -99,7 +99,7 @@ export const accountDashboard = {
     navs: [
       {
         name: 'Intervention Jobs',
-        path: '',
+        path: '/jobs',
       },
       {
         name: 'Service Charge',
@@ -127,6 +127,23 @@ export const viewallJobs = {
     navs: [],
   },
 };
+
+export const createInspection = {
+  overview: {
+    title: 'Inspection',
+    navs: [
+      {
+        name: 'Dashboard',
+        path: '',
+      },
+    ],
+  },
+  manage: {
+    title: 'Manage',
+    navs: [],
+  },
+};
+
 export const singleJob = {
   overview: {
     title: 'JB001',
@@ -146,7 +163,7 @@ export const singleJob = {
       },
       {
         name: 'Inspection',
-        path: '',
+        path: '/inspectjob',
       },
       {
         name: 'Work Order',

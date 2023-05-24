@@ -14,6 +14,7 @@ import Admin from './Pages/Admin';
 import { Accounts } from './Pages/Accounts';
 import { InterventionJobs } from './Pages/InterventionJobs';
 import { SingleJob } from './Pages/SingleJob';
+import { CreateInspection } from './Pages/CreateInspection';
 
 function App() {
   return (
@@ -71,6 +72,7 @@ function App() {
         <Route path="/accounts" element={<Accounts />} />
         <Route path="/jobs" element={<InterventionJobs />} />
         <Route path="/singlejob" element={<SingleJob />} />
+        <Route path="/inspectjob" element={<CreateInspection />} />
       </Routes>
     </AuthProvider>
   );

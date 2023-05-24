@@ -50,7 +50,7 @@ export const SingleJob = () => {
                   <svg
                     aria-hidden="true"
                     fill="currentColor"
-                    className="w-3 h-3 text-gray-400 ml-1 md:ml-2"
+                    className="w-3 h-3 text-gray-400"
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
                     stroke="currentColor"

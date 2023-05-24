@@ -3,6 +3,7 @@ import {
   MdFilterAlt,
   MdArrowCircleRight,
   MdArrowCircleLeft,
+  MdLaunch,
 } from 'react-icons/md';
 import NavContainer from '../components/NavContainer';
 import { viewallJobs } from '../components/NavLists';
@@ -168,22 +169,22 @@ export const InterventionJobs = () => {
             <table className="w-full text-sm text-left text-[#0f0f0f] shadow-md ">
               <thead className="text-xs text-[#F8F7FF] uppercase bg-[#a73439]">
                 <tr>
-                  <th scope="col" className="px-6 py-3">
+                  <th scope="col" className="px-3 py-1.5">
                     Job ID
                   </th>
-                  <th scope="col" className="px-6 py-3">
+                  <th scope="col" className="px-3 py-1.5">
                     Unit
                   </th>
-                  <th scope="col" className="px-6 py-3">
+                  <th scope="col" className="px-3 py-1.5">
                     Email
                   </th>
-                  <th scope="col" className="px-6 py-3">
+                  <th scope="col" className="px-3 py-1.5">
                     Job Title
                   </th>
-                  <th scope="col" className="px-6 py-3">
+                  <th scope="col" className="px-3 py-1.5">
                     Status
                   </th>
-                  <th scope="col" className="px-6 py-3">
+                  <th scope="col" className="px-3 py-1.5">
                     Action
                   </th>
                 </tr>
@@ -192,50 +193,44 @@ export const InterventionJobs = () => {
                 <tr className="bg-white border-b">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-normal whitespace-nowrap"
+                    className="px-3 py-2 font-normal whitespace-nowrap"
                   >
                     JB001
                   </th>
-                  <td className="px-6 py-4">35B</td>
-                  <td className="px-6 py-4">johndoe@example.com</td>
-                  <td className="px-6 py-4">Plumbing</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">35B</td>
+                  <td className="px-3 py-2">johndoe@example.com</td>
+                  <td className="px-3 py-2">Plumbing</td>
+                  <td className="px-3 py-2">
                     <span class="flex items-center">
                       <span class="flex w-2.5 h-2.5 bg-yellow-400 rounded-full mr-1.5 flex-shrink-0"></span>
                       Pending
                     </span>
                   </td>
-                  <td className="px-6 py-4">
-                    <a
-                      href="/singlejob"
-                      class="font-medium text-blue-600 dark:text-blue-500 underline"
-                    >
-                      Open Job
+                  <td className="px-3 py-2">
+                    <a href="/singlejob" class="font-medium text-blue-600">
+                      <MdLaunch />
                     </a>
                   </td>
                 </tr>
                 <tr className="bg-[#D9D9D9] border-b">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-normal whitespace-nowrap"
+                    className="px-3 py-2 font-normal whitespace-nowrap"
                   >
                     JB002
                   </th>
-                  <td className="px-6 py-4"> 21A</td>
-                  <td className="px-6 py-4"> sample@example.com</td>
-                  <td className="px-6 py-4"> Leakage</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2"> 21A</td>
+                  <td className="px-3 py-2"> sample@example.com</td>
+                  <td className="px-3 py-2"> Leakage</td>
+                  <td className="px-3 py-2">
                     <span class="flex items-center">
                       <span class="flex w-2.5 h-2.5 bg-green-600 rounded-full mr-1.5 flex-shrink-0"></span>
                       Done
                     </span>
                   </td>
-                  <td className="px-6 py-4">
-                    <a
-                      href="/"
-                      class="font-medium text-blue-600 dark:text-blue-500 underline"
-                    >
-                      Open Job
+                  <td className="px-3 py-2">
+                    <a href="/" class="font-medium text-blue-600">
+                      <MdLaunch />
                     </a>
                   </td>
                 </tr>
@@ -255,11 +250,11 @@ export const InterventionJobs = () => {
               </span>
               {/* Pagination Button */}
               <div className="inline-flex items-center">
-                <button className="inline-flex items-center px-4 py-2 text-sm font-medium text-[#0f0f0f]  rounded-l-md hover:bg-[#a73439] hover:text-white">
+                <button className="inline-flex items-center px-2 py-1 text-sm font-medium text-[#0f0f0f]  rounded-l-md hover:bg-[#a73439] hover:text-white">
                   <MdArrowCircleLeft className="mr-1" />
                   Prev
                 </button>
-                <button className="inline-flex items-center px-4 py-2 text-sm font-medium text-[#0f0f0f]  border-1 border-l border-[#a73439] rounded-r-md hover:bg-[#a73439] hover:text-white">
+                <button className="inline-flex items-center px-2 py-1 text-sm font-medium text-[#0f0f0f]  border-1 border-l border-[#a73439] rounded-r-md hover:bg-[#a73439] hover:text-white">
                   Next
                   <MdArrowCircleRight className="ml-1" />
                 </button>
