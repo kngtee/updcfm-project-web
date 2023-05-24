@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 const Buton = (props) => {
   return (
-  <button className={props.className}>{props.text}</button>
-  )
-}
+    <button onClick={props.onClick} className={props.className}>
+      {props.text}
+    </button>
+  );
+};
 
-export default Buton
+export default Buton;

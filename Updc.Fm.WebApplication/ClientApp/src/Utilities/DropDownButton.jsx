@@ -5,8 +5,8 @@ import React from 'react'
    
   return (
     
-    <select  className='w-[180px] h-[40px] shadow-lg px-4 '>
-        <option>{props.first}</option>
+    <select  className='w-[200px] h-[35px] shadow-lg text-base px-4 '>
+        <option  value={props.value} >{props.first}</option>
         <option>{props.second}</option>
         <option>{props.third}</option>
     </select>
