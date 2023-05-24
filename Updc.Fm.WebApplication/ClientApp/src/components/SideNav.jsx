@@ -9,8 +9,11 @@ const SideNav = ({ children, dashboard }) => {
             <div className="mt-7 mb-3 mr-7 px-3 py-2 text-[#fff] text-medium border-b-[2px]">
               {overview.title}
             </div>
-            {overview.navs.map((task) => (
-              <div className="bg-[#fff] py-2 px-3 rounded-l-lg text-[#bd4143] font-medium">
+            {overview.navs.map((task, index) => (
+              <div
+                className="bg-[#fff] py-2 px-3 rounded-l-lg text-[#bd4143] font-medium"
+                key={index}
+              >
                 {task.name}
               </div>
             ))}
@@ -19,14 +22,18 @@ const SideNav = ({ children, dashboard }) => {
             <div className="mt-7 mb-3 mr-7 px-3 py-2 text-[#fff] text-medium border-b-[2px]">
               {manage.title}
             </div>
-            {manage.navs.map((nav) => (
-              <div className="py-2 px-3 rounded-l-lg text-[#fff] font-medium">
+            {manage.navs.map((nav, index) => (
+              <div
+                className="py-2 px-3 rounded-l-lg text-[#fff] font-medium"
+                key={index}
+              >
                 <a href={nav.path}>{nav.name}</a>
               </div>
             ))}
           </div>
         </div>
-        <div className="bg-[#fff] rounded-r-lg px-8">{children}</div>
+        {/* <div className="bg-[#fff] rounded-r-lg px-8">{children}</div> */}
+        <div className="bg-gray rounded-r-lg px-8">{children}</div>
       </div>
     </div>
   );

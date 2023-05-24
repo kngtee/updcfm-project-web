@@ -10,7 +10,14 @@ import { ProtectedRoute } from './Auth/ProtectedRoute';
 import { AuthProvider } from './Auth/hooks/useAuth';
 import Allocation from './Pages/Allocation';
 import Admin from './Pages/Admin';
-// import Admin from './Pages/Admin';
+import AdminEstate from './components/AdminEstate';
+import AdminNewEstate from './components/AdminNewEstate';
+import Loader from './components/Loader';
+import AdminCluster from './components/AdminCluster';
+import AdminNewCluster from './components/AdminNewCluster';
+import AdminStaff from './components/AdminStaff';
+import AdminNewStaff from './components/AdminNewStaff';
+import AdminStaffOverView from './components/AdminStaffOverView';
 
 function App() {
   return (
@@ -57,10 +64,74 @@ function App() {
           }
         />
         <Route
+          path='/admin/estate'
+          element={
+            <ProtectedRoute>
+              <AdminEstate/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='admin/new_estate'
+          element={
+            <ProtectedRoute>
+              <AdminNewEstate/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='admin/cluster'
+          element={
+            <ProtectedRoute>
+              <AdminCluster/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='admin/new_cluster'
+          element={
+            <ProtectedRoute>
+              <AdminNewCluster/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/salesv"
           element={
             <ProtectedRoute>
               <SalesView />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='admin/staff'
+          element={
+            <ProtectedRoute>
+              <AdminStaff/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='admin/new_staff'
+          element={
+            <ProtectedRoute>
+              <AdminNewStaff/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='admin/staff_overview'
+          element={
+            <ProtectedRoute>
+              <AdminStaffOverView/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/loader'
+          element={
+            <ProtectedRoute>
+              <Loader/>
             </ProtectedRoute>
           }
         />
