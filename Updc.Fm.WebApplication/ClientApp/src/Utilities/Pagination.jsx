@@ -1,44 +1,76 @@
-import React from 'react'
-import { useState } from 'react'
+import React from 'react';
+import { DOTS, usePagination } from '../Pagination/usePagination';
 
-const Pagination = () => {
+const Pagination = ({
+  onPageChange,
+  totalCount,
+  siblingCount = 1,
+  currentPage,
+  pageSize,
+}) => {
+  const paginationRange = usePagination({
+    currentPage,
+    totalCount,
+    siblingCount,
+    pageSize,
+  });
 
-    let [num, setNum] = useState(1)
-   let [cur, setCur] = useState(1)
+  // If there are less than 2 times in pagination range we shall not render the component
+  if (currentPage === 0 || paginationRange.length < 2) {
+    return null;
+  }
 
-   const pages = [
-      { page: num },
-      { page: num + 1 },
-      { page: num + 2 },
-      { page: num + 3 },
-   ]
-   function Next ()
-   {
-      setNum(++num)
-   }
-   function back ()
-   {
-      num > 1 && setNum(--num)
-   }
-   return (
-      <div className="flex bg-white h-8 rounded-lg">
-         <button onClick={back} className="h-8 border-2 border-r-0 border-[#A73439]
-               px-4 rounded-l-lg hover:bg-[#A73439] hover:text-white">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
-            </svg>
-         </button>
-         {
-            pages.map((pg, i) => (
-               <button key={i} onClick={() => setCur(pg.page)} className={`h-8 border-2 border-r-0 border-[#A73439]
-               w-12 ${cur === pg.page && 'bg-[#A73439] text-white'}`}>{pg.page}</button>
-            ))
-         }
-         <button onClick={Next} className="h-8 border-2  border-[#A73439]
-               px-4 rounded-r-lg hover:bg-[#A73439] hover:text-white">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
-         </button>
-      </div>
-   )
-}
+  const onNext = () => {
+    onPageChange(currentPage + 1);
+  };
 
-export default Pagination
+  const onPrevious = () => {
+    onPageChange(currentPage - 1);
+  };
+
+  let lastPage = paginationRange[paginationRange.length - 1];
+
+  return (
+    <div className="flex bg-white h-8 rounded-lg">
+      {/* Left navigation arrow */}
+      <li
+        //   className={classnames('pagination-item', {
+        //     disabled: currentPage === 1,
+        //   })}
+        onClick={onPrevious}
+      >
+        <div className="arrow left" />
+      </li>
+      {paginationRange.map((pageNumber) => {
+        // If the pageItem is a DOT, render the DOTS unicode character
+        if (pageNumber === DOTS) {
+          return <li className="pagination-item dots">&#8230;</li>;
+        }
+
+        // Render our Page Pills
+        return (
+          <li
+            //  className={classnames('pagination-item', {
+            //    selected: pageNumber === currentPage
+            //  })}
+            onClick={() => onPageChange(pageNumber)}
+          >
+            {pageNumber}
+          </li>
+        );
+      })}
+
+      {/*  Right Navigation arrow */}
+      <li
+        //   className={classnames('pagination-item', {
+        //     disabled: currentPage === lastPage,
+        //   })}
+        onClick={onNext}
+      >
+        <div className="arrow right" />
+      </li>
+    </div>
+  );
+};
+
+export default Pagination;
