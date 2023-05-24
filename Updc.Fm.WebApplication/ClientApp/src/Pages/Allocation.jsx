@@ -4,9 +4,25 @@ import Table from '../Utilities/Table';
 import NavContainer from '../components/NavContainer';
 import DropDownButton from '../Utilities/DropDownButton';
 import { allocationDashboard } from '../components/NavLists';
-import { data } from '../Utilities/TableData';
+// import { data } from '../Utilities/TableData';
+import { GetRequest } from '../Auth/hooks/useGet';
+import { useEffect, useState } from 'react';
 const Allocation = () => {
-    
+  const [residents, setResidents] = useState([]);
+
+  useEffect(() => {
+    const getResident = async () => {
+      const { status, data } = await GetRequest('api/residents');
+
+      if (status === 200) {
+        setResidents(data);
+      }
+    };
+
+    getResident();
+  }, [residents]);
+
+  console.log(residents);
   return (
     <NavContainer dashboard={allocationDashboard}>
       <div className=" w-full">
@@ -28,14 +44,16 @@ const Allocation = () => {
           />
         </div>
         <div className="mt-10">
-          <Table
-            textCol1="Full Name"
-            textCol2="Email"
-            textCol3="Phone No"
-            textCol4="Estate"
-            textCol5="Status"
-            data={data}
-          />
+          {residents ? (
+            <Table
+              textCol1="Full Name"
+              textCol2="Email"
+              textCol3="Phone No"
+              textCol4="Estate"
+              textCol5="Status"
+              data={residents}
+            />
+          ) : null}
         </div>
         <div class="flex justify-between h-[36px] mt-10 w-full">
           <span className=" text-gray-400">
