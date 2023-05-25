@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 // import Pagination from './Pagination';
+import Pagination from './Pagination';
 
 const Table = (props) => {
   const [checked, setChecked] = useState(false);
@@ -82,6 +83,16 @@ const Table = (props) => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="flex flex-row gap-[18rem] mt-7">
+        <div className="w-[40%]">
+          <span className=" text-gray-400">
+            Searching 1 to 10 of 10,000 entries
+          </span>
+        </div>
+        <div>
+          <Pagination />
+        </div>
       </div>
     </div>
   );

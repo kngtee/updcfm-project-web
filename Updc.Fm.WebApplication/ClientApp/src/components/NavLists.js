@@ -19,23 +19,74 @@ export const salesDashboard = {
   },
 };
 
-export const staffDashboard = {
+export const adminStaff = {
   overview: {
     title: 'Staff',
-    navs: [],
+    navs: [
+      {
+        name: 'View All',
+        path: ''
+      }
+    ],
   },
   manage: {
     title: 'Manage',
     navs: [
       {
-        name: 'Create New Staff',
+        name: 'New Staff',
+        path: 'admin/new_staff',
+      },
+      {
+        name: 'Details',
+        path: 'admin/staff_overview',
+      },
+    ],
+  },
+};
+
+export const adminNewStaff = {
+  overview: {
+    title: 'New Staff',
+    navs: [
+      {
+        name: 'Staff Form',
+        path: '',
+      },
+    ],
+  },
+  manage: {
+    title: '',
+    navs: [
+      {
+        name: '',
         path: '',
       },
     ],
   },
 };
 
-export const adminDashboard = {
+export const adminStaffOverview = {
+  overview:{
+    title: 'Staff',
+    navs: [
+      {
+        name: 'Details',
+        path: '',
+      },
+    ],
+  },
+  manage:{
+    title: '',
+    navs:[
+      {
+        name: '',
+        path: '',
+      },
+    ],
+  },
+};
+
+export const adminOverView = {
   overview: {
     title: 'Admin',
     navs: [
@@ -50,14 +101,100 @@ export const adminDashboard = {
     navs: [
       {
         name: 'Staff',
-        path: '',
+        path: '/admin/staff',
       },
       {
         name: 'Cluster',
-        path: '',
+        path: '/admin/cluster',
       },
       {
         name: 'Estate',
+        path: '/admin/estate',
+      },
+    ],
+  },
+};
+
+export const adminCluster = {
+  overview: {
+    title: 'Cluster',
+    navs: [
+      {
+        name: 'View All',
+        path: '',
+      },
+    ],
+  },
+  manage: {
+    title: 'Manage',
+    navs:[
+      {
+        name: 'New Cluster',
+        path: 'admin/new_cluster',
+      },
+      {
+        name: 'Config. Cluster',
+        path: '',
+      },
+    ],
+  },
+};
+
+export const adminNewCluster = {
+  overview:{
+    title: 'New Cluster',
+    navs: [
+      {
+        name: 'Cluster Form',
+        path: '',
+      },
+    ],
+  },
+  manage:{
+    title: '',
+    navs:[
+
+    ],
+  },
+};
+
+export const adminNewEstate = {
+  overview:{
+    title: 'New Estate',
+    navs: [
+      {
+        name: 'Estate Form',
+        path: '',
+      },
+    ],
+  },
+  manage: {
+    title: '',
+    navs: [
+
+    ],
+  },
+};
+
+export const adminEstate = {
+  overview:{
+    title: 'Estate',
+    navs: [
+      {
+        name: 'View All',
+        path: '',
+      },
+    ],
+  },
+  manage: {
+    title: 'Manage',
+    navs: [
+      {
+        name: 'New Estate',
+        path: '/admin/new_estate'
+      },
+      {
+        name: 'Config. Estate',
         path: '',
       },
     ],
