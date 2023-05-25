@@ -1,10 +1,27 @@
 import React, { useState } from 'react';
+import Pagination from './Pagination';
 
 const Table = (props) => {
   const [checked, setChecked] = useState(false);
 
-  const handleChange = () => {
-    setChecked(!checked);
+  const handleChange = (event) => {
+    const val = event.target.checked;
+    const updateCheckedItems = {};
+    props.data.forEach((item) => {
+      updateCheckedItems[item.id] = val;
+    });
+    // props.data.map((row) => row.checked = !checked)
+    setChecked(updateCheckedItems);
+  };
+  const handleCheckOne = (event) => {
+    const { id, checked } = event.target;
+    setChecked((item) => ({
+      ...item,
+      [id]: checked,
+    }));
+  };
+  const rowClickedAction = (event) => {
+    console.log(event);
   };
 
   return (
@@ -33,7 +50,7 @@ const Table = (props) => {
                 {props.textCol4}
               </th>
               <th scope="col" class="px-6 py-3">
-                Status
+                {props.textCol5}
               </th>
             </tr>
           </thead>
@@ -43,15 +60,20 @@ const Table = (props) => {
               <tr
                 class="bg-white odd:bg-gray-100 ... border-b  justify-center"
                 key={row.id}
+                onClick={() => rowClickedAction(row)}
               >
                 <td className=" px-6 py-4">
                   <input
                     type="checkbox"
                     defaultChecked={checked}
-                    onChange={() => setChecked(!checked)}
+                    id={row.id}
+                    checked={checked[row.id] || false}
+                    onChange={handleCheckOne}
                   />
                 </td>
-                <td className=" px-6 py-4">{row.FullName}</td>
+                <td onClick={console.log('hello g')} className=" px-6 py-4">
+                  {row.FullName}
+                </td>
                 <td className=" px-6 py-4">{row.Email}</td>
                 <td className=" px-6 py-4">{row.PhoneNumber}</td>
                 <td className=" px-6 py-4">{row.Unit}</td>

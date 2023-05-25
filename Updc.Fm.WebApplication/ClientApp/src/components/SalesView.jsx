@@ -2,9 +2,9 @@ import React from 'react'
 import DropDownButton from '../Utilities/DropDownButton'
 import {MdFilterAlt} from 'react-icons/md'
 import Cards from '../Utilities/Cards'
-import availableUnit from '../assets/img/available-units.svg'
-import allocateUnit from '../assets/img/allocate-unit.svg'
-import unit from '../assets/img/units.svg'
+import Jobs from '../assets/img/jobs.svg';
+import JobsDone from '../assets/img/job-done-ok.svg';
+import Vendors from '../assets/img/staff.svg';
 
 const SalesView = () => {
   return (
@@ -22,10 +22,10 @@ const SalesView = () => {
             </button>
             </div>
       </div>
-      <div className='flex w-[800px]'>
-        <Cards className='' textname='Total Unit' num='100' icon={availableUnit}/>
-        <Cards textname='Available Unit' num='75'  icon={allocateUnit}/>
-        <Cards textname='Allocated Unit' num='50'  icon={unit}/>
+      <div className="flex flex-row space-x-12">
+        <Cards className='' textname='Total Unit' num='100' icon={Jobs}/>
+        <Cards textname='Available Unit' num='75'  icon={JobsDone}/>
+        <Cards textname='Allocated Unit' num='50'  icon={Vendors}/>
       </div>
     </div>
   )

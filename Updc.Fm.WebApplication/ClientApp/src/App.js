@@ -15,6 +15,7 @@ import { Accounts } from './Pages/Accounts';
 import { InterventionJobs } from './Pages/InterventionJobs';
 import { SingleJob } from './Pages/SingleJob';
 import { CreateInspection } from './Pages/CreateInspection';
+import SalesAllocatedUnit from './components/SalesAllocatedUnit';
 
 function App() {
   return (
@@ -69,6 +70,7 @@ function App() {
           }
         />
         <Route path="/salesu" element={<SalesNewUnit />} />
+        <Route path="/salesau" element={<SalesAllocatedUnit />} />
         <Route path="/accounts" element={<Accounts />} />
         <Route path="/jobs" element={<InterventionJobs />} />
         <Route path="/singlejob" element={<SingleJob />} />

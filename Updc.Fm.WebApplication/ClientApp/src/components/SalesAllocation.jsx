@@ -37,9 +37,7 @@ const SalesAllocation = () => {
         <span className=" text-gray-400">
           Searching 1 to 10 of 10,000 entries
         </span>
-        <div>
-          <Pagination />
-        </div>
+        <div>{/* <Pagination /> */}</div>
       </div>
     </div>
   );
