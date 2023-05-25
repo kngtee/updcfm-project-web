@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Pagination from './Pagination';
+// import Pagination from './Pagination';
 
 const Table = (props) => {
   const [checked, setChecked] = useState(false);

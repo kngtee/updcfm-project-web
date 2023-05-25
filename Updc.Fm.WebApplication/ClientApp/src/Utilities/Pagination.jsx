@@ -28,7 +28,7 @@ const Pagination = ({
     onPageChange(currentPage - 1);
   };
 
-  let lastPage = paginationRange[paginationRange.length - 1];
+//   let lastPage = paginationRange[paginationRange.length - 1];
 
   return (
     <div className="flex bg-white h-8 rounded-lg">

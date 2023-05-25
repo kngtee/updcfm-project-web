@@ -3,10 +3,10 @@ import DropDownButton from '../Utilities/DropDownButton';
 import Buton from '../Utilities/Buton';
 import NavContainer from './NavContainer';
 import { newUnitDashboard } from '../components/NavLists';
-import {data} from '../Utilities/TableData'
+// import {data} from '../Utilities/TableData'
 
 const SalesNewUnit = () => {
-  const [tableData, setTableData] = useState({data});
+  // const [tableData, setTableData] = useState({data});
   const [formData, setformData] = useState({
     First_Name: '',
     LastName: '',
