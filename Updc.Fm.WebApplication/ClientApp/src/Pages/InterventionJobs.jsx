@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import {
   MdFilterAlt,
-  MdArrowCircleRight,
-  MdArrowCircleLeft,
   MdLaunch,
 } from 'react-icons/md';
 import NavContainer from '../components/NavContainer';
@@ -236,30 +234,7 @@ export const InterventionJobs = () => {
                 </tr>
               </tbody>
             </table>
-            {/* Pagination */}
-            <div className="flex flex-row justify-between mt-4">
-              {/* Pagination Details */}
-              <span className="text-xs text-gray-600">
-                Showing
-                <span className="font-semibold text-[#0f0f0f] "> 1 </span>
-                to
-                <span className="font-semibold text-[#0f0f0f] "> 10 </span>
-                of
-                <span className="font-semibold text-[#0f0f0f] "> 100 </span>
-                Entries
-              </span>
-              {/* Pagination Button */}
-              <div className="inline-flex items-center">
-                <button className="inline-flex items-center px-2 py-1 text-sm font-medium text-[#0f0f0f]  rounded-l-md hover:bg-[#a73439] hover:text-white">
-                  <MdArrowCircleLeft className="mr-1" />
-                  Prev
-                </button>
-                <button className="inline-flex items-center px-2 py-1 text-sm font-medium text-[#0f0f0f]  border-1 border-l border-[#a73439] rounded-r-md hover:bg-[#a73439] hover:text-white">
-                  Next
-                  <MdArrowCircleRight className="ml-1" />
-                </button>
-              </div>
-            </div>
+            
           </div>
         </div>
       </NavContainer>

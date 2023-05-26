@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-// import Pagination from './Pagination';
+import React, { useMemo, useState } from 'react';
 import Pagination from './Pagination';
+import { DataKey } from '../Services/GetDataKey';
+
+let pageSize = 6;
 
 const Table = (props) => {
+  const [currentPage, setCurrentPage] = useState(1);
   const [checked, setChecked] = useState(false);
 
   const handleChange = (event) => {
@@ -11,9 +14,10 @@ const Table = (props) => {
     props.data.forEach((item) => {
       updateCheckedItems[item.id] = val;
     });
-    // props.data.map((row) => row.checked = !checked)
+
     setChecked(updateCheckedItems);
   };
+
   const handleCheckOne = (event) => {
     const { id, checked } = event.target;
     setChecked((item) => ({
@@ -21,9 +25,16 @@ const Table = (props) => {
       [id]: checked,
     }));
   };
+
   const rowClickedAction = (event) => {
     console.log(event);
   };
+
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * pageSize;
+    const lastPageIndex = firstPageIndex + pageSize;
+    return props.data.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage]);
 
   return (
     <div>
@@ -38,26 +49,16 @@ const Table = (props) => {
                   onChange={handleChange}
                 />
               </th>
-              <th scope="col" class="px-6 py-3">
-                {props.textCol1}
-              </th>
-              <th scope="col" class="px-6 py-3">
-                {props.textCol2}
-              </th>
-              <th scope="col" class="px-6 py-3">
-                {props.textCol3}
-              </th>
-              <th scope="col" class="px-6 py-3">
-                {props.textCol4}
-              </th>
-              <th scope="col" class="px-6 py-3">
-                {props.textCol5}
-              </th>
+              {props.header.map((th) => (
+                <th scope="col" class="px-6 py-3">
+                  {th}
+                </th>
+              ))}
             </tr>
           </thead>
 
           <tbody>
-            {props.data.map((row) => (
+            {currentTableData.map((row) => (
               <tr
                 class="bg-white odd:bg-gray-100 ... border-b  justify-center"
                 key={row.id}
@@ -72,27 +73,25 @@ const Table = (props) => {
                     onChange={handleCheckOne}
                   />
                 </td>
-                <td onClick={console.log('hello g')} className=" px-6 py-4">
-                  {row.FullName}
-                </td>
-                <td className=" px-6 py-4">{row.Email}</td>
-                <td className=" px-6 py-4">{row.PhoneNumber}</td>
-                <td className=" px-6 py-4">{row.Unit}</td>
-                <td className=" px-6 py-4">{row.Status}</td>
+                {/* {console.log('Keys: ' + props.objectKey[0])} */}
+                {props.data &&
+                  DataKey(props.data[0]).map((k) => (
+                    <td onClick={console.log('hello g')} className=" cursor-pointer px-6 py-4">
+                      {row[k]}
+                    </td>
+                  ))}
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <div className="flex flex-row gap-[18rem] mt-7">
-        <div className="w-[40%]">
-          <span className=" text-gray-400">
-            Searching 1 to 10 of 10,000 entries
-          </span>
-        </div>
-        <div>
-          <Pagination />
-        </div>
+      <div className="">
+        <Pagination
+          currentPage={currentPage}
+          totalCount={props.data.length}
+          pageSize={pageSize}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { DOTS, usePagination } from '../Pagination/usePagination';
+import { MdArrowCircleLeft, MdArrowCircleRight } from 'react-icons/md';
 
 const Pagination = ({
   onPageChange,
@@ -15,8 +16,11 @@ const Pagination = ({
     pageSize,
   });
 
+  let paginationRangeLength = paginationRange && paginationRange.length;
+  console.log(paginationRangeLength);
+
   // If there are less than 2 times in pagination range we shall not render the component
-  if (currentPage === 0 || paginationRange.length < 2) {
+  if (currentPage === 0 || paginationRangeLength < 2) {
     return null;
   }
 
@@ -28,47 +32,72 @@ const Pagination = ({
     onPageChange(currentPage - 1);
   };
 
-//   let lastPage = paginationRange[paginationRange.length - 1];
-
+  // let lastPage = paginationRange[paginationRange.length - 1];
+  // console.log("pg: "+)
   return (
-    <div className="flex bg-white h-8 rounded-lg">
-      {/* Left navigation arrow */}
-      <li
-        //   className={classnames('pagination-item', {
-        //     disabled: currentPage === 1,
-        //   })}
-        onClick={onPrevious}
-      >
-        <div className="arrow left" />
-      </li>
-      {paginationRange.map((pageNumber) => {
-        // If the pageItem is a DOT, render the DOTS unicode character
-        if (pageNumber === DOTS) {
-          return <li className="pagination-item dots">&#8230;</li>;
-        }
+    <div className="flex flex-row justify-between mt-4">
+      {/* Pagination Details */}
+      <div className="w-fit">
+        <span className="text-xs text-gray-600">
+          Showing
+          <span className="font-semibold text-[#0f0f0f] ">
+            {' '}
+            {currentPage === 1
+              ? currentPage
+              : pageSize * (currentPage - 1)}{' '}
+          </span>
+          to
+          <span className="font-semibold text-[#0f0f0f] ">
+            {' '}
+            {pageSize * currentPage}{' '}
+          </span>
+          of
+          <span className="font-semibold text-[#0f0f0f] "> {totalCount} </span>
+          Entries
+        </span>
+      </div>
+      {/* Pagination Button */}
+      <div className=" w-fit flex items-center">
+        <div
+          onClick={onPrevious}
+          className={
+            currentPage > 1
+              ? 'hover:bg-[#a73439] hover:text-white hover:cursor-pointer flex flex-row items-center w-[70px] px-2 py-1 text-sm font-medium text-[#0f0f0f]  rounded-l-md border-1 border-r border-[#a73439]'
+              : 'flex flex-row items-center w-[50px] px-2 py-1 text-sm font-medium text-[#0f0f0f]  rounded-l-md cursor-default border-1 border-r border-[#a73439]'
+          }
+        >
+          <MdArrowCircleLeft className="mr-1" />
+          <span>Prev</span>
+        </div>
+        {paginationRange &&
+          paginationRange.map((pageNumber) => {
+            // If the pageItem is a DOT, render the DOTS unicode character
+            if (pageNumber === DOTS) {
+              return (
+                <span className="flex items-center justify-center hover:bg-[#a73439] hover:text-white hover:cursor-pointer flex flex-row items-center w-[70px] px-2 py-1 text-sm font-medium text-[#0f0f0f]  rounded-md">
+                  &#8230;
+                </span>
+              );
+            }
 
-        // Render our Page Pills
-        return (
-          <li
-            //  className={classnames('pagination-item', {
-            //    selected: pageNumber === currentPage
-            //  })}
-            onClick={() => onPageChange(pageNumber)}
-          >
-            {pageNumber}
-          </li>
-        );
-      })}
-
-      {/*  Right Navigation arrow */}
-      <li
-        //   className={classnames('pagination-item', {
-        //     disabled: currentPage === lastPage,
-        //   })}
-        onClick={onNext}
-      >
-        <div className="arrow right" />
-      </li>
+            // Render our Page Pills
+            return (
+              <span
+                className="flex items-center justify-center hover:bg-[#a73439] hover:text-white hover:cursor-pointer flex flex-row items-center w-[70px] px-2 py-1 text-sm font-medium text-[#0f0f0f]  rounded-md"
+                onClick={() => onPageChange(pageNumber)}
+              >
+                {pageNumber}
+              </span>
+            );
+          })}
+        <button
+          onClick={onNext}
+          className="inline-flex items-center px-2 py-1 text-sm font-medium text-[#0f0f0f]  border-1 border-l border-[#a73439] rounded-r-md hover:bg-[#a73439] hover:text-white"
+        >
+          Next
+          <MdArrowCircleRight className="ml-1" />
+        </button>
+      </div>
     </div>
   );
 };
