@@ -1,37 +1,40 @@
-import React from 'react'
-import { FaForumbee} from 'react-icons/fa'
-import { FaBuilding } from 'react-icons/fa'
-import { FaBehanceSquare } from 'react-icons/fa'
+import React from 'react';
 
-const Cards = () => {
+
+const Cards = (props) => {
   return (
-    <div style={{display:'flex',justifyContent:"space-between", height:'200px',width:'850px',marginTop:'1rem',marginLeft:'1rem',padding:'20px'}}>
-        <div style={{ display:'Flex',justifyContent:'space-between',padding:'30px', alignItems:'center', height:'150px',width:'250px',boxShadow:'2px 5px 10px grey',borderRadius:'20px'}}>
-        <div >
-        <h5 style={{fontSize:'20px'}}>Total Unit</h5>
-        <h3 style={{fontSize:'30px'}}>100</h3>
-       </div>
-       <FaBuilding name='' size={60} color='red' opacity='40%' />
+    <div
+      className={props.className}
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        height: '200px',
+        width: '850px',
+        marginTop: '1rem',
+        marginLeft: '1rem',
+        padding: '20px',
+      }}
+    >
+      <div
+        style={{
+          display: 'Flex',
+          justifyContent: 'space-between',
+          padding: '30px',
+          alignItems: 'center',
+          height: '150px',
+          width: '250px',
+          borderRadius: '20px',
+        }}
+        className="shadow-lg bg-[#FFFFFF]"
+      >
+        <div>
+          <h6 className=" text-gray-400 font-medium">{props.textname}</h6>
+          <h1 className=" font-bold font-medium text-5xl">{props.num}</h1>
         </div>
-        <div style={{ display:'Flex',justifyContent:'space-between',padding:'30px', alignItems:'center', height:'150px',width:'250px',boxShadow:'2px 5px 10px grey',borderRadius:'20px'}}>
-        <div >
-        <h5 style={{fontSize:'20px'}}>Total Unit</h5>
-         <h3 style={{fontSize:'30px'}}>70</h3>
-        </div>
-        <FaForumbee name='' size={60} color='red' opacity='40%' />
-        
-        </div>
-        <div style={{ display:'Flex',justifyContent:'space-between',padding:'30px', alignItems:'center', height:'150px',width:'250px',boxShadow:'2px 5px 10px grey',borderRadius:'20px'}}>
-        <div >
-        <h5 style={{fontSize:'20px'}}>Total Unit</h5>
-         <h3 style={{fontSize:'30px'}}>100</h3>
-        </div>
-        <FaBehanceSquare name='' size={60} color='red' opacity='40%' />
-        
-        </div>
- </div>
+        <img className="h-[50px] w-[50px] mt-5" src={props.icon} alt="" />
+      </div>
+    </div>
+  );
+};
 
-  )
-}
-
-export default Cards
+export default Cards;

@@ -39,6 +39,7 @@ export const AuthProvider = ({ children }) => {
   const handleLogout = () => {
     setToken(null);
     navigate('/login');
+    successMessage({ title: 'Logout successful.' });
   };
 
   const value = useMemo(
