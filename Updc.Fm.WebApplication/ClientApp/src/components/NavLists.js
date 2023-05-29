@@ -295,6 +295,9 @@ export const createInspection = {
   },
 };
 
+export const pathWay={
+  overview:{},manage:{}
+};
 export const singleJob = {
   overview: {
     title: 'JB001',

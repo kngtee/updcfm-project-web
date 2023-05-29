@@ -55,7 +55,7 @@ const SalesNewUnit = () => {
               <span>
                 <h5 className="w-[30px] h-[35px]">Cluster: </h5>
               </span>
-              <div className=' bg-white text-gray-400 text-xs rounded focus:ring-blue-500 focus:border-blue-500 block   shadow-[#a73439]/25"'>
+              <div className=' bg-white text-gray-40 font-medium rounded focus:ring-blue-500 focus:border-blue-500 block   shadow-[#a73439]/25"'>
                 <DropDownButton
                   className=""
                   first="Cluster"
@@ -69,9 +69,9 @@ const SalesNewUnit = () => {
               <span>
                 <h5 className="w-[30px] h-[35px]"> Unit: </h5>{' '}
               </span>
-              <div className=' bg-white text-gray-400 text-xs rounded focus:ring-blue-500 focus:border-blue-500 block   shadow-[#a73439]/25"'>
+              <div className=' bg-white text-gray-400 font-medium rounded focus:ring-blue-500 focus:border-blue-500 block   shadow-[#a73439]/25"'>
                 <DropDownButton
-                  value=''
+                  value=""
                   className=""
                   first="Unit"
                   second="Jobs"
@@ -113,7 +113,7 @@ const SalesNewUnit = () => {
               <span>
                 <h5 className="w-[30px] h-[35px]">Estate:</h5>{' '}
               </span>
-              <div className=" bg-white text-gray-400 text-xs rounded focus:ring-blue-500 focus:border-blue-500 block   shadow-[#a73439]/25">
+              <div className=" bg-white text-gray-400 text-xs font-medium rounded focus:ring-blue-500 focus:border-blue-500 block   shadow-[#a73439]/25">
                 {' '}
                 <DropDownButton
                   className=" "

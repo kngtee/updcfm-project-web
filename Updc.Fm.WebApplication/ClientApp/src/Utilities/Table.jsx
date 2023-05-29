@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import Pagination from './Pagination';
 import { DataKey } from '../Services/GetDataKey';
 
-let pageSize = 6;
+let pageSize = 4;
 
 const Table = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -76,7 +76,10 @@ const Table = (props) => {
                 {/* {console.log('Keys: ' + props.objectKey[0])} */}
                 {props.data &&
                   DataKey(props.data[0]).map((k) => (
-                    <td onClick={console.log('hello g')} className=" cursor-pointer px-6 py-4">
+                    <td
+                      onClick={console.log('hello g')}
+                      className=" cursor-pointer px-6 py-4"
+                    >
                       {row[k]}
                     </td>
                   ))}

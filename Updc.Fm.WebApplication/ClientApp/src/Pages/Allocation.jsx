@@ -4,11 +4,12 @@ import Table from '../Utilities/Table';
 import NavContainer from '../components/NavContainer';
 import DropDownButton from '../Utilities/DropDownButton';
 import { allocationDashboard } from '../components/NavLists';
-import { data } from '../Utilities/TableData';
 import { GetRequest } from '../Auth/hooks/useGet';
 import { useEffect, useState } from 'react';
 import { DataKey } from '../Services/GetDataKey';
+import SearchBox from '../Utilities/SearchBox';
 import Loader from '../components/Loader';
+
 let tabelHeader = [
   'FirstName',
   'LastName',
@@ -45,29 +46,28 @@ const Allocation = () => {
         <Loader />
       ) : (
         <NavContainer dashboard={allocationDashboard}>
-          <div className=" w-full">
-            <div className=" flex h-[40px] justify-between  w-full mt-[60px] ">
-              <div>
-                <DropDownButton first="Cluster" second="Estate" third="Unit" />
-              </div>
-              <div>
+          <div className=" space-y-8 px-4 py-8">
+            <div className=" flex  justify-between px-4 py-8">
+              <div className="flex flex-col space-x-1 md:flex-row md:space-x-3 font-medium items-center ">
                 <DropDownButton
-                  first="Football"
-                  second="Tennis"
-                  third="Swimming"
+                  first="Select Cluster"
+                  second="Select Estate"
+                  third="Unit"
                 />
+                <DropDownButton
+                  first="Select Estate"
+                  second="Select Cluster"
+                  third="Jobs"
+                />
+                <button className=" inline-flex w-[35px] h-[35px] bg-[#a73439] text-white items-center justify-center rounded shadow-sm shadow-[#a73439]/25">
+                  <MdFilterAlt />
+                </button>{' '}
               </div>
-              <button className=" mr-40 h-[40px] w-[40px] flex justify-center  bg-[#A73439] rounded-md">
-                <MdFilterAlt class=" mt-2.5" size={20} color="white" />
-              </button>
-              <input
-                class=" placeholder:italic placeholder:text-slate-400 block bg-white h-[40px] w-[200px] border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-                placeholder="Search ..."
-                type="text"
-                name="search"
-              />
+              <div>
+                <SearchBox />
+              </div>
             </div>
-            <div className="mt-10">
+            <div className="">
               {residents ? (
                 <Table
                   header={tabelHeader}
