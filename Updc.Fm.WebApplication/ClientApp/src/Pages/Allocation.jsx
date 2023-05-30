@@ -1,25 +1,23 @@
 import { MdFilterAlt } from 'react-icons/md';
-import Pagination from '../Utilities/Pagination';
 import Table from '../Utilities/Table';
 import NavContainer from '../components/NavContainer';
 import DropDownButton from '../Utilities/DropDownButton';
 import { allocationDashboard } from '../components/NavLists';
 import { GetRequest } from '../Auth/hooks/useGet';
 import { useEffect, useState } from 'react';
-import { DataKey } from '../Services/GetDataKey';
+// import { DataKey } from '../Services/GetDataKey';
 import SearchBox from '../Utilities/SearchBox';
 import Loader from '../components/Loader';
 
-let tabelHeader = [
-  'FirstName',
-  'LastName',
-  'Email',
-  'Phone Number',
-  'Activation Stage',
+let tableHeader = [
+  { first_name: 'First Name' },
+  { last_name: 'Last Name' },
+  { email: 'Email' },
+  { phone_number: 'Phone Number' },
+  { activation_stage: 'Activation Stage' },
 ];
 const Allocation = () => {
   const [residents, setResidents] = useState(null);
-  const [objectKey, setObjectKey] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -27,7 +25,6 @@ const Allocation = () => {
       const { status, data } = await GetRequest('api/residents');
       console.log(data);
       if (status === 200) {
-        setObjectKey(DataKey(data));
         setIsLoading(false);
         setResidents(data);
         console.log(data);
@@ -35,11 +32,9 @@ const Allocation = () => {
     };
 
     getResident();
-  }, [residents]);
+  }, []);
 
-  // if (isLoading) {
-  //   return <Loader />;
-  // }
+
   return (
     <>
       {isLoading ? (
@@ -69,11 +64,7 @@ const Allocation = () => {
             </div>
             <div className="">
               {residents ? (
-                <Table
-                  header={tabelHeader}
-                  objectKey={objectKey && objectKey}
-                  data={residents && residents}
-                />
+                <Table header={tableHeader} data={residents && residents} />
               ) : null}
             </div>
           </div>

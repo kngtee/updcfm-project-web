@@ -1,27 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import DropDownButton from '../Utilities/DropDownButton';
 import Buton from '../Utilities/Buton';
 import NavContainer from './NavContainer';
 import { newUnitDashboard } from '../components/NavLists';
+import { useFormik } from 'formik';
 // import {data} from '../Utilities/TableData'
 
 const SalesNewUnit = () => {
-  // const [tableData, setTableData] = useState({data});
-  const [formData, setformData] = useState({
-    First_Name: '',
-    LastName: '',
-    Email: '',
-    PhoneNum: '',
+  const formik = useFormik({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      unitId: '',
+      email: '',
+      phoneNumber: '',
+    },
+
+    onSubmit: (values) => {
+      console.log(values);
+    },
   });
-  const handleChange = (e) => {
-    setformData({ ...formData, [e.target.name]: e.target.value });
-  };
-  // const handleSubmit = (e) => {
-  //   onSubmit(console.log(formData));
-  // };
   return (
     <NavContainer dashboard={newUnitDashboard}>
-      <form onSubmit={{}}>
+      <form onSubmit={formik.handleSubmit}>
         <div className=" flex justify-around mt-20 ml-20 rounded-lg w-[700px] p-1 h-[400px]">
           <div className=" w-[45%] ">
             <div className=" flex mt-[1.5rem] justify-between w-[300px] ">
@@ -31,10 +32,10 @@ const SalesNewUnit = () => {
               <input
                 className="w-[200px] shadow-lg h-[35px] rounded-md px-4 "
                 type="text"
-                name="First_Name"
+                name="firstName"
                 placeholder="Enter first name"
-                value={formData.First_Name}
-                onChange={handleChange}
+                value={formik.values.firstName}
+                onChange={formik.handleChange}
               />
             </div>
             <div className=" flex mt-[1.5rem] justify-between w-[300px]">
@@ -45,10 +46,10 @@ const SalesNewUnit = () => {
               <input
                 className="w-[200px] shadow-lg h-[35px] rounded-md px-4 "
                 type="text"
-                name="Email"
+                name="email"
                 placeholder="Enter email address"
-                value={formData.Email}
-                onChange={handleChange}
+                value={formik.values.email}
+                onChange={formik.handleChange}
               />
             </div>
             <div className="mt-[1.5rem] flex justify-between w-[300px]">
@@ -76,6 +77,7 @@ const SalesNewUnit = () => {
                   first="Unit"
                   second="Jobs"
                   third="Unit"
+                  // onChangeValue={handleChange}
                 />
               </div>
             </div>
@@ -89,9 +91,9 @@ const SalesNewUnit = () => {
                 className="w-[200px] shadow-lg h-[35px] rounded-md px-4 "
                 type="text"
                 placeholder="Enter Last name"
-                name="LastName"
-                value={formData.LastName}
-                onChange={handleChange}
+                name="lastName"
+                value={formik.values.lastName}
+                onChange={formik.handleChange}
               />
             </div>
             <div className=" flex justify-between mt-[1.5rem] w-[300px]">
@@ -101,11 +103,11 @@ const SalesNewUnit = () => {
               </span>
               <input
                 className="w-[200px] shadow-lg h-[35px] rounded-md px-4 boxShadow:2px 5px 10px grey"
-                type="text"
+                type="number"
                 placeholder="Enter Phone number"
-                value={formData.PhoneNum}
-                name="PhoneNum"
-                onChange={handleChange}
+                value={formik.values.phoneNumber}
+                name="phoneNumber"
+                // onChangeValue={handleChange}
               />
             </div>
             <div className="mt-[1.5rem] flex justify-between w-[300px]">
@@ -114,28 +116,28 @@ const SalesNewUnit = () => {
                 <h5 className="w-[30px] h-[35px]">Estate:</h5>{' '}
               </span>
               <div className=" bg-white text-gray-400 text-xs font-medium rounded focus:ring-blue-500 focus:border-blue-500 block   shadow-[#a73439]/25">
-                {' '}
                 <DropDownButton
                   className=" "
                   first="Select Estate"
                   second="Estate"
                   third="Unit"
+                  onChange={formik.handleChange}
                 />
               </div>
             </div>
             <div className=" flex  justify-end gap-4 mr-2 mt-36">
-              {' '}
-              <Buton
-                className="px-3 py-1 bg-white rounded-md hover:bg-red-600 hover:text-white text-black border border-red-600 "
-                text="Cancel"
-              />{' '}
+              <span>
+                <Buton
+                  className="px-3 py-1 bg-white rounded-md hover:bg-red-600 hover:text-white text-black border border-red-600 "
+                  text="Cancel"
+                  type="cancel"
+                />
+              </span>
               <span className="">
                 <Buton
                   className=" px-3 py-1 bg-green-500 text-white shadow-green-500/50 rounded-md hover:bg-white hover:text-green-500"
                   text="Allocate"
-                  onClick={() => {
-                    setformData(console.log(formData));
-                  }}
+                  type="submit"
                 />{' '}
               </span>
             </div>
