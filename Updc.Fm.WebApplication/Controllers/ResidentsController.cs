@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text;
+using System.Text.Json;
+using Updc.Fm.Domain.Dto;
 
 namespace Updc.Fm.WebApplication.Controllers
 {
@@ -27,6 +30,23 @@ namespace Updc.Fm.WebApplication.Controllers
             }
 
             return StatusCode(400, "Something went wrong");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateNewResident(ResidentDto resident)
+        {
+            var client = _httpClientFactory.CreateClient("api");
+            var body = JsonSerializer.Serialize(resident);
+            var content = new StringContent(body, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("/api/admins/resident/new", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var res = await response.Content.ReadAsStringAsync();
+                return StatusCode(201, res);
+            }
+
+            return StatusCode(400, response.Content.ReadAsStringAsync());
         }
     }
 }
