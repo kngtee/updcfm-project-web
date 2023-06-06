@@ -25,7 +25,7 @@ const SalesNewUnit = () => {
     const getCluster = async () => {
       setClusterIsLoading(true);
       const res = await GetRequest('/api/residents/clusters');
-      if (res.status === 200) {
+      if (res && res.status === 200) {
         setIsLoading(false);
         setClusters(res.data);
       }
@@ -39,7 +39,7 @@ const SalesNewUnit = () => {
       const res = await GetRequest(
         '/api/residents/clusters/' + clusterId + '/estates',
       );
-      if (res.status === 200) {
+      if (res && res.status === 200) {
         setEstateIsLoading(false);
         setEstates(res.data);
         console.log(res);
