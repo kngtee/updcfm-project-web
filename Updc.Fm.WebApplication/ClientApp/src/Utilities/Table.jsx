@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Pagination from './Pagination';
 import { DataKey } from '../Services/GetDataKey';
 // import { data } from 'jquery';
@@ -10,20 +10,10 @@ const Table = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [checked, setChecked] = useState(false);
   const [tableData, setTableData] = useState(props.data);
-  // const [search, setSearch] = useState('');
   const [sorting, setSorting] = useState({ field: DataKey(props.data[0])[0] });
+  const [search, setSearch] = useState({ query: props.query });
+  const [totalCount, setTotalCount] = useState(props.data && props.data.length);
   console.log(props.header);
-
-  // useEffect(() => {
-  //   setTableData(props.data);
-  //   setLoaded(true);
-  // }, [loaded]);
-
-  // const handleSort = () => {
-  //   let sortedData = ArrangeData(props.data, sorting.field);
-  //   setTableData(sortedData);
-  //   console.log('first');
-  // };
 
   const handleChange = (event) => {
     const val = event.target.checked;
@@ -47,14 +37,32 @@ const Table = (props) => {
     console.log(event);
   };
 
+  useEffect(() => {
+    setTotalCount(
+      props.data.filter(
+        (e) =>
+          e.first_name.toLowerCase().includes(props.query.toLowerCase()) ||
+          e.last_name.toLowerCase().includes(props.query.toLowerCase()),
+      ).length,
+    );
+  }, [props.query]);
+
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
     let sortedData = ArrangeData(props.data, sorting.field);
+
     setTableData(sortedData);
-    return tableData.slice(firstPageIndex, lastPageIndex);
+    // console.log(sortedData);
+    return tableData
+      .filter(
+        (e) =>
+          e.first_name.toLowerCase().includes(props.query.toLowerCase()) ||
+          e.last_name.toLowerCase().includes(props.query.toLowerCase()),
+      )
+      .slice(firstPageIndex, lastPageIndex);
     // eslint-disable-next-line
-  }, [currentPage, sorting]);
+  }, [currentPage, sorting, props.query]);
 
   return (
     <div>
@@ -118,7 +126,7 @@ const Table = (props) => {
       <div className="">
         <Pagination
           currentPage={currentPage}
-          totalCount={props.data.length}
+          totalCount={totalCount}
           pageSize={pageSize}
           onPageChange={(page) => setCurrentPage(page)}
         />

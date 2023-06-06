@@ -1,6 +1,9 @@
 import React from 'react';
 
-const SearchBox = () => {
+const SearchBox = ({ query }) => {
+  const handleChange = (e) => {
+    query(e.target.value);
+  };
   return (
     <div className="">
       <label htmlFor="search" className="sr-only">
@@ -12,6 +15,7 @@ const SearchBox = () => {
           id="search"
           placeholder="Search for jobs..."
           className="bg-white text-gray-400 h-[35px] text-sm font-medium rounded-l shadow-sm shadow-[#a73439]/25 block px-3 py-2.5"
+          onChange={handleChange}
         />
         <button className="flex h-[35px] w-[40px] items-center justify-center bg-[#a73439] rounded-r shadow-sm shadow-[#a73439]/25">
           <svg

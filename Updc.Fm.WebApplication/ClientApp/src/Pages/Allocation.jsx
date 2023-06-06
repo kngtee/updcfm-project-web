@@ -4,7 +4,7 @@ import NavContainer from '../components/NavContainer';
 import DropDownButton from '../Utilities/DropDownButton';
 import { allocationDashboard } from '../components/NavLists';
 import { GetRequest } from '../Auth/hooks/useGet';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 // import { DataKey } from '../Services/GetDataKey';
 import SearchBox from '../Utilities/SearchBox';
 import Loader from '../components/Loader';
@@ -17,8 +17,9 @@ let tableHeader = [
   { activation_stage: 'Activation Stage' },
 ];
 const Allocation = () => {
-  const [residents, setResidents] = useState(null);
+  const [residents, setResidents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const getResident = async () => {
@@ -26,15 +27,31 @@ const Allocation = () => {
       console.log(data);
       if (status === 200) {
         setIsLoading(false);
+        data.filter((e) =>
+          e.first_name.toLowerCase().includes(searchQuery.toLowerCase()),
+        );
         setResidents(data);
         console.log(data);
       }
     };
 
     getResident();
-  }, []);
+  }, [searchQuery]);
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    // const sorted =
+    //   residents &&
+    //   residents.filter((e) =>
+    //     e.first_name.toLowerCase().includes(query.toLowerCase()),
+    //   );
 
+    // setResidents(sorted);
+  };
+
+  // useEffect(() => {
+  //   console.log('Sea: ' + searchQuery);
+  // }, searchQuery);
   return (
     <>
       {isLoading ? (
@@ -59,12 +76,16 @@ const Allocation = () => {
                 </button>{' '}
               </div>
               <div>
-                <SearchBox />
+                <SearchBox query={handleSearch} />
               </div>
             </div>
             <div className="">
               {residents ? (
-                <Table header={tableHeader} data={residents && residents} />
+                <Table
+                  header={tableHeader}
+                  data={residents && residents}
+                  query={searchQuery}
+                />
               ) : null}
             </div>
           </div>
