@@ -27,8 +27,8 @@ export const CreateInspection = () => {
                 </a>
               </li>
 
-              <li class="inline-flex">
-                <div class="inline-flex items-center">
+              <li className="inline-flex">
+                <div className="inline-flex items-center">
                   <svg
                     aria-hidden="true"
                     fill="currentColor"
@@ -51,8 +51,8 @@ export const CreateInspection = () => {
                   </a>
                 </div>
               </li>
-              <li class="inline-flex">
-                <div class="inline-flex items-center">
+              <li className="inline-flex">
+                <div className="inline-flex items-center">
                   <svg
                     aria-hidden="true"
                     fill="currentColor"
@@ -75,8 +75,8 @@ export const CreateInspection = () => {
                   </a>
                 </div>
               </li>
-              <li aria-current="page" class="inline-flex">
-                <div class="inline-flex items-center">
+              <li aria-current="page" className="inline-flex">
+                <div className="inline-flex items-center">
                   <svg
                     aria-hidden="true"
                     fill="currentColor"
@@ -263,7 +263,7 @@ export const CreateInspection = () => {
                   <span className="sr-only">Close modal</span>
                 </button>
                 <div className="px-6 py-6 lg:px-8">
-                  <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
+                  <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
                     Sign in to our platform
                   </h3>
                   <form className="space-y-6" action="#"></form>

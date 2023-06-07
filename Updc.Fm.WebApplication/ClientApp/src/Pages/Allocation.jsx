@@ -17,36 +17,35 @@ let tableHeader = [
   { activation_stage: 'Activation Stage' },
 ];
 const Allocation = () => {
-  const [residents, setResidents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [residents, setResidents] = useState([]);
 
   useEffect(() => {
     const getResident = async () => {
       const { status, data } = await GetRequest('api/residents');
-      console.log(data);
       if (status === 200) {
-        setIsLoading(false);
-        data.filter((e) =>
-          e.first_name.toLowerCase().includes(searchQuery.toLowerCase()),
-        );
-        setResidents(data);
         console.log(data);
+        data.forEach((e) => {
+          let newE = {
+            first_name: e.first_name,
+            last_name: e.last_name,
+            email: '',
+            activation_stage: e.activation_stage,
+            phone_number: '',
+          };
+
+          setResidents((i) => [...i, newE]);
+        });
+        setIsLoading(false);
       }
     };
 
     getResident();
-  }, [searchQuery]);
+  }, []);
 
   const handleSearch = (query) => {
     setSearchQuery(query);
-    // const sorted =
-    //   residents &&
-    //   residents.filter((e) =>
-    //     e.first_name.toLowerCase().includes(query.toLowerCase()),
-    //   );
-
-    // setResidents(sorted);
   };
 
   // useEffect(() => {
@@ -82,6 +81,7 @@ const Allocation = () => {
             <div className="">
               {residents ? (
                 <Table
+                  filter={['first_name', 'last_name']}
                   header={tableHeader}
                   data={residents && residents}
                   query={searchQuery}

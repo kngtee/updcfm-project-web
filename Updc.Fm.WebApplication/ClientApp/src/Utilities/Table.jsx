@@ -6,14 +6,14 @@ import { ArrangeData } from '../Services/sortData';
 
 let pageSize = 8;
 
-const Table = (props) => {
+const Table = ({ header, data, query, filter }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [checked, setChecked] = useState(false);
-  const [tableData, setTableData] = useState(props.data);
-  const [sorting, setSorting] = useState({ field: DataKey(props.data[0])[0] });
-  const [search, setSearch] = useState({ query: props.query });
-  const [totalCount, setTotalCount] = useState(props.data && props.data.length);
-  console.log(props.header);
+  const [tableData, setTableData] = useState(data);
+  const [sorting, setSorting] = useState({ field: DataKey(header[0]) });
+  // const [search, setSearch] = useState({ query: query });
+  const [totalCount, setTotalCount] = useState(data && data.length);
+  // console.log(props);
 
   const handleChange = (event) => {
     const val = event.target.checked;
@@ -37,32 +37,29 @@ const Table = (props) => {
     console.log(event);
   };
 
-  useEffect(() => {
-    setTotalCount(
-      props.data.filter(
-        (e) =>
-          e.first_name.toLowerCase().includes(props.query.toLowerCase()) ||
-          e.last_name.toLowerCase().includes(props.query.toLowerCase()),
-      ).length,
-    );
-  }, [props.query]);
-
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
-    let sortedData = ArrangeData(props.data, sorting.field);
+    let sortedData = ArrangeData(data, sorting.field);
 
     setTableData(sortedData);
     // console.log(sortedData);
+    setTotalCount(
+      tableData.filter(
+        (e) =>
+          e[filter[0]].toLowerCase().includes(query.toLowerCase()) ||
+          e[filter[1]].toLowerCase().includes(query.toLowerCase()),
+      ).length,
+    );
     return tableData
       .filter(
         (e) =>
-          e.first_name.toLowerCase().includes(props.query.toLowerCase()) ||
-          e.last_name.toLowerCase().includes(props.query.toLowerCase()),
+          e[filter[0]].toLowerCase().includes(query.toLowerCase()) ||
+          e[filter[1]].toLowerCase().includes(query.toLowerCase()),
       )
       .slice(firstPageIndex, lastPageIndex);
     // eslint-disable-next-line
-  }, [currentPage, sorting, props.query]);
+  }, [currentPage, sorting, query]);
 
   return (
     <div>
@@ -77,7 +74,7 @@ const Table = (props) => {
                   onChange={handleChange}
                 />
               </th>
-              {props.header.map((th, index) => (
+              {header.map((th, index) => (
                 <th
                   scope="col"
                   class="px-3 py-1.5"
@@ -109,8 +106,8 @@ const Table = (props) => {
                   />
                 </td>
                 {/* {console.log('Keys: ' + props.objectKey[0])} */}
-                {props.data &&
-                  props.header.map((k, index) => (
+                {data &&
+                  header.map((k, index) => (
                     <td
                       onClick={console.log('hello g')}
                       className="cursor-pointer px-3 py-2"

@@ -14,6 +14,9 @@ const context = [
   '/api/residents/clusters',
   '/api/residents/clusters/:id/estates',
   '/api/residents/estates/:id/units',
+  '/api/interventionjobs',
+  '/api/staffs',
+  '/api/clusters',
 ];
 
 module.exports = function (app) {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NavContainer from '../components/NavContainer';
 import { salesDashboard } from '../components/NavLists';
 import Cards from '../Utilities/Cards';
@@ -11,6 +11,11 @@ import Vendors from '../assets/img/staff.svg';
 const sales = salesDashboard;
 
 const Sales = () => {
+  useEffect(()=>{
+    const getUnits = () =>{
+      
+    }
+  })
   return (
     <NavContainer dashboard={sales}>
       <div className="space-y-8 px-4 py-8">

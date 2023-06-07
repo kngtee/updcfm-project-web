@@ -30,7 +30,7 @@ const SalesAllocation = () => {
           textCol5="Status"
         />
       </div>
-      <div class="flex justify-between h-[36px] mt-10 w-[800px]">
+      <div className="flex justify-between h-[36px] mt-10 w-[800px]">
         <span className=" text-gray-400">
           Searching 1 to 10 of 10,000 entries
         </span>
