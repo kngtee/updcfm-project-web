@@ -13,7 +13,7 @@ const Table = ({ header, data, query, filter }) => {
   const [sorting, setSorting] = useState({ field: DataKey(header[0]) });
   // const [search, setSearch] = useState({ query: query });
   const [totalCount, setTotalCount] = useState(data && data.length);
-  // console.log(props);
+  console.log(data);
 
   const handleChange = (event) => {
     const val = event.target.checked;
@@ -63,11 +63,11 @@ const Table = ({ header, data, query, filter }) => {
 
   return (
     <div>
-      <div class="relative overflow-x-auto justify-between rounded-t-lg max-w-full max-h-full">
-        <table class="w-full text-sm text-left text-[#0f0f0f] shadow-md max-w-full max-h-full">
-          <thead class="text-xs text-[#F8F7FF] uppercase bg-[#a73439]">
-            <tr class="">
-              <th scope="col" class="px-3 py-1.5">
+      <div className="relative overflow-x-auto justify-between rounded-t-lg max-w-full max-h-full">
+        <table className="w-full text-sm text-left text-[#0f0f0f] shadow-md max-w-full max-h-full">
+          <thead className="text-xs text-[#F8F7FF] uppercase bg-[#a73439]">
+            <tr className="">
+              <th scope="col" className="px-3 py-1.5">
                 <input
                   type="checkbox"
                   defaultChecked={checked}
@@ -76,8 +76,9 @@ const Table = ({ header, data, query, filter }) => {
               </th>
               {header.map((th, index) => (
                 <th
+                  key={index}
                   scope="col"
-                  class="px-3 py-1.5"
+                  className="px-3 py-1.5"
                   onClick={() => {
                     setSorting({ field: DataKey(th) });
                     console.log(sorting);
@@ -92,14 +93,14 @@ const Table = ({ header, data, query, filter }) => {
           <tbody>
             {currentTableData.map((row) => (
               <tr
-                class="bg-white odd:bg-[#D9D9D9] ... border-b  justify-center"
+                className="bg-white odd:bg-[#D9D9D9] ... border-b  justify-center"
                 key={row.id}
                 onClick={() => rowClickedAction(row)}
               >
                 <td className="px-3 py-2">
                   <input
                     type="checkbox"
-                    defaultChecked={checked}
+                    // defaultChecked={checked}
                     id={row.id}
                     checked={checked[row.id] || false}
                     onChange={handleCheckOne}
@@ -109,6 +110,7 @@ const Table = ({ header, data, query, filter }) => {
                 {data &&
                   header.map((k, index) => (
                     <td
+                      key={index}
                       onClick={console.log('hello g')}
                       className="cursor-pointer px-3 py-2"
                     >

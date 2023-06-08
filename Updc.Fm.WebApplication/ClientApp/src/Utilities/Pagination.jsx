@@ -76,11 +76,14 @@ const Pagination = ({
           <span>Prev</span>
         </div>
         {paginationRange &&
-          paginationRange.map((pageNumber) => {
+          paginationRange.map((pageNumber, index) => {
             // If the pageItem is a DOT, render the DOTS unicode character
             if (pageNumber === DOTS) {
               return (
-                <span className="flex items-center justify-center hover:bg-[#a73439] hover:text-white hover:cursor-pointer flex flex-row items-center w-[70px] px-2 py-1 text-sm font-medium text-[#0f0f0f]  rounded-md">
+                <span
+                  key={index}
+                  className="flex items-center justify-center hover:bg-[#a73439] hover:text-white hover:cursor-pointer flex flex-row items-center w-[70px] px-2 py-1 text-sm font-medium text-[#0f0f0f]  rounded-md"
+                >
                   &#8230;
                 </span>
               );
@@ -89,6 +92,7 @@ const Pagination = ({
             // Render our Page Pills
             return (
               <span
+                key={index}
                 className="flex items-center justify-center hover:bg-[#a73439] hover:text-white hover:cursor-pointer flex flex-row items-center w-[70px] px-2 py-1 text-sm font-medium text-[#0f0f0f]  rounded-md"
                 onClick={() => onPageChange(pageNumber)}
               >

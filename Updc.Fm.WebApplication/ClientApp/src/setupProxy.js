@@ -17,6 +17,7 @@ const context = [
   '/api/interventionjobs',
   '/api/staffs',
   '/api/clusters',
+  '/api/estates',
 ];
 
 module.exports = function (app) {
