@@ -15,6 +15,7 @@ const context = [
   '/api/residents/clusters/:id/estates',
   '/api/residents/estates/:id/units',
   '/api/interventionjobs',
+  '/api/interventionjobs/:id',
   '/api/staffs',
   '/api/clusters',
   '/api/estates',

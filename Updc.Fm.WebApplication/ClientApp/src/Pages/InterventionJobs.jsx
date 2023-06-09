@@ -32,6 +32,7 @@ export const InterventionJobs = () => {
             issueId: e.issueId,
             location: e.location,
             unit: e.unit.unit_number,
+            path: '/jobs/' + e.id,
           };
           setInterventionJob((i) => [...i, newE]);
         });

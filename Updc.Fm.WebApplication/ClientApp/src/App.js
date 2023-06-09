@@ -70,34 +70,34 @@ function App() {
           }
         />
         <Route
-          path='/admin/estate'
+          path="/admin/estate"
           element={
             <ProtectedRoute>
-              <AdminEstate/>
+              <AdminEstate />
             </ProtectedRoute>
           }
         />
         <Route
-          path='admin/new_estate'
+          path="admin/new_estate"
           element={
             <ProtectedRoute>
-              <AdminNewEstate/>
+              <AdminNewEstate />
             </ProtectedRoute>
           }
         />
         <Route
-          path='admin/cluster'
+          path="admin/cluster"
           element={
             <ProtectedRoute>
-              <AdminCluster/>
+              <AdminCluster />
             </ProtectedRoute>
           }
         />
         <Route
-          path='admin/new_cluster'
+          path="admin/new_cluster"
           element={
             <ProtectedRoute>
-              <AdminNewCluster/>
+              <AdminNewCluster />
             </ProtectedRoute>
           }
         />
@@ -110,34 +110,34 @@ function App() {
           }
         />
         <Route
-          path='admin/staff'
+          path="admin/staff"
           element={
             <ProtectedRoute>
-              <AdminStaff/>
+              <AdminStaff />
             </ProtectedRoute>
           }
         />
         <Route
-          path='admin/new_staff'
+          path="admin/new_staff"
           element={
             <ProtectedRoute>
-              <AdminNewStaff/>
+              <AdminNewStaff />
             </ProtectedRoute>
           }
         />
         <Route
-          path='admin/staff_overview'
+          path="admin/staff_overview"
           element={
             <ProtectedRoute>
-              <AdminStaffOverView/>
+              <AdminStaffOverView />
             </ProtectedRoute>
           }
         />
         <Route
-          path='/loader'
+          path="/loader"
           element={
             <ProtectedRoute>
-              <Loader/>
+              <Loader />
             </ProtectedRoute>
           }
         />
@@ -145,7 +145,7 @@ function App() {
         <Route path="/salesau" element={<SalesAllocatedUnit />} />
         <Route path="/accounts" element={<Accounts />} />
         <Route path="/jobs" element={<InterventionJobs />} />
-        <Route path="/singlejob" element={<SingleJob />} />
+        <Route path="/jobs/:id" element={<SingleJob />} />
         <Route path="/inspectjob" element={<CreateInspection />} />
       </Routes>
     </AuthProvider>

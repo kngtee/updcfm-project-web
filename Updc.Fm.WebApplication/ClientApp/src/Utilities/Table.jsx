@@ -3,6 +3,7 @@ import Pagination from './Pagination';
 import { DataKey } from '../Services/GetDataKey';
 // import { data } from 'jquery';
 import { ArrangeData } from '../Services/sortData';
+import { useNavigate } from 'react-router-dom';
 
 let pageSize = 8;
 
@@ -11,8 +12,9 @@ const Table = ({ header, data, query, filter }) => {
   const [checked, setChecked] = useState(false);
   const [tableData, setTableData] = useState(data);
   const [sorting, setSorting] = useState({ field: DataKey(header[0]) });
-  // const [search, setSearch] = useState({ query: query });
   const [totalCount, setTotalCount] = useState(data && data.length);
+
+  const navigate = useNavigate();
   console.log(data);
 
   const handleChange = (event) => {
@@ -95,7 +97,9 @@ const Table = ({ header, data, query, filter }) => {
               <tr
                 className="bg-white odd:bg-[#D9D9D9] ... border-b  justify-center"
                 key={row.id}
-                onClick={() => rowClickedAction(row)}
+                onClick={() => {
+                  navigate(row.path);
+                }}
               >
                 <td className="px-3 py-2">
                   <input

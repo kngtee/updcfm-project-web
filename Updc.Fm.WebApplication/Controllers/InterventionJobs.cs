@@ -25,5 +25,20 @@ namespace Updc.Fm.WebApplication.Controllers
             }
             return StatusCode(400, await response.Content.ReadAsStringAsync());
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetSingleInterventionJob(string id)
+        {
+            var client = _httpClientFactory.CreateClient("api");
+            var response = await client.GetAsync("/api/admins/intervention-jobs/" + id);
+            if (response.IsSuccessStatusCode)
+            {
+                var res = await response.Content.ReadAsStringAsync();
+                return StatusCode(200, res);
+            }
+
+            return StatusCode(400, await response.Content.ReadAsStringAsync());
+        }
     }
 }
