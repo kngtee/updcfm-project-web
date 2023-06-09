@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text;
+using System.Text.Json;
+using Updc.Fm.WebApplication.Domian;
 
 namespace Updc.Fm.WebApplication.Controllers
 {
@@ -27,6 +30,22 @@ namespace Updc.Fm.WebApplication.Controllers
             return StatusCode(400, await response.Content.ReadAsStringAsync());
         }
 
+        [HttpPost]
+        public async Task<IActionResult> CreateBackEndStaff(CreateBackEndStaff staff)
+        {
+            var client = _httpClientFactory.CreateClient("api");
+            var header = Request.Headers["x-access-pwd"].ToString();
+            client.DefaultRequestHeaders.Add("Authorization", header);
+            var content = JsonSerializer.Serialize(staff);
+            var body = new StringContent(content, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("/api/admins/profile/create", body);
+            if (response.IsSuccessStatusCode)
+            {
+                var res = await response.Content.ReadAsStringAsync();
+                return StatusCode(201, res);
+            }
+            return StatusCode(400, await response.Content.ReadAsStringAsync());
+        }
         
     }
 }
