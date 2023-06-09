@@ -16,8 +16,8 @@ export const Accounts = () => {
           {/* Breadcrumb */}
           <div className="flex flex-row" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-2 font-normal">
-              <li aria-current="page" class="inline-flex">
-                <span class="inline-flex items-center text-sm text-[#d36360]">
+              <li aria-current="page" className="inline-flex">
+                <span className="inline-flex items-center text-sm text-[#d36360]">
                   Dashboard
                 </span>
               </li>

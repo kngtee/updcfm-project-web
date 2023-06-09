@@ -1,17 +1,26 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Pagination from './Pagination';
 import { DataKey } from '../Services/GetDataKey';
+// import { data } from 'jquery';
+import { ArrangeData } from '../Services/sortData';
+import { useNavigate } from 'react-router-dom';
 
-let pageSize = 6;
+let pageSize = 8;
 
-const Table = (props) => {
+const Table = ({ header, data, query, filter }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [checked, setChecked] = useState(false);
+  const [tableData, setTableData] = useState(data);
+  const [sorting, setSorting] = useState({ field: DataKey(header[0]) });
+  const [totalCount, setTotalCount] = useState(data && data.length);
+
+  const navigate = useNavigate();
+  console.log(data);
 
   const handleChange = (event) => {
     const val = event.target.checked;
     const updateCheckedItems = {};
-    props.data.forEach((item) => {
+    tableData.forEach((item) => {
       updateCheckedItems[item.id] = val;
     });
 
@@ -33,25 +42,51 @@ const Table = (props) => {
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
-    return props.data.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+    let sortedData = ArrangeData(data, sorting.field);
+
+    setTableData(sortedData);
+    // console.log(sortedData);
+    setTotalCount(
+      tableData.filter(
+        (e) =>
+          e[filter[0]].toLowerCase().includes(query.toLowerCase()) ||
+          e[filter[1]].toLowerCase().includes(query.toLowerCase()),
+      ).length,
+    );
+    return tableData
+      .filter(
+        (e) =>
+          e[filter[0]].toLowerCase().includes(query.toLowerCase()) ||
+          e[filter[1]].toLowerCase().includes(query.toLowerCase()),
+      )
+      .slice(firstPageIndex, lastPageIndex);
+    // eslint-disable-next-line
+  }, [currentPage, sorting, query]);
 
   return (
     <div>
-      <div class="relative overflow-x-auto  shadow-md md:rounded-lg">
-        <table class="w-full rounded-t-lg text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr class=" bg-[#A73439] text-white ">
-              <th scope="col" class="px-6 py-3">
+      <div className="relative overflow-x-auto justify-between rounded-t-lg max-w-full max-h-full">
+        <table className="w-full text-sm text-left text-[#0f0f0f] shadow-md max-w-full max-h-full">
+          <thead className="text-xs text-[#F8F7FF] uppercase bg-[#a73439]">
+            <tr className="">
+              <th scope="col" className="px-3 py-1.5">
                 <input
                   type="checkbox"
                   defaultChecked={checked}
                   onChange={handleChange}
                 />
               </th>
-              {props.header.map((th) => (
-                <th scope="col" class="px-6 py-3">
-                  {th}
+              {header.map((th, index) => (
+                <th
+                  key={index}
+                  scope="col"
+                  className="px-3 py-1.5"
+                  onClick={() => {
+                    setSorting({ field: DataKey(th) });
+                    console.log(sorting);
+                  }}
+                >
+                  {th[DataKey(th)]}
                 </th>
               ))}
             </tr>
@@ -60,24 +95,30 @@ const Table = (props) => {
           <tbody>
             {currentTableData.map((row) => (
               <tr
-                class="bg-white odd:bg-gray-100 ... border-b  justify-center"
+                className="bg-white odd:bg-[#D9D9D9] ... border-b  justify-center"
                 key={row.id}
-                onClick={() => rowClickedAction(row)}
+                onClick={() => {
+                  navigate(row.path);
+                }}
               >
-                <td className=" px-6 py-4">
+                <td className="px-3 py-2">
                   <input
                     type="checkbox"
-                    defaultChecked={checked}
+                    // defaultChecked={checked}
                     id={row.id}
                     checked={checked[row.id] || false}
                     onChange={handleCheckOne}
                   />
                 </td>
                 {/* {console.log('Keys: ' + props.objectKey[0])} */}
-                {props.data &&
-                  DataKey(props.data[0]).map((k) => (
-                    <td onClick={console.log('hello g')} className=" cursor-pointer px-6 py-4">
-                      {row[k]}
+                {data &&
+                  header.map((k, index) => (
+                    <td
+                      key={index}
+                      onClick={console.log('hello g')}
+                      className="cursor-pointer px-3 py-2"
+                    >
+                      {row[DataKey(k)]}
                     </td>
                   ))}
               </tr>
@@ -88,7 +129,7 @@ const Table = (props) => {
       <div className="">
         <Pagination
           currentPage={currentPage}
-          totalCount={props.data.length}
+          totalCount={totalCount}
           pageSize={pageSize}
           onPageChange={(page) => setCurrentPage(page)}
         />

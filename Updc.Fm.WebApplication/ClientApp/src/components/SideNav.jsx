@@ -12,7 +12,7 @@ const SideNav = ({ children, dashboard }) => {
             {overview.navs.map((task, index) => (
               <div
                 className="bg-[#fff] py-2 px-3 rounded-l-lg text-[#bd4143] font-medium"
-                key={index}
+                key={task.name}
               >
                 {task.name}
               </div>
@@ -25,7 +25,7 @@ const SideNav = ({ children, dashboard }) => {
             {manage.navs.map((nav, index) => (
               <div
                 className="py-2 px-3 rounded-l-lg text-[#fff] font-medium"
-                key={index}
+                key={nav.path}
               >
                 <a href={nav.path}>{nav.name}</a>
               </div>
