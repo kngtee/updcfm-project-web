@@ -58,8 +58,8 @@ const Allocation = () => {
       ) : (
         <NavContainer dashboard={allocationDashboard}>
           <div className=" space-y-8 px-4 py-8">
-            <div className=" flex  justify-between px-4 py-8">
-              <div className="flex flex-col space-x-1 md:flex-row md:space-x-3 font-medium items-center ">
+            <div className=" flex justify-end px-1 py-8">
+              {/* <div className="flex flex-col space-x-1 md:flex-row md:space-x-3 font-medium items-center ">
                 <DropDownButton
                   first="Select Cluster"
                   second="Select Estate"
@@ -73,7 +73,7 @@ const Allocation = () => {
                 <button className=" inline-flex w-[35px] h-[35px] bg-[#a73439] text-white items-center justify-center rounded shadow-sm shadow-[#a73439]/25">
                   <MdFilterAlt />
                 </button>{' '}
-              </div>
+              </div> */}
               <div>
                 <SearchBox query={handleSearch} />
               </div>
