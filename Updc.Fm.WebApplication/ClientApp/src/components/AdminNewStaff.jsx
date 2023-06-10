@@ -55,7 +55,7 @@ const AdminNewStaff = () => {
                       href="/accounts"
                       className="inline-flex items-center text-sm text-gray-500 hover:text-[#a73439]"
                     >
-                      Dashboard
+                      Dashboards
                     </a>
                   </li>
 
