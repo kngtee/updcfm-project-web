@@ -78,7 +78,7 @@ const AdminNewStaff = () => {
                         href="/accounts"
                         className="inline-flex ml-1 items-center text-sm text-gray-500 hover:text-[#a73439]"
                       >
-                        Staff
+                        Staffs
                       </a>
                     </div>
                   </li>
