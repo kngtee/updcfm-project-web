@@ -25,8 +25,8 @@ export const adminStaff = {
     navs: [
       {
         name: 'View All',
-        path: ''
-      }
+        path: '',
+      },
     ],
   },
   manage: {
@@ -66,7 +66,7 @@ export const adminNewStaff = {
 };
 
 export const adminStaffOverview = {
-  overview:{
+  overview: {
     title: 'Staff',
     navs: [
       {
@@ -75,9 +75,9 @@ export const adminStaffOverview = {
       },
     ],
   },
-  manage:{
+  manage: {
     title: '',
-    navs:[
+    navs: [
       {
         name: '',
         path: '',
@@ -127,21 +127,17 @@ export const adminCluster = {
   },
   manage: {
     title: 'Manage',
-    navs:[
+    navs: [
       {
         name: 'New Cluster',
         path: 'admin/new_cluster',
-      },
-      {
-        name: 'Config. Cluster',
-        path: '',
       },
     ],
   },
 };
 
 export const adminNewCluster = {
-  overview:{
+  overview: {
     title: 'New Cluster',
     navs: [
       {
@@ -150,16 +146,14 @@ export const adminNewCluster = {
       },
     ],
   },
-  manage:{
+  manage: {
     title: '',
-    navs:[
-
-    ],
+    navs: [],
   },
 };
 
 export const adminNewEstate = {
-  overview:{
+  overview: {
     title: 'New Estate',
     navs: [
       {
@@ -170,14 +164,12 @@ export const adminNewEstate = {
   },
   manage: {
     title: '',
-    navs: [
-
-    ],
+    navs: [],
   },
 };
 
 export const adminEstate = {
-  overview:{
+  overview: {
     title: 'Estate',
     navs: [
       {
@@ -191,11 +183,7 @@ export const adminEstate = {
     navs: [
       {
         name: 'New Estate',
-        path: '/admin/new_estate'
-      },
-      {
-        name: 'Config. Estate',
-        path: '',
+        path: '/admin/new_estate',
       },
     ],
   },
@@ -295,8 +283,9 @@ export const createInspection = {
   },
 };
 
-export const pathWay={
-  overview:{},manage:{}
+export const pathWay = {
+  overview: {},
+  manage: {},
 };
 export const singleJob = {
   overview: {

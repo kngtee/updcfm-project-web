@@ -2,40 +2,55 @@ import React from 'react';
 import NavContainer from '../components/NavContainer';
 import { adminOverView } from '../components/NavLists';
 import Cards from '../Utilities/Cards';
-import Region from '../assets/img/Region.png';
-import RealEstate from '../assets/img/Real Estate.png';
-import Staff from '../assets/img/Staff.png';
+import staff from '../../src/assets/img/staff.svg';
+import estate from '../../src/assets/img/estate.svg';
+import cluster from '../../src/assets/img/cluster.svg';
 
 function Admin() {
   return (
     <NavContainer dashboard={adminOverView}>
-      <div className="">
-        <div className="mt-7 ml-7">
-          <ul>
-            <li className="text-[#9A9595]">Dashboard</li>
-          </ul>
+      <div className="flex flex-col px-4 py-8 space-y-8">
+        {/* Bread crumbs */}
+        <div>
+          <div className="flex flex-row" aria-label="Breadcrumb">
+            <ol className="inline-flex items-center space-x-1 md:space-x-2 font-normal">
+              <li className="items-center">
+                <a
+                  href="/accounts"
+                  className="inline-flex items-center text-sm text-[#a73439]"
+                >
+                  Dashboard
+                </a>
+              </li>
+            </ol>
+          </div>
         </div>
-        <div className="flex flex-row">
-          <div className="w-[300px]">
-            <Cards textname="Total Cluster" num="50" icon={Region} />
-          </div>
-          <div className="w-[300px]">
-            <Cards textname="Total Estate" num="1,000" icon={RealEstate} />
-          </div>
-          <div className="w-[300px]">
-            <Cards textname="Total Staff" num="100" icon={Staff} />
-          </div>
-        </div>
-        <div className="flex flex-row justify-center">
-          <div className="bg-[#FFFFFF] w-[852px] shadow-2xl h-[300px] rounded-lg ml-[-1rem]">
+        {/* Cards */}
+        <div>
+          <div className="flex flex-row  space-x-12">
             <div>
-              <h1 className="text-gray-400 font-medium pt-[13px] pl-[19px]">
-                Notification
-              </h1>
+              <Cards title="Total Unit" num="100" icon={staff} />
             </div>
-            <div className="flex justify-center">
+            <div>
+              <Cards title="Total Unit" num="100" icon={estate} />
+            </div>
+            <div>
+              <Cards title="Total Unit" num="100" icon={cluster} />
+            </div>
+          </div>
+        </div>
+
+        {/* Notifications */}
+        <div>
+          <div className=" bg-white rounded-md shadow-sm shadow-[#a73439]/25 h-[300px]">
+            <div className="flex flex-col">
               <div>
-                <h1 className="text-gray-400 font-medium text-4xl pt-[100px]">
+                <h1 className="text-sm font-medium text-[#B9B0B0] pt-3 pl-3">
+                  Notification
+                </h1>
+              </div>
+              <div className="flex justify-center">
+                <h1 className="font-medium text-4xl text-[#B9B0B0] pt-20">
                   No new notification
                 </h1>
               </div>

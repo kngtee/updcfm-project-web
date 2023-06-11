@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import NavContainer from './NavContainer';
 import { adminNewEstate } from './NavLists';
-import DropDownButton from '../Utilities/DropDownButton';
 import Buton from '../Utilities/Buton';
 import { useFormik } from 'formik';
 import { GetRequest, PostRequest } from '../Auth/hooks/useGet';
@@ -68,74 +67,117 @@ const AdminNewEstate = () => {
         <Loader />
       ) : (
         <NavContainer dashboard={adminNewEstate}>
-          <div className="">
-            <div className="flex flex-row pt-7">
-              <div>
-                <p className="text-[#9A9595] cursor-pointer">
-                  Dashboard&nbsp;/&nbsp;
-                </p>
-              </div>
-              <div>
-                <p className="text-[#9A9595] cursor-pointer">
-                  &nbsp;Estate&nbsp;/&nbsp;
-                </p>
-              </div>
-              <div>
-                <p className="text-[#bd4143] cursor-pointer">
-                  &nbsp;New Estate
-                </p>
+          <div className="flex flex-col px-4 py-8 space-y-8">
+            <div className="flex flex-row">
+              <div className="flex flex-row" aria-label="Breadcrumb">
+                <ol className="inline-flex items-center space-x-1 md:space-x-2 font-normal">
+                  <li className="items-center">
+                    <a
+                      href="/accounts"
+                      className="inline-flex items-center text-sm text-gray-500 hover:text-[#a73439]"
+                    >
+                      Dashboard
+                    </a>
+                  </li>
+
+                  <li aria-current="page" className="inline-flex">
+                    <div className="inline-flex items-center">
+                      <svg
+                        aria-hidden="true"
+                        fill="currentColor"
+                        className="w-3 h-3 text-gray-400 ml-1 md:ml-2"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        stroke="currentColor"
+                        transform="rotate(160)"
+                      >
+                        <g id="SVGRepo_iconCarrier">
+                          <path d="M21.71,3.29a1,1,0,0,0-1.42,0l-18,18a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l18-18A1,1,0,0,0,21.71,3.29Z"></path>
+                        </g>
+                      </svg>
+                      <a
+                        href="/accounts"
+                        className="inline-flex ml-1 items-center text-sm text-gray-500 hover:text-[#a73439]"
+                      >
+                        Estate
+                      </a>
+                    </div>
+                  </li>
+                  <li aria-current="page" className="inline-flex">
+                    <div className="inline-flex items-center">
+                      <svg
+                        aria-hidden="true"
+                        fill="currentColor"
+                        className="w-3 h-3 text-gray-400 ml-1 md:ml-2"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        stroke="currentColor"
+                        transform="rotate(160)"
+                      >
+                        <g id="SVGRepo_iconCarrier">
+                          <path d="M21.71,3.29a1,1,0,0,0-1.42,0l-18,18a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l18-18A1,1,0,0,0,21.71,3.29Z"></path>
+                        </g>
+                      </svg>
+                      <span className="ml-1 text-sm text-[#d36360] md:ml-2">
+                        New Estate
+                      </span>
+                    </div>
+                  </li>
+                </ol>
               </div>
             </div>
             <form onSubmit={formik.handleSubmit}>
-              <div className="flex flex-col gap-10 justify-center mt-28">
-                <div className="flex flex-row gap-20 justify-center">
-                  <div>
-                    <label className="font-medium text-sm text-[#0F0F0F]">
-                      Estate Name:
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Estate name"
-                      name="estate_name"
-                      onChange={formik.handleChange}
-                      className="rounded-md bg-white 
-                    shadow-sm shadow-[#a73439]/25 w-[195px] h-[40px] ml-3 
-                    placeholder:text-[#9A9595] 
-                    font-normal text-sm pl-2"
-                    />
+              {/* Form fields for estate name and address*/}
+              <div className="flex flex-col space-y-5">
+                <div className="flex flex-row space-x-5">
+                  <div className="flex flex-row">
+                    <div>
+                      <label className="font-medium text-sm text-[#0F0F0F]">
+                        Estate Name:
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Estate name"
+                        name="estate_name"
+                        onChange={formik.handleChange}
+                        className="rounded-md bg-white 
+                    shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-3 
+                    text-gray-400
+                    font-medium text-xs pl-2"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <div className="flex flex-row pt-1">
+                  <div className="flex flex-row">
+                    <div>
                       <label className="font-medium text-sm text-[#0F0F0F] pt-1">
                         Estate Address:
                       </label>
-                      <div className="ml-3">
-                        <input
-                          type="text"
-                          placeholder="Estate Address"
-                          name="estate_address"
-                          onChange={formik.handleChange}
-                          className="rounded-md bg-white 
-                    shadow-sm shadow-[#a73439]/25 w-[195px] h-[40px] ml-3 
-                    placeholder:text-[#9A9595] 
-                    font-normal text-sm pl-2"
-                        />
-                      </div>
+                      <input
+                        type="text"
+                        placeholder="Estate Address"
+                        name="estate_address"
+                        onChange={formik.handleChange}
+                        className="rounded-md bg-white 
+                    shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-3 
+                    text-gray-400
+                    font-medium text-xs pl-2"
+                      />
                     </div>
                   </div>
                 </div>
-                <div>
-                  <div className="flex flex-row pt-1 ml-[10rem]">
-                    <label className="font-medium text-sm text-[#0F0F0F] pt-1">
+                {/* Cluster and facility manager */}
+                <div className="flex flex-row space-x-5">
+                  <div className="flex flex-row">
+                    <label className="font-medium text-sm text-[#0F0F0F] pt-2">
                       Cluster:
                     </label>
                     <select
                       name="cluster_id"
                       onChange={formik.handleChange}
                       className="rounded-md bg-white 
-                    shadow-sm shadow-[#a73439]/25 w-[195px] h-[40px] ml-3 
-                    placeholder:text-[#9A9595] 
-                    font-normal text-sm pl-2"
+                    shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-12
+                    text-gray-400 
+                    font-medium text-xs pl-2"
                     >
                       <option>--- select cluster ---</option>
                       {clusterIsloading ? (
@@ -149,21 +191,19 @@ const AdminNewEstate = () => {
                       )}
                     </select>
                   </div>
-                </div>
-                <div>
-                  <div className="flex flex-row pt-1 ml-[10rem]">
-                    <label className="font-medium text-sm text-[#0F0F0F] pt-1">
-                      Facility Manager:
+                  <div className="flex flex-row">
+                    <label className="font-medium text-sm text-[#0F0F0F] pt-2">
+                      Facility Mangr:
                     </label>
                     <select
                       name="facility_manager"
                       onChange={formik.handleChange}
                       className="rounded-md bg-white 
-                    shadow-sm shadow-[#a73439]/25 w-[195px] h-[40px] ml-3 
-                    placeholder:text-[#9A9595] 
-                    font-normal text-sm pl-2"
+                    shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-3 
+                    text-gray-400 
+                    font-medium text-xs pl-2"
                     >
-                      <option>--- select cluster ---</option>
+                      <option>--- select facility manager ---</option>
                       {clusterIsloading ? (
                         <option>Loading...</option>
                       ) : (
@@ -176,7 +216,7 @@ const AdminNewEstate = () => {
                     </select>
                   </div>
                 </div>
-                <div className="flex flex-row gap-5 mt-32 justify-end pr-[10rem]">
+                <div className="flex flex-row space-x-5 justify-end pr-[5rem] pt-20">
                   <div>
                     <Buton
                       className="border border-[#bd4143] w-[80px] h-[40px]

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import NavContainer from './NavContainer';
 import { adminNewCluster } from './NavLists';
-import DropDownButton from '../Utilities/DropDownButton';
 import Buton from '../Utilities/Buton';
 import { GetRequest, PostRequest } from '../Auth/hooks/useGet';
 import { useFormik } from 'formik';
@@ -60,29 +59,70 @@ const AdminNewCluster = () => {
         <Loader />
       ) : (
         <NavContainer dashboard={adminNewCluster}>
-          <div className="">
-            <div className="flex flex-row pt-7">
-              <div>
-                <p className="text-[#9A9595] cursor-pointer">
-                  Dashboard&nbsp;/&nbsp;
-                </p>
-              </div>
-              <div>
-                <p className="text-[#9A9595] cursor-pointer">
-                  &nbsp;Cluster&nbsp;/&nbsp;
-                </p>
-              </div>
-              <div>
-                <p className="text-[#bd4143] cursor-pointer">
-                  &nbsp;New Cluster
-                </p>
+          <div className="flex flex-col px-4 py-8 space-y-8">
+            <div className="flex flex-row">
+              <div className="flex flex-row" aria-label="Breadcrumb">
+                <ol className="inline-flex items-center space-x-1 md:space-x-2 font-normal">
+                  <li className="items-center">
+                    <a
+                      href="/accounts"
+                      className="inline-flex items-center text-sm text-gray-500 hover:text-[#a73439]"
+                    >
+                      Dashboard
+                    </a>
+                  </li>
+
+                  <li aria-current="page" className="inline-flex">
+                    <div className="inline-flex items-center">
+                      <svg
+                        aria-hidden="true"
+                        fill="currentColor"
+                        className="w-3 h-3 text-gray-400 ml-1 md:ml-2"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        stroke="currentColor"
+                        transform="rotate(160)"
+                      >
+                        <g id="SVGRepo_iconCarrier">
+                          <path d="M21.71,3.29a1,1,0,0,0-1.42,0l-18,18a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l18-18A1,1,0,0,0,21.71,3.29Z"></path>
+                        </g>
+                      </svg>
+                      <a
+                        href="/accounts"
+                        className="inline-flex ml-1 items-center text-sm text-gray-500 hover:text-[#a73439]"
+                      >
+                        Cluster
+                      </a>
+                    </div>
+                  </li>
+                  <li aria-current="page" className="inline-flex">
+                    <div className="inline-flex items-center">
+                      <svg
+                        aria-hidden="true"
+                        fill="currentColor"
+                        className="w-3 h-3 text-gray-400 ml-1 md:ml-2"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        stroke="currentColor"
+                        transform="rotate(160)"
+                      >
+                        <g id="SVGRepo_iconCarrier">
+                          <path d="M21.71,3.29a1,1,0,0,0-1.42,0l-18,18a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l18-18A1,1,0,0,0,21.71,3.29Z"></path>
+                        </g>
+                      </svg>
+                      <span className="ml-1 text-sm text-[#d36360] md:ml-2">
+                        New Cluster
+                      </span>
+                    </div>
+                  </li>
+                </ol>
               </div>
             </div>
             <form onSubmit={formik.handleSubmit}>
-              <div className="flex flex-col gap-10 justify-center mt-28">
-                <div className="flex flex-row gap-20 justify-center">
-                  <div>
-                    <label className="font-medium text-sm text-[#0F0F0F]">
+              <div className="">
+                <div className="flex flex-row space-x-20 items-center">
+                  <div className="flex flex-row">
+                    <label className="pt-2 font-medium text-sm text-[#0F0F0F]">
                       Cluster Name:
                     </label>
                     <input
@@ -90,42 +130,38 @@ const AdminNewCluster = () => {
                       name="clusterName"
                       placeholder="Enter cluster name"
                       className="rounded-md bg-white 
-                      shadow-sm shadow-[#a73439]/25 w-[195px] h-[40px] ml-3 
-                      placeholder:text-[#9A9595] 
-                      font-normal text-sm pl-2"
+                    shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-3 
+                    text-gray-400 
+                      font-medium text-xs pl-2"
                       onChange={formik.handleChange}
                     />
                   </div>
-                  <div>
-                    <div className="flex flex-row pt-1 items-center">
-                      <label className="font-medium text-sm text-[#0F0F0F] pt-1">
-                        Manager:
-                      </label>
-                      <div className="ml-3">
-                        <select
-                          name="clusterManager"
-                          className="rounded-md bg-white 
-                      shadow-sm shadow-[#a73439]/25 w-[195px] h-[40px] ml-3 
-                      text-[#9A9595] 
-                      font-normal text-sm pl-2"
-                          onChange={formik.handleChange}
-                        >
-                          <option>--- select manager ---</option>
-                          {isLoading ? (
-                            <option>Loading...</option>
-                          ) : (
-                            staffs.map((staff) => (
-                              <option key={staff.id} value={staff.id}>
-                                {staff.first_Name + ' ' + staff.last_Name}
-                              </option>
-                            ))
-                          )}
-                        </select>
-                      </div>
-                    </div>
+                  <div className="flex flex-row">
+                    <label className="pt-2 font-medium text-sm text-[#0F0F0F]">
+                      State:
+                    </label>
+                    <select
+                      name="clusterManager"
+                      className="rounded-md bg-white 
+                      shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-3 
+                      text-gray-400 
+                      font-medium text-xs pl-2"
+                      onChange={formik.handleChange}
+                    >
+                      <option>--- select manager ---</option>
+                      {isLoading ? (
+                        <option>Loading...</option>
+                      ) : (
+                        staffs.map((staff) => (
+                          <option key={staff.id} value={staff.id}>
+                            {staff.first_Name + ' ' + staff.last_Name}
+                          </option>
+                        ))
+                      )}
+                    </select>
                   </div>
                 </div>
-                <div className="flex flex-row gap-5 mt-32 justify-end pr-[10rem]">
+                <div className="flex flex-row space-x-5 pt-20 justify-end pr-[5rem]">
                   <div>
                     <Buton
                       className="border border-[#bd4143] w-[80px] h-[40px]
