@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MdFilterAlt, MdLaunch } from 'react-icons/md';
+// import { MdFilterAlt } from 'react-icons/md';
 import NavContainer from '../components/NavContainer';
 import { viewallJobs } from '../components/NavLists';
 import { GetRequest } from '../Auth/hooks/useGet';
@@ -15,7 +15,7 @@ let tableHeader = [
 ];
 
 export const InterventionJobs = () => {
-  const [hidden, setHidden] = useState(false);
+  // const [hidden, setHidden] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const [interventionJob, setInterventionJob] = useState([]);
@@ -44,11 +44,11 @@ export const InterventionJobs = () => {
     getInterventionJob();
   }, []);
 
-  const handleHidden = () => {
-    setHidden(!hidden);
-    console.log('object');
-    console.log(hidden);
-  };
+  // const handleHidden = () => {
+  //   setHidden(!hidden);
+  //   console.log('object');
+  //   console.log(hidden);
+  // };
 
   return (
     <>
@@ -90,8 +90,8 @@ export const InterventionJobs = () => {
                 </li>
               </ol>
             </div>
-            <div className="flex flex-row justify-between">
-              {/* Filter */}
+            <div className="flex flex-row justify-end">
+              {/* Filter 
               <div className="flex-col items-start justify-start">
                 <button
                   id="dropdownDefault"
@@ -106,7 +106,7 @@ export const InterventionJobs = () => {
                   </div>
                 </button>
                 {/* Filter dropdown */}
-                <div
+              {/* <div
                   id="dropdown"
                   className={
                     hidden
@@ -151,7 +151,7 @@ export const InterventionJobs = () => {
                     </li>
                   </ul>
                 </div>
-              </div>
+             {/* </div> */}
               {/* Search Bar */}
               <div className="">
                 <label htmlFor="search" className="sr-only">
@@ -162,9 +162,9 @@ export const InterventionJobs = () => {
                     type="search"
                     id="search"
                     placeholder="Search for jobs..."
-                    className="bg-white text-gray-400 h-[35px] text-sm font-medium rounded-l shadow-sm shadow-[#a73439]/25 block px-3 py-2.5"
+                    className="bg-white text-gray-400 h-[35px] text-sm font-medium rounded shadow-sm shadow-[#a73439]/25 block px-3 py-2.5"
                   />
-                  <button className="flex h-[35px] w-[40px] items-center justify-center bg-[#a73439] rounded-r shadow-sm shadow-[#a73439]/25">
+                  {/* <button className="flex h-[35px] w-[40px] items-center justify-center bg-[#a73439] rounded-r shadow-sm shadow-[#a73439]/25">
                     <svg
                       aria-hidden="true"
                       fill="white"
@@ -194,7 +194,7 @@ export const InterventionJobs = () => {
                         ></path>
                       </g>
                     </svg>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
