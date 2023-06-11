@@ -2,12 +2,12 @@ import React from 'react';
 import {
   MdArrowCircleLeft,
   MdArrowCircleRight,
-  MdNoteAdd,
   MdUploadFile,
-  MdAdd,
 } from 'react-icons/md';
 import { createInspection } from '../components/NavLists';
 import NavContainer from '../components/NavContainer';
+import ModalForm from '../components/ScheduleInspectionModal';
+import AddNote from '../components/AddNoteModal';
 
 const inspectJob = createInspection;
 
@@ -100,18 +100,10 @@ export const CreateInspection = () => {
           <div className="flex flex-row justify-end">
             {/* Schedule Modal Button */}
             <div className="flex flex-row">
-              <button
-                data-modal-target="schedule-modal"
-                data-modal-toggle="schedule-modal"
-                className="flex py-1 px-3 rounded-sm text-md font-normal text-white items-center justify-center bg-green-600 shadow-sm shadow-[#a73439]/25"
-                type="button"
-              >
-                <MdAdd className="mr-2" />
-                Schedule
-              </button>
+              <ModalForm />
             </div>
           </div>
-          
+
           {/* Table */}
           <div className="relative overflow-x-auto justify-between rounded-t-lg">
             <table className="w-full text-sm text-left text-[#0f0f0f] shadow-md ">
@@ -152,25 +144,31 @@ export const CreateInspection = () => {
                     </span>
                   </td>
                   <td className="px-3 py-2">
-                    <a
+                    {/* <a
                       href="/singlejob"
                       className="inline-flex items-center font-medium text-red-600 underline"
                     >
                       <MdNoteAdd className="mr-1" /> Add Note
-                    </a>
+                    </a> */}
+                    <AddNote />
                   </td>
                   <td className="px-3 py-2">
                     <div className="border-dashed border border-red-600 w-fit px-2 py-1 rounded-md">
-                      <a
-                        href="/singlejob"
-                        className="inline-flex items-center font-medium text-red-600"
+                      <label
+                        id="inspection_file"
+                        className="inline-flex items-center font-medium text-red-600 cursor-pointer"
                       >
                         <MdUploadFile className="mr-1" /> Upload Report
-                      </a>
+                        <input
+                          id="inspection_file"
+                          type="file"
+                          className="hidden"
+                        />
+                      </label>
                     </div>
                   </td>
                 </tr>
-                <tr className="bg-[#D9D9D9] border-b">
+                {/* <tr className="bg-[#D9D9D9] border-b">
                   <th
                     scope="row"
                     className="px-3 py-2 font-normal whitespace-nowrap"
@@ -203,7 +201,7 @@ export const CreateInspection = () => {
                       </a>
                     </div>
                   </td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
             {/* Pagination */}
@@ -232,45 +230,6 @@ export const CreateInspection = () => {
             </div>
           </div>
         </div>
-      {/* Schedule Modal */}
-      <div
-            id="schedule-modal"
-            tabindex="-1"
-            aria-hidden="true"
-            className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
-          >
-            <div className="relative w-full max-w-md max-h-full">
-              {/* Schedule Modal Content */}
-              <div className="relative bg-white rounded-lg shadow">
-                <button
-                  type="button"
-                  className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                  data-modal-hide="schedule-modal"
-                >
-                  <svg
-                    aria-hidden="true"
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="sr-only">Close modal</span>
-                </button>
-                <div className="px-6 py-6 lg:px-8">
-                  <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
-                    Sign in to our platform
-                  </h3>
-                  <form className="space-y-6" action="#"></form>
-                </div>
-              </div>
-            </div>
-          </div>
       </NavContainer>
     </>
   );

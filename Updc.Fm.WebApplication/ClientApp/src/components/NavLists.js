@@ -185,6 +185,10 @@ export const adminEstate = {
         name: 'New Estate',
         path: '/admin/new_estate',
       },
+      {
+        name: 'Config. Estate',
+        path: '',
+      },
     ],
   },
 };
@@ -289,7 +293,7 @@ export const pathWay = {
 };
 export const singleJob = {
   overview: {
-    title: 'JB001',
+    title: 'Single Job',
     navs: [
       {
         name: 'Dashboard',

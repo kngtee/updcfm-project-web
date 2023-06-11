@@ -4,6 +4,7 @@ import { singleJob } from '../components/NavLists';
 import { useParams } from 'react-router-dom';
 import { GetRequest } from '../Auth/hooks/useGet';
 import Loader from '../components/Loader';
+import TruncatedText from '../components/TruncatedText';
 
 const viewSingleJob = singleJob;
 
@@ -11,6 +12,7 @@ export const SingleJob = () => {
   const [interventionJob, setInterventionJob] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
+  
 
   useEffect(() => {
     const interventionJob = async () => {
@@ -90,7 +92,7 @@ export const SingleJob = () => {
                       </g>
                     </svg>
                     <span className="ml-1 text-sm text-[#d36360] md:ml-2">
-                      {interventionJob.id}
+                      <TruncatedText text={interventionJob.id} maxLength={14} />
                     </span>
                   </div>
                 </li>
@@ -114,7 +116,7 @@ export const SingleJob = () => {
                       Estate:<span className="font-bold"> Victoria Bay</span>
                     </li>
                     <li>
-                      FM:<span className="font-bold"> Abel Ayinla</span>
+                      Tenant:<span className="font-bold"> Abel Ayinla</span>
                     </li>
                   </ol>
                 </div>
@@ -125,7 +127,13 @@ export const SingleJob = () => {
                   <ol className="mt-1 text-[#0f0f0f]">
                     <li>
                       ID:
-                      <span className="font-bold"> {interventionJob.id}</span>
+                      <span className="font-bold">
+                        {' '}
+                        <TruncatedText
+                          text={interventionJob.id}
+                          maxLength={14}
+                        />
+                      </span>
                     </li>
                     <li>
                       Type:
@@ -142,7 +150,7 @@ export const SingleJob = () => {
                       </span>
                     </li>
                     <li>
-                      Job Owner:<span className="font-bold"> Abel Ayinla</span>
+                      FM:<span className="font-bold"> Abel Ayinla</span>
                     </li>
                   </ol>
                 </div>
