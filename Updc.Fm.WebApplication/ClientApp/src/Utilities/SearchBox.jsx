@@ -17,7 +17,7 @@ const SearchBox = ({ query }) => {
           className="bg-white text-gray-400 h-[35px] text-sm font-medium rounded-l shadow-sm shadow-[#a73439]/25 block px-3 py-2.5"
           onChange={handleChange}
         />
-        <button className="flex h-[35px] w-[40px] items-center justify-center bg-[#a73439] rounded-r shadow-sm shadow-[#a73439]/25">
+        {/* <button className="flex h-[35px] w-[40px] items-center justify-center bg-[#a73439] rounded-r shadow-sm shadow-[#a73439]/25">
           <svg
             aria-hidden="true"
             fill="white"
@@ -47,7 +47,7 @@ const SearchBox = ({ query }) => {
               ></path>
             </g>
           </svg>
-        </button>
+        </button> */}
       </div>
     </div>
   );
