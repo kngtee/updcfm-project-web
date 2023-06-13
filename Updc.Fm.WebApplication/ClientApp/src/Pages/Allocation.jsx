@@ -4,6 +4,7 @@ import NavContainer from '../components/NavContainer';
 import DropDownButton from '../Utilities/DropDownButton';
 import { allocationDashboard } from '../components/NavLists';
 import { GetRequest } from '../Auth/hooks/useGet';
+import BreadCrumb from '../Utilities/BreadCrumb';
 import { useEffect, useMemo, useState } from 'react';
 // import { DataKey } from '../Services/GetDataKey';
 import SearchBox from '../Utilities/SearchBox';
@@ -57,9 +58,19 @@ const Allocation = () => {
         <Loader />
       ) : (
         <NavContainer dashboard={allocationDashboard}>
-          <div className=" space-y-8 px-4 py-8">
-            <div className=" flex justify-end px-1 py-8">
-              {/* <div className="flex flex-col space-x-1 md:flex-row md:space-x-3 font-medium items-center ">
+          <div>
+            {' '}
+            <div className=" mt-8 px-4">
+              <BreadCrumb
+                main="Sales"
+                mainUrl="/sales"
+                first="Allocation"
+                firstUrl="/sales/allocation"
+              />
+            </div>
+            <div className=" space-y-2 px-4 py-4">
+              <div className=" flex justify-end px-1 py-4">
+                {/* <div className="flex flex-col space-x-1 md:flex-row md:space-x-3 font-medium items-center ">
                 <DropDownButton
                   first="Select Cluster"
                   second="Select Estate"
@@ -74,19 +85,20 @@ const Allocation = () => {
                   <MdFilterAlt />
                 </button>{' '}
               </div> */}
-              <div>
-                <SearchBox query={handleSearch} />
+                <div>
+                  <SearchBox query={handleSearch} />
+                </div>
               </div>
-            </div>
-            <div className="">
-              {residents ? (
-                <Table
-                  filter={['first_name', 'last_name']}
-                  header={tableHeader}
-                  data={residents && residents}
-                  query={searchQuery}
-                />
-              ) : null}
+              <div className="">
+                {residents ? (
+                  <Table
+                    filter={['first_name', 'last_name']}
+                    header={tableHeader}
+                    data={residents && residents}
+                    query={searchQuery}
+                  />
+                ) : null}
+              </div>
             </div>
           </div>
         </NavContainer>
