@@ -16,7 +16,7 @@ function Admin() {
             <ol className="inline-flex items-center space-x-1 md:space-x-2 font-normal">
               <li className="items-center">
                 <a
-                  href="/accounts"
+                  href="/admin"
                   className="inline-flex items-center text-sm text-[#a73439]"
                 >
                   Dashboard
