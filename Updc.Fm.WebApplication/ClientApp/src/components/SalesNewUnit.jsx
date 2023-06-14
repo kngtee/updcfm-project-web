@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import { GetRequest, PostRequest } from '../Auth/hooks/useGet';
 import { useNavigate } from 'react-router-dom';
 import { successMessage } from '../toast-message/toastMessage';
+import BreadCrumb from '../Utilities/BreadCrumb';
 import Loader from './Loader';
 
 const SalesNewUnit = () => {
@@ -105,145 +106,163 @@ const SalesNewUnit = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <form
-          onSubmit={formik.handleSubmit}
-          className="w-[900px] h-full flex flex-col space-y-20 justify-center py-20"
-        >
-          <div>
-            <div className="w-full flex mb-4 gap-5">
-              <div className="flex items-center flex-1 h-[35px]">
-                <h5 className="w-[100px]">First Name: </h5>
-                <input
-                  className="w-full flex-1 shadow-lg h-full rounded-md px-4 focus:outline-none"
-                  type="text"
-                  name="firstName"
-                  placeholder="First Name"
-                  value={formik.values.firstName}
-                  onChange={formik.handleChange}
-                />
-              </div>
-              <div className="flex items-center flex-1 h-[35px]">
-                <h5 className="w-[100px]">Last Name:</h5>
-                <input
-                  className="w-full flex-1 shadow-lg h-full rounded-md px-4 focus:outline-none"
-                  type="text"
-                  placeholder="Last Name"
-                  name="lastName"
-                  value={formik.values.lastName}
-                  onChange={formik.handleChange}
-                />
-              </div>
-            </div>
-            <div className="w-full flex mb-4 gap-5">
-              <div className="flex items-center flex-1">
-                <h5 className="w-[100px]">Email:</h5>
-                <input
-                  className="w-full flex-1 shadow-lg h-[35px] rounded-md px-4 focus:outline-none"
-                  type="text"
-                  name="email"
-                  placeholder="Email"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                />
-              </div>
-              <div className="flex items-center flex-1">
-                <h5 className="w-[100px]">PhoneNo: </h5>
-                <input
-                  className="w-full flex-1 shadow-lg h-[35px] rounded-md px-4 focus:outline-none"
-                  type="text"
-                  name="phoneNumber"
-                  placeholder="Phone Number"
-                  value={formik.values.phoneNumber}
-                  onChange={formik.handleChange}
-                />
-              </div>
-            </div>
-            <div className="w-full flex mb-4 gap-5">
-              <div className="flex items-center flex-1">
-                <h5 className="w-[100px]">Cluster: </h5>
-                <div className='w-full flex-1 text-gray-400 rounded block shadow-[#a73439]/25"'>
-                  <select
-                    onChange={(e) => {
-                      setClusterId(e.target.value);
-                      setEstateId(null);
-                    }}
-                    className="w-full flex-1 shadow-lg h-[35px] rounded-md px-4 focus:outline-none"
-                  >
-                    <option>--- Select Cluster ---</option>
-                    {isLoading ? (
-                      <option>Loading...</option>
-                    ) : (
-                      clusters.map((cluster) => (
-                        <option value={cluster.id} key={cluster.id}>
-                          {cluster.cluster_name}
-                        </option>
-                      ))
-                    )}
-                  </select>
-                </div>
-              </div>
-              <div className="flex items-center flex-1">
-                <h5 className="w-[100px]">Estate:</h5>
-                <div className="w-full flex-1 text-gray-400 rounded block shadow-[#a73439]/25">
-                  <select
-                    onChange={(e) => {
-                      setEstateId(e.target.value);
-                    }}
-                    className="w-full flex-1 shadow-lg h-[35px] rounded-md px-4 focus:outline-none"
-                  >
-                    <option>--- Select Estate ---</option>
-                    {estateisLoading ? (
-                      <option>Loading...</option>
-                    ) : (
-                      estates.map((estate) => (
-                        <option value={estate.id} key={estate.id}>
-                          {estate.estate_Name}
-                        </option>
-                      ))
-                    )}
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div className="w-full flex mb-4 gap-5">
-              <div className="flex w-[49%] items-center h-[35px]">
-                <h5 className="w-[100px]"> Unit: </h5>
-                <div className='w-full flex-1 bg-white text-gray-400 rounded block shadow-[#a73439]/25"'>
-                  <select
-                    name="unitId"
+        <div>
+          <div className=" mt-8 px-4">
+            <BreadCrumb
+              main="Sales"
+              mainUrl="/sales"
+              firstUrl="/sales/allocation"
+              secondUrl="/salesu"
+              first="Allocation"
+              second="New Units"
+            />
+          </div>
+          <form
+            onSubmit={formik.handleSubmit}
+            className="w-[900px] h-full flex flex-col space-y-20 justify-center px-10 py-10"
+          >
+            <div>
+              <div className="w-full flex mb-4 gap-5">
+                <div className="flex items-center flex-1 h-[35px]">
+                  <h5 className="w-[100px]">First Name: </h5>
+                  <input
+                    className=" rounded-md bg-white
+                  shadow-sm shadow-[#a73439]/25 w-[300px] h-[35px]  px-4 focus:outline-none"
+                    type="text"
+                    name="firstName"
+                    placeholder="First Name"
+                    value={formik.values.firstName}
                     onChange={formik.handleChange}
-                    value={formik.values.unitId}
-                    className="w-full flex-1 shadow-lg h-[35px] rounded-md px-4 focus:outline-none"
-                  >
-                    <option>--- Select Unit ---</option>
-                    {units.map((unit) => (
-                      <option value={unit.id} key={unit.id}>
-                        {unit.unit_number}
-                      </option>
-                    ))}
-                  </select>
+                  />
+                </div>
+                <div className="flex items-center flex-1 h-[35px]">
+                  <h5 className="w-[100px]">Last Name:</h5>
+                  <input
+                    className=" rounded-md bg-white
+                  shadow-sm shadow-[#a73439]/25 w-[300px] h-[35px]  px-4 focus:outline-none"
+                    type="text"
+                    placeholder="Last Name"
+                    name="lastName"
+                    value={formik.values.lastName}
+                    onChange={formik.handleChange}
+                  />
                 </div>
               </div>
-              {/* <div className=""></div> */}
+              <div className="w-full flex mb-4 gap-5">
+                <div className="flex items-center flex-1">
+                  <h5 className="w-[100px]">Email:</h5>
+                  <input
+                    className=" rounded-md bg-white
+                  shadow-sm shadow-[#a73439]/25 w-[300px] h-[35px]  px-4 focus:outline-none"
+                    type="text"
+                    name="email"
+                    placeholder="Email"
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                  />
+                </div>
+                <div className="flex items-center flex-1">
+                  <h5 className="w-[100px]">PhoneNo: </h5>
+                  <input
+                    className=" rounded-md bg-white
+                  shadow-sm shadow-[#a73439]/25 w-[300px] h-[35px]  px-4 focus:outline-none"
+                    type="text"
+                    name="phoneNumber"
+                    placeholder="Phone Number"
+                    value={formik.values.phoneNumber}
+                    onChange={formik.handleChange}
+                  />
+                </div>
+              </div>
+              <div className="w-full flex mb-4 gap-5">
+                <div className="flex items-center flex-1">
+                  <h5 className="w-[100px]">Cluster: </h5>
+                  <div className='w-full flex-1 text-gray-400 rounded block shadow-[#a73439]/25"'>
+                    <select
+                      onChange={(e) => {
+                        setClusterId(e.target.value);
+                        setEstateId(null);
+                      }}
+                      className=" rounded-md bg-white
+                    shadow-sm shadow-[#a73439]/25 w-[300px] flex-1 h-[35px]  px-4 focus:outline-none"
+                    >
+                      <option>--- Select Cluster ---</option>
+                      {isLoading ? (
+                        <option>Loading...</option>
+                      ) : (
+                        clusters.map((cluster) => (
+                          <option value={cluster.id} key={cluster.id}>
+                            {cluster.cluster_name}
+                          </option>
+                        ))
+                      )}
+                    </select>
+                  </div>
+                </div>
+                <div className="flex items-center flex-1">
+                  <h5 className="w-[100px]">Estate:</h5>
+                  <div className="flex-1 text-gray-400 rounded block shadow-[#a73439]/25">
+                    <select
+                      onChange={(e) => {
+                        setEstateId(e.target.value);
+                      }}
+                      className="w-[300px] flex-1 shadow-md h-[35px] rounded-md px-4 focus:outline-none"
+                    >
+                      <option>--- Select Estate ---</option>
+                      {estateisLoading ? (
+                        <option>Loading...</option>
+                      ) : (
+                        estates.map((estate) => (
+                          <option value={estate.id} key={estate.id}>
+                            {estate.estate_Name}
+                          </option>
+                        ))
+                      )}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="w-full flex mb-4 gap-5">
+                <div className="flex  items-center h-[35px]">
+                  <h5 className="w-[100px]"> Unit: </h5>
+                  <div className='w-ful flex-1 bg-white text-gray-400 rounded block shadow-[#a73439]/25"'>
+                    <select
+                      name="unitId"
+                      onChange={formik.handleChange}
+                      value={formik.values.unitId}
+                      className=" rounded-md bg-white
+                    shadow-sm shadow-[#a73439]/25 w-[300px] flex-1 h-[35px]  px-4 focus:outline-none"
+                    >
+                      <option>--- Select Unit ---</option>
+                      {units.map((unit) => (
+                        <option value={unit.id} key={unit.id}>
+                          {unit.unit_number}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                {/* <div className=""></div> */}
+              </div>
             </div>
-          </div>
-          <div className=" flex  justify-end gap-4 mr-2">
-            <span>
-              <Buton
-                className="px-3 py-1 bg-white rounded-md hover:bg-red-600 hover:text-white text-black border border-red-600 "
-                text="Cancel"
-                type="cancel"
-              />
-            </span>
-            <span className="">
-              <Buton
-                className=" px-3 py-1 bg-green-500 text-white shadow-green-500/50 rounded-md hover:bg-white hover:text-green-500"
-                text="Allocate"
-                type="submit"
-              />
-            </span>
-          </div>
-        </form>
+            <div className=" flex  justify-end gap-4 mr-4">
+              <span>
+                <Buton
+                  className="px-3 py-1 bg-white rounded-md hover:bg-red-600 hover:text-white text-black border border-red-600 "
+                  text="Cancel"
+                  type="cancel"
+                />
+              </span>
+              <span className="">
+                <Buton
+                  className=" px-3 py-1 bg-green-500 text-white shadow-green-500/50 rounded-md hover:bg-white hover:text-green-500"
+                  text="Allocate"
+                  type="submit"
+                />
+              </span>
+            </div>
+          </form>
+        </div>
       )}
     </NavContainer>
   );

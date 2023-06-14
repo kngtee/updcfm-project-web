@@ -185,10 +185,6 @@ export const adminEstate = {
         name: 'New Estate',
         path: '/admin/new_estate',
       },
-      {
-        name: 'Config. Estate',
-        path: '',
-      },
     ],
   },
 };

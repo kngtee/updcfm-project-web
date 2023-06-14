@@ -52,7 +52,7 @@ const AdminNewStaff = () => {
                 <ol className="inline-flex items-center space-x-1 md:space-x-2 font-normal">
                   <li className="items-center">
                     <a
-                      href="/accounts"
+                      href="/admin"
                       className="inline-flex items-center text-sm text-gray-500 hover:text-[#a73439]"
                     >
                       Dashboards
@@ -75,7 +75,7 @@ const AdminNewStaff = () => {
                         </g>
                       </svg>
                       <a
-                        href="/accounts"
+                        href="/admin/staff"
                         className="inline-flex ml-1 items-center text-sm text-gray-500 hover:text-[#a73439]"
                       >
                         Staffs
