@@ -15,7 +15,8 @@ let tableHeader = [
   { last_name: 'Last Name' },
   { email: 'Email' },
   { phone_number: 'Phone Number' },
-  { activation_stage: 'Activation Stage' },
+  { estate: 'Estate' },
+  { unit: 'Unit' },
 ];
 const Allocation = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,8 +26,8 @@ const Allocation = () => {
   useEffect(() => {
     const getResident = async () => {
       const { status, data } = await GetRequest('api/residents');
+      console.log(data);
       if (status === 200) {
-        console.log(data);
         data.forEach((e) => {
           let newE = {
             first_name: e.first_name,
@@ -34,8 +35,24 @@ const Allocation = () => {
             email: '',
             activation_stage: e.activation_stage,
             phone_number: '',
+            unit: e.unit.unit_number,
+            estate: e.estate.estate_name,
           };
+          const contacts = e.contacts;
+          console.log(contacts);
 
+          contacts.forEach((e) => {
+            if (e.type === 'EMAIL' && e.default === 'Y') {
+              newE.email = e.value;
+              console.log(e);
+            }
+            if (
+              e.type.toLowerCase() === 'phone' &&
+              e.default.toLowerCase() === 'y'
+            ) {
+              newE.phone_number = e.value;
+            }
+          });
           setResidents((i) => [...i, newE]);
         });
         setIsLoading(false);
