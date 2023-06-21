@@ -7,6 +7,7 @@
     top: 0px;
     left: 0px;
     position: fixed;
+    z-index: 1;
 }
 
 .spinner-container{
@@ -17,7 +18,6 @@
     align-items: center;
     position: fixed;
     background: rgba(0,0,0,0.9);
-    z-index: 1;
 }
 
 @keyframes spin-anim {
