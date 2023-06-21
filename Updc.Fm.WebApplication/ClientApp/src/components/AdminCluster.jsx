@@ -12,12 +12,16 @@ const AdminCluster = () => {
 
   useEffect(() => {
     const getCluster = async () => {
-      setIsLoading(true);
+      // setIsLoading(true);
       const { status, data } = await GetRequest('/api/residents/clusters');
+      // setIsLoading(true);
       if (status === 200) {
-        setIsLoading(false);
         setClusters(data);
         console.log(data);
+        setIsLoading(true);
+      } else {
+        setIsLoading(false);
+        console.log(data, status);
       }
     };
 
@@ -26,9 +30,8 @@ const AdminCluster = () => {
   return (
     <>
       {isLoading ? (
-        <Loader />
-      ) : (
         <NavContainer dashboard={adminCluster}>
+          <Loader />
           <div className="flex flex-col px-4 py-8 space-y-8">
             {/* Breadcrumbs and delete button */}
             <div className="flex flex-row space-x-10">
@@ -68,8 +71,8 @@ const AdminCluster = () => {
               <div>
                 <button
                   className="border-2 rounded 
-              border-[#bd4143] w-[80px] 
-              h-[40px] cursor-pointer text-[#bd4143] text-sm font-medium ml-[39.5rem]"
+            border-[#bd4143] w-[80px] 
+            h-[40px] cursor-pointer text-[#bd4143] text-sm font-medium ml-[39.5rem]"
                 >
                   Delete
                 </button>
@@ -109,6 +112,8 @@ const AdminCluster = () => {
             </div>
           </div>
         </NavContainer>
+      ) : (
+        ''
       )}
     </>
   );
