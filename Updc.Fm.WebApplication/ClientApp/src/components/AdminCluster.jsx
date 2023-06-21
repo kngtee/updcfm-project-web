@@ -71,8 +71,8 @@ const AdminCluster = () => {
               <div>
                 <button
                   className="border-2 rounded 
-              border-[#bd4143] w-[80px] 
-              h-[40px] cursor-pointer text-[#bd4143] text-sm font-medium ml-[39.5rem]"
+            border-[#bd4143] w-[80px] 
+            h-[40px] cursor-pointer text-[#bd4143] text-sm font-medium ml-[39.5rem]"
                 >
                   Delete
                 </button>
