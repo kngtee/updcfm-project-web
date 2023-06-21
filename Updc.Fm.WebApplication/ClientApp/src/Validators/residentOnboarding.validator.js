@@ -1,6 +1,6 @@
 import { object, string } from 'yup';
 
-const phoneRegExp = /(\+[1-9]{3}\ )[0-9]{10}/;
+const phoneRegExp = /[0-9]{11}/;
 const emailRegExp =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
@@ -16,9 +16,9 @@ const residentOnboadingSchema = object({
     .matches(emailRegExp, 'Must be an email.')
     .required('Email is required.'),
   phoneNumber: string()
-    .matches(phoneRegExp, 'must follow this partern e.g. +234 8000000000.')
-    .min(11)
-    .max(15)
+    .matches(phoneRegExp, 'must follow this partern e.g. 08000000000.')
+    .min(10)
+    .max(11)
     .required('Phone Number is required.'),
   unitId: string().required('Unit Id is required.'),
 });
