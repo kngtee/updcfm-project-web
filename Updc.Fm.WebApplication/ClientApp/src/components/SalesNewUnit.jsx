@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Buton from '../Utilities/Buton';
 import NavContainer from './NavContainer';
-import Joi from 'joi';
 import { newUnitDashboard } from '../components/NavLists';
 import { useFormik } from 'formik';
 import { GetRequest, PostRequest } from '../Auth/hooks/useGet';
@@ -65,7 +64,6 @@ const SalesNewUnit = () => {
     };
     getUnits();
   }, [estateId]);
-
 
   const formik = useFormik({
     initialValues: {
