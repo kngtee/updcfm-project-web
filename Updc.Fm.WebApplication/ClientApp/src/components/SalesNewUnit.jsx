@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Buton from '../Utilities/Buton';
 import NavContainer from './NavContainer';
+import Joi from 'joi';
 import { newUnitDashboard } from '../components/NavLists';
 import { useFormik } from 'formik';
 import { GetRequest, PostRequest } from '../Auth/hooks/useGet';
@@ -63,6 +64,13 @@ const SalesNewUnit = () => {
     };
     getUnits();
   }, [estateId]);
+  const validationSchema = Joi.object({
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
+    unitId: Joi.string().required(),
+    email: Joi.string().email().required(),
+    phoneNumber: Joi.string().required(),
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -72,7 +80,7 @@ const SalesNewUnit = () => {
       email: '',
       phoneNumber: '',
     },
-
+      validationSchema,
     onSubmit: async (values) => {
       setIsLoading(true);
       const payload = {
