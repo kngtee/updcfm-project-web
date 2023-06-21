@@ -240,14 +240,14 @@ export const accountDashboard = {
         name: 'Intervention Jobs',
         path: '/jobs',
       },
-      {
-        name: 'Service Charge',
-        path: '',
-      },
-      {
-        name: 'Vendors',
-        path: '',
-      },
+      // {
+      //   name: 'Service Charge',
+      //   path: '',
+      // },
+      // {
+      //   name: 'Vendors',
+      //   path: '',
+      // },
     ],
   },
 };
@@ -300,22 +300,22 @@ export const singleJob = {
   manage: {
     title: 'Manage',
     navs: [
-      {
-        name: 'Site Worker',
-        path: '',
-      },
+      // {
+      //   name: 'Site Worker',
+      //   path: '',
+      // },
       {
         name: 'Inspection',
         path: '/inspectjob',
       },
-      {
-        name: 'Work Order',
-        path: '',
-      },
-      {
-        name: 'Invoice',
-        path: '',
-      },
+      // {
+      //   name: 'Work Order',
+      //   path: '',
+      // },
+      // {
+      //   name: 'Invoice',
+      //   path: '',
+      // },
     ],
   },
 };
