@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import { GetRequest, PostRequest } from '../Auth/hooks/useGet';
 import { useNavigate } from 'react-router-dom';
 import Loader from './Loader';
+import estateCreationSchema from '../Validators/estateCreation.validator';
 
 const AdminNewEstate = () => {
   const [clusters, setClusters] = useState([]);
@@ -49,6 +50,9 @@ const AdminNewEstate = () => {
       cluster_id: '',
       facility_manager: '',
     },
+
+    validationSchema: estateCreationSchema,
+
     onSubmit: async (values) => {
       setIsLoading(true);
       console.log(values);
@@ -130,8 +134,8 @@ const AdminNewEstate = () => {
               {/* Form fields for estate name and address*/}
               <div className="flex flex-col space-y-5">
                 <div className="flex flex-row space-x-5">
-                  <div className="flex flex-row">
-                    <div>
+                  <div className="flex flex-col">
+                    <div className="flex flex-row">
                       <label className="font-medium text-sm text-[#0F0F0F]">
                         Estate Name:
                       </label>
@@ -146,8 +150,14 @@ const AdminNewEstate = () => {
                     font-medium text-xs pl-2"
                       />
                     </div>
+                    {formik.errors.estate_name &&
+                      formik.touched.estate_name && (
+                        <span className="text-[red] text-[12px] ml-[100px] mt-[10px]">
+                          {formik.errors.estate_name}
+                        </span>
+                      )}
                   </div>
-                  <div className="flex flex-row">
+                  <div className="flex flex-col">
                     <div>
                       <label className="font-medium text-sm text-[#0F0F0F] pt-1">
                         Estate Address:
@@ -163,57 +173,78 @@ const AdminNewEstate = () => {
                     font-medium text-xs pl-2"
                       />
                     </div>
+                    {formik.errors.estate_address &&
+                      formik.touched.estate_address && (
+                        <span className="text-[red] text-[12px] ml-[110px] mt-[10px]">
+                          {formik.errors.estate_address}
+                        </span>
+                      )}
                   </div>
                 </div>
                 {/* Cluster and facility manager */}
                 <div className="flex flex-row space-x-5">
-                  <div className="flex flex-row">
-                    <label className="font-medium text-sm text-[#0F0F0F] pt-2">
-                      Cluster:
-                    </label>
-                    <select
-                      name="cluster_id"
-                      onChange={formik.handleChange}
-                      className="rounded-md bg-white 
+                  <div className="flex flex-col">
+                    <div>
+                      <label className="font-medium text-sm text-[#0F0F0F] pt-2">
+                        Cluster:
+                      </label>
+                      <select
+                        name="cluster_id"
+                        onChange={formik.handleChange}
+                        className="rounded-md bg-white 
                     shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-12
                     text-gray-400 
                     font-medium text-xs pl-2"
-                    >
-                      <option>--- select cluster ---</option>
-                      {clusterIsloading ? (
-                        <option>Loading...</option>
-                      ) : (
-                        clusters.map((cluster) => (
-                          <option key={cluster.id} value={cluster.id}>
-                            {cluster.cluster_name}
-                          </option>
-                        ))
-                      )}
-                    </select>
+                      >
+                        <option>--- select cluster ---</option>
+                        {clusterIsloading ? (
+                          <option>Loading...</option>
+                        ) : (
+                          clusters.map((cluster) => (
+                            <option key={cluster.id} value={cluster.id}>
+                              {cluster.cluster_name}
+                            </option>
+                          ))
+                        )}
+                      </select>
+                    </div>
+                    {formik.errors.cluster_id && formik.touched.cluster_id && (
+                      <span className="text-[red] text-[12px] ml-[100px] mt-[10px]">
+                        {formik.errors.cluster_id}
+                      </span>
+                    )}
                   </div>
-                  <div className="flex flex-row">
-                    <label className="font-medium text-sm text-[#0F0F0F] pt-2">
-                      Facility Mangr:
-                    </label>
-                    <select
-                      name="facility_manager"
-                      onChange={formik.handleChange}
-                      className="rounded-md bg-white 
+                  <div className="flex flex-col">
+                    <div>
+                      <label className="font-medium text-sm text-[#0F0F0F] pt-2">
+                        Facility Mangr:
+                      </label>
+                      <select
+                        name="facility_manager"
+                        onChange={formik.handleChange}
+                        className="rounded-md bg-white 
                     shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-3 
                     text-gray-400 
                     font-medium text-xs pl-2"
-                    >
-                      <option>--- select facility manager ---</option>
-                      {clusterIsloading ? (
-                        <option>Loading...</option>
-                      ) : (
-                        staffs.map((staff) => (
-                          <option key={staff.id} value={staff.id}>
-                            {staff.first_Name + ' ' + staff.last_Name}
-                          </option>
-                        ))
+                      >
+                        <option>--- select facility manager ---</option>
+                        {clusterIsloading ? (
+                          <option>Loading...</option>
+                        ) : (
+                          staffs.map((staff) => (
+                            <option key={staff.id} value={staff.id}>
+                              {staff.first_Name + ' ' + staff.last_Name}
+                            </option>
+                          ))
+                        )}
+                      </select>
+                    </div>
+                    {formik.errors.facility_manager &&
+                      formik.touched.facility_manager && (
+                        <span className="text-[red] text-[12px] ml-[110px] mt-[10px]">
+                          {formik.errors.facility_manager}
+                        </span>
                       )}
-                    </select>
                   </div>
                 </div>
                 <div className="flex flex-row space-x-5 justify-end pr-[5rem] pt-20">

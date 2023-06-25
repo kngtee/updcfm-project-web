@@ -7,6 +7,7 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import Loader from './Loader';
 import { successMessage } from '../toast-message/toastMessage';
+import clusterCreationSchema from '../Validators/clusterCreation.validator';
 
 const AdminNewCluster = () => {
   const [staffs, setStaffs] = useState([]);
@@ -36,6 +37,8 @@ const AdminNewCluster = () => {
       clusterName: '',
       clusterManager: '',
     },
+
+    validationSchema: clusterCreationSchema,
 
     onSubmit: async (values) => {
       console.log(values);
@@ -121,44 +124,60 @@ const AdminNewCluster = () => {
             <form onSubmit={formik.handleSubmit}>
               <div className="">
                 <div className="flex flex-row space-x-20 items-center">
-                  <div className="flex flex-row">
-                    <label className="pt-2 font-medium text-sm text-[#0F0F0F]">
-                      Cluster Name:
-                    </label>
-                    <input
-                      type="text"
-                      name="clusterName"
-                      placeholder="Enter cluster name"
-                      className="rounded-md bg-white 
+                  <div className="flex flex-col">
+                    <div>
+                      <label className="pt-2 font-medium text-sm text-[#0F0F0F]">
+                        Cluster Name:
+                      </label>
+                      <input
+                        type="text"
+                        name="clusterName"
+                        placeholder="Enter cluster name"
+                        className="rounded-md bg-white 
                     shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-3 
                     text-gray-400 
                       font-medium text-xs pl-2"
-                      onChange={formik.handleChange}
-                    />
+                        onChange={formik.handleChange}
+                      />
+                    </div>
+                    {formik.errors.clusterName &&
+                      formik.touched.clusterName && (
+                        <span className="text-[red] text-[12px] ml-[110px] mt-[10px]">
+                          {formik.errors.clusterName}
+                        </span>
+                      )}
                   </div>
-                  <div className="flex flex-row">
-                    <label className="pt-2 font-medium text-sm text-[#0F0F0F]">
-                      State:
-                    </label>
-                    <select
-                      name="clusterManager"
-                      className="rounded-md bg-white 
+                  <div className="flex flex-col">
+                    <div>
+                      <label className="pt-2 font-medium text-sm text-[#0F0F0F]">
+                        Cluster Manager:
+                      </label>
+                      <select
+                        name="clusterManager"
+                        className="rounded-md bg-white 
                       shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-3 
                       text-gray-400 
                       font-medium text-xs pl-2"
-                      onChange={formik.handleChange}
-                    >
-                      <option>--- select manager ---</option>
-                      {isLoading ? (
-                        <option>Loading...</option>
-                      ) : (
-                        staffs.map((staff) => (
-                          <option key={staff.id} value={staff.id}>
-                            {staff.first_Name + ' ' + staff.last_Name}
-                          </option>
-                        ))
+                        onChange={formik.handleChange}
+                      >
+                        <option>--- select manager ---</option>
+                        {isLoading ? (
+                          <option>Loading...</option>
+                        ) : (
+                          staffs.map((staff) => (
+                            <option key={staff.id} value={staff.id}>
+                              {staff.first_Name + ' ' + staff.last_Name}
+                            </option>
+                          ))
+                        )}
+                      </select>
+                    </div>
+                    {formik.errors.clusterManager &&
+                      formik.touched.clusterManager && (
+                        <span className="text-[red] text-[12px] ml-[110px] mt-[10px]">
+                          {formik.errors.clusterManager}
+                        </span>
                       )}
-                    </select>
                   </div>
                 </div>
                 <div className="flex flex-row space-x-5 pt-20 justify-end pr-[5rem]">

@@ -16,9 +16,9 @@ const AdminEstate = () => {
       const { status, data } = await GetRequest('/api/estates');
 
       if (status === 200) {
-        setIsLoading(false);
         setEstates(data);
         console.log(data);
+        setIsLoading(false);
       } else {
         setIsLoading(false);
         console.log(data, status);
@@ -101,13 +101,15 @@ const AdminEstate = () => {
                       <AdminCard
                         Header="Yaba Estate"
                         Name={estate.estate_Name}
+                        // Manager={''}
                         Manager={
-                          estate.manager.first_Name +
+                          estate.manager?.first_Name +
                           ' ' +
-                          estate.manager.last_Name
+                          estate.manager?.last_Name
                         }
                         Icon={Estate}
                       />
+                      {/* {console.log(estate.manager.first_Name)} */}
                     </div>
                   ))}
               </div>
