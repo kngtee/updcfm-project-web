@@ -20,6 +20,9 @@ export const PostRequest = async (url, payload, headers) => {
     return { status, data };
   } catch (err) {
     console.log(err);
-    return { status: err.response.status || err.request.status };
+    return {
+      status: err.response.status || err.request.status,
+      error: err.response.data.result,
+    };
   }
 };

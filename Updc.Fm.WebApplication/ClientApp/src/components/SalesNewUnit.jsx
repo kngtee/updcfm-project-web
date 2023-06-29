@@ -100,8 +100,14 @@ const SalesNewUnit = () => {
           title: 'Resident Created',
         });
         navigate('/sales/allocation');
+      } else {
+        setIsLoading(false);
+        errorMessage({
+          message: res.error,
+          title: 'Error',
+        });
+        console.log('Error', res);
       }
-      console.log(res);
     },
   });
   return (
