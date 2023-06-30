@@ -43,7 +43,7 @@ const AdminEstate = () => {
                       href="/admin"
                       className="inline-flex items-center text-sm text-gray-500 hover:text-[#a73439]"
                     >
-                      Dashboards
+                      Dashboard
                     </a>
                   </li>
 
