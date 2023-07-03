@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+// import React, { useEffect } from 'react';
 import NavContainer from '../components/NavContainer';
 import { salesDashboard } from '../components/NavLists';
 import Cards from '../Utilities/Cards';
 import DropDownButton from '../Utilities/DropDownButton';
-import { MdFilterAlt } from 'react-icons/md';
+// import { MdFilterAlt } from 'react-icons/md';
 import Jobs from '../assets/img/jobs.svg';
 import JobsDone from '../assets/img/job-done-ok.svg';
 import Vendors from '../assets/img/staff.svg';
@@ -11,11 +11,9 @@ import Vendors from '../assets/img/staff.svg';
 const sales = salesDashboard;
 
 const Sales = () => {
-  useEffect(()=>{
-    const getUnits = () =>{
-      
-    }
-  })
+  // useEffect(() => {
+  //   const getUnits = () => {};
+  // });
   return (
     <NavContainer dashboard={sales}>
       <div className="space-y-8 px-4 py-8">
@@ -28,21 +26,21 @@ const Sales = () => {
             </li>
           </ol>
         </div>
-          <div className="flex flex-col space-x-1 md:flex-row md:space-x-3 font-medium items-center ">
-            <DropDownButton
-              first="Select Cluster"
-              second="Select Estate"
-              third="Unit"
-            />
-            <DropDownButton
-              first="Select Estate"
-              second="Select Cluster"
-              third="Jobs"
-            />
-            <button className=" inline-flex w-[35px] h-[35px] bg-[#a73439] text-white items-center justify-center rounded shadow-sm shadow-[#a73439]/25">
+        <div className="flex flex-col space-x-1 md:flex-row md:space-x-3 font-medium items-center ">
+          <DropDownButton
+            first="Select Cluster"
+            second="Select Estate"
+            third="Unit"
+          />
+          <DropDownButton
+            first="Select Estate"
+            second="Select Cluster"
+            third="Jobs"
+          />
+          {/* <button className=" inline-flex w-[35px] h-[35px] bg-[#a73439] text-white items-center justify-center rounded shadow-sm shadow-[#a73439]/25">
               <MdFilterAlt />
-            </button>
-          </div>
+            </button> */}
+        </div>
         <div className="flex flex-row space-x-12">
           <Cards title="Total Unit" num="100" icon={Jobs} />
           <Cards title="Available Unit" num="75" icon={JobsDone} />

@@ -12,7 +12,7 @@ export const salesDashboard = {
     title: 'Manage',
     navs: [
       {
-        name: 'Alocation',
+        name: 'Allocation',
         path: '/sales/allocation',
       },
     ],
