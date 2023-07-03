@@ -14,6 +14,10 @@ const Table = ({ header, data, query, filter }) => {
   const [sorting, setSorting] = useState({ field: DataKey(header[0]) });
   const [totalCount, setTotalCount] = useState(data && data.length);
 
+  const truncateText = (str) => {
+    return str.length > 15 ? str.substring(0, 12) + '....' : str;
+  };
+
   const navigate = useNavigate();
   console.log(data);
 
@@ -118,7 +122,7 @@ const Table = ({ header, data, query, filter }) => {
                       onClick={console.log('hello g')}
                       className="cursor-pointer px-3 py-2"
                     >
-                      {row[DataKey(k)]}
+                      {truncateText(row[DataKey(k)])}
                     </td>
                   ))}
               </tr>
