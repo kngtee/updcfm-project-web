@@ -5,9 +5,11 @@ import AdminCard from '../Utilities/AdminCard';
 import { GetRequest } from '../Auth/hooks/useGet';
 import Loader from './Loader';
 import Estate from '../../src/assets/img/estate.svg';
+import SearchBox from '../Utilities/SearchBox';
 
 const AdminEstate = () => {
   const [estates, setEstates] = useState([]);
+  const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -27,6 +29,10 @@ const AdminEstate = () => {
 
     getEstates();
   }, []);
+
+  const handleQuery = (query) => {
+    setSearch(query);
+  };
   return (
     <>
       {isLoading ? (
@@ -82,13 +88,8 @@ const AdminEstate = () => {
             {/* Dropdown, prev and nxt btn */}
             <div className="flex flex-row ml-[44rem]">
               {/* Search */}
-              <div className="font-medium">
-                <input
-                  type="search"
-                  id="search"
-                  placeholder="Search for estates..."
-                  className="bg-white text-gray-400 h-[35px] text-sm font-medium rounded shadow-sm shadow-[#a73439]/25 block px-3 py-2.5"
-                />
+              <div>
+                <SearchBox query={handleQuery} />
               </div>
             </div>
             {/* Admin cards alignment*/}
@@ -96,22 +97,28 @@ const AdminEstate = () => {
               {/* Admin card contents */}
               <div className="grid grid-cols-3 gap-4">
                 {estates &&
-                  estates.map((estate) => (
-                    <div key={estate.id}>
-                      <AdminCard
-                        Header="Yaba Estate"
-                        Name={estate.estate_Name}
-                        // Manager={''}
-                        Manager={
-                          estate.manager?.first_Name +
-                          ' ' +
-                          estate.manager?.last_Name
-                        }
-                        Icon={Estate}
-                      />
-                      {/* {console.log(estate.manager.first_Name)} */}
-                    </div>
-                  ))}
+                  estates
+                    .filter((e) =>
+                      e.estate_Name
+                        .toLowerCase()
+                        .includes(search.toLowerCase()),
+                    )
+                    .map((estate) => (
+                      <div key={estate.id}>
+                        <AdminCard
+                          Header="Yaba Estate"
+                          Name={estate.estate_Name}
+                          // Manager={''}
+                          Manager={
+                            estate.manager?.first_Name +
+                            ' ' +
+                            estate.manager?.last_Name
+                          }
+                          Icon={Estate}
+                        />
+                        {/* {console.log(estate.manager.first_Name)} */}
+                      </div>
+                    ))}
               </div>
             </div>
           </div>
