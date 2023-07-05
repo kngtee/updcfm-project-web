@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Pagination from './Pagination';
 import { DataKey } from '../Services/GetDataKey';
 // import { data } from 'jquery';
@@ -39,9 +39,9 @@ const Table = ({ header, data, query, filter }) => {
     }));
   };
 
-  const rowClickedAction = (event) => {
-    console.log(event);
-  };
+  // const rowClickedAction = (event) => {
+  //   console.log(event);
+  // };
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
