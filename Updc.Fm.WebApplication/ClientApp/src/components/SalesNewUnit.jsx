@@ -12,9 +12,11 @@ import residentOnboadingSchema from '../Validators/residentOnboarding.validator'
 
 const SalesNewUnit = () => {
   const [clusters, setClusters] = useState([]);
+  //eslint-disable-next-line
   const [clusterIsLoading, setClusterIsLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [estateisLoading, setEstateIsLoading] = useState(false);
+  //eslint-disable-next-line
   const [unitisLoading, setUnitIsLoading] = useState(false);
   const [estates, setEstates] = useState([]);
   const [units, setUnits] = useState([]);
@@ -134,9 +136,11 @@ const SalesNewUnit = () => {
               <div className="w-full flex mb-4 gap-5">
                 <div>
                   <div className="flex items-center flex-1 h-[35px]">
-                    <h5 className="w-[100px]">First Name: </h5>
+                    <h5 className="w-[100px] text-sm font-semibold">
+                      First Name:{' '}
+                    </h5>
                     <input
-                      className=" rounded-md bg-white
+                      className=" rounded-md bg-white text-xs font-semibold
                   shadow-sm shadow-[#a73439]/25 w-[300px] h-[35px]  px-4 focus:outline-none"
                       type="text"
                       name="firstName"
@@ -153,10 +157,12 @@ const SalesNewUnit = () => {
                 </div>
                 <div>
                   <div className="flex items-center flex-1 h-[35px]">
-                    <h5 className="w-[100px]">Last Name:</h5>
+                    <h5 className="w-[100px] text-sm font-semibold">
+                      Last Name:
+                    </h5>
                     <input
                       className=" rounded-md bg-white
-                  shadow-sm shadow-[#a73439]/25 w-[300px] h-[35px]  px-4 focus:outline-none"
+                  shadow-sm shadow-[#a73439]/25 w-[300px] h-[35px] text-xs font-semibold px-4 focus:outline-none"
                       type="text"
                       placeholder="Last Name"
                       name="lastName"
@@ -174,10 +180,10 @@ const SalesNewUnit = () => {
               <div className="w-full flex mb-4 gap-5">
                 <div>
                   <div className="flex items-center flex-1">
-                    <h5 className="w-[100px]">Email:</h5>
+                    <h5 className="w-[100px] text-sm font-semibold">Email:</h5>
                     <input
                       className=" rounded-md bg-white
-                  shadow-sm shadow-[#a73439]/25 w-[300px] h-[35px]  px-4 focus:outline-none"
+                  shadow-sm shadow-[#a73439]/25 w-[300px] h-[35px] text-xs font-semibold px-4 focus:outline-none"
                       type="text"
                       name="email"
                       placeholder="Email"
@@ -193,10 +199,12 @@ const SalesNewUnit = () => {
                 </div>
                 <div>
                   <div className="flex items-center flex-1">
-                    <h5 className="w-[100px]">PhoneNo: </h5>
+                    <h5 className="w-[100px] text-sm font-semibold">
+                      PhoneNo:{' '}
+                    </h5>
                     <input
                       className=" rounded-md bg-white
-                  shadow-sm shadow-[#a73439]/25 w-[300px] h-[35px]  px-4 focus:outline-none"
+                  shadow-sm shadow-[#a73439]/25 w-[300px] h-[35px] text-xs font-semibold px-4 focus:outline-none"
                       type="text"
                       name="phoneNumber"
                       placeholder="Phone Number"
@@ -213,7 +221,7 @@ const SalesNewUnit = () => {
               </div>
               <div className="w-full flex mb-4 gap-5">
                 <div className="flex items-center flex-1">
-                  <h5 className="w-[100px]">Cluster: </h5>
+                  <h5 className="w-[100px] text-sm font-semibold">Cluster: </h5>
                   <div className='w-full flex-1 text-gray-400 rounded block shadow-[#a73439]/25"'>
                     <select
                       onChange={(e) => {
@@ -221,7 +229,7 @@ const SalesNewUnit = () => {
                         setEstateId(null);
                       }}
                       className=" rounded-md bg-white
-                    shadow-sm shadow-[#a73439]/25 w-[300px] flex-1 h-[35px]  px-4 focus:outline-none"
+                    shadow-sm shadow-[#a73439]/25 w-[300px] flex-1 h-[35px] text-xs font-semibold px-4 focus:outline-none"
                     >
                       <option>--- Select Cluster ---</option>
                       {isLoading ? (
@@ -237,14 +245,14 @@ const SalesNewUnit = () => {
                   </div>
                 </div>
                 <div className="flex items-center flex-1">
-                  <h5 className="w-[100px]">Estate:</h5>
+                  <h5 className="w-[100px] text-sm font-semibold">Estate:</h5>
                   <div className="flex-1 text-gray-400 rounded block shadow-[#a73439]/25">
                     <select
                       onChange={(e) => {
                         setEstateId(e.target.value);
                       }}
                       className="rounded-md bg-white
-                      shadow-sm shadow-[#a73439]/25 w-[300px] flex-1 h-[35px]  px-4 focus:outline-none"
+                      shadow-sm shadow-[#a73439]/25 w-[300px] flex-1 h-[35px] text-xs font-semibold px-4 focus:outline-none"
                     >
                       <option>--- Select Estate ---</option>
                       {estateisLoading ? (
@@ -263,14 +271,14 @@ const SalesNewUnit = () => {
               <div className="w-full flex mb-4 gap-5">
                 <div>
                   <div className="flex  items-center h-[35px]">
-                    <h5 className="w-[100px]"> Unit: </h5>
+                    <h5 className="w-[100px] text-sm font-semibold"> Unit: </h5>
                     <div className='w-ful flex-1 bg-white text-gray-400 rounded block shadow-[#a73439]/25"'>
                       <select
                         name="unitId"
                         onChange={formik.handleChange}
                         value={formik.values.unitId}
                         className=" rounded-md bg-white
-                    shadow-sm shadow-[#a73439]/25 w-[300px] flex-1 h-[35px]  px-4 focus:outline-none"
+                    shadow-sm shadow-[#a73439]/25 w-[300px] flex-1 h-[35px] text-xs font-semibold px-4 focus:outline-none"
                       >
                         <option>--- Select Unit ---</option>
                         {units.map((unit) => (
