@@ -243,7 +243,8 @@ const SalesNewUnit = () => {
                       onChange={(e) => {
                         setEstateId(e.target.value);
                       }}
-                      className="w-[300px] flex-1 shadow-md h-[35px] rounded-md px-4 focus:outline-none"
+                      className="rounded-md bg-white
+                      shadow-sm shadow-[#a73439]/25 w-[300px] flex-1 h-[35px]  px-4 focus:outline-none"
                     >
                       <option>--- Select Estate ---</option>
                       {estateisLoading ? (
