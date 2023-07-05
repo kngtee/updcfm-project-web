@@ -24,6 +24,7 @@ import AdminNewCluster from './components/AdminNewCluster';
 import AdminStaff from './components/AdminStaff';
 import AdminNewStaff from './components/AdminNewStaff';
 import AdminStaffOverView from './components/AdminStaffOverView';
+import ForgetPassword from './components/ForgetPassword';
 
 function App() {
   return (
@@ -147,6 +148,7 @@ function App() {
         <Route path="/jobs" element={<InterventionJobs />} />
         <Route path="/jobs/:id" element={<SingleJob />} />
         <Route path="/inspectjob" element={<CreateInspection />} />
+        <Route path="/forgetpassword" element={<ForgetPassword/>} />
       </Routes>
     </AuthProvider>
   );
