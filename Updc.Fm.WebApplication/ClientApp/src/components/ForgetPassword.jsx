@@ -1,10 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 const ForgetPassword = () => {
-
-    const nav =useNavigate()
+  const nav = useNavigate();
   return (
     <div className=" flex flex-col rounded-md gap-4 px-4 py-8 w-[500px] h-[300px] ml-10 mt-10 bg-slate-300">
       <div className="flex justify-center mt-4"></div>
@@ -24,7 +22,14 @@ const ForgetPassword = () => {
         <button className=" rounded-md px-2 py-1.5 text-sm bg-[#a73439] text-white">
           Submit
         </button>
-        <button onClick={()=>{nav("/")}} className=" text-sm">Back to login</button>
+        <button
+          onClick={() => {
+            nav('/login');
+          }}
+          className=" text-sm"
+        >
+          Back to login
+        </button>
       </div>
     </div>
   );
