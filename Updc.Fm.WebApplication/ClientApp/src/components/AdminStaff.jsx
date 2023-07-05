@@ -4,6 +4,7 @@ import { adminStaff } from './NavLists';
 import Table from '../Utilities/Table';
 import Loader from '../components/Loader';
 import { GetRequest } from '../Auth/hooks/useGet';
+import SearchBox from '../Utilities/SearchBox';
 
 let tableHeader = [
   { first_Name: 'First Name' },
@@ -15,6 +16,7 @@ let tableHeader = [
 const AdminStaff = () => {
   const [staffs, setStaffs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const getStaff = async () => {
@@ -38,6 +40,11 @@ const AdminStaff = () => {
 
     getStaff();
   }, []);
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
   return (
     <>
       {isLoading ? (
@@ -84,12 +91,13 @@ const AdminStaff = () => {
             <div className="flex flex-row ml-[44rem]">
               {/* Search */}
               <div className="font-medium">
-                <input
+                {/* <input
                   type="search"
                   id="search"
                   placeholder="Search for staff..."
                   className="bg-white text-gray-400 h-[35px] text-sm font-medium rounded shadow-sm shadow-[#a73439]/25 block px-3 py-2.5"
-                />
+                /> */}
+                <SearchBox query={handleSearch} />
               </div>
             </div>
             <div>
@@ -98,9 +106,16 @@ const AdminStaff = () => {
                   filter={['first_Name', 'last_Name']}
                   header={tableHeader}
                   data={staffs && staffs}
-                  query={''}
+                  query={searchQuery}
                 />
-              ) : null}
+              ) : // <Table
+              //   textCol1="Full Name"
+              //   textCol2="Email"
+              //   textCol3="Phone No"
+              //   textCol4="Estate"
+              //   textCol5="Status"
+              // />
+              null}
             </div>
           </div>
         </NavContainer>

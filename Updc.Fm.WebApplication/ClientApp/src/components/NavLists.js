@@ -319,3 +319,24 @@ export const singleJob = {
     ],
   },
 };
+
+export const adminClusterInfos = {
+  overview: {
+    title: 'Cluster Info',
+    navs: [
+      {
+        name: 'Yaba Cluster',
+        path: '',
+      },
+    ],
+  },
+  manage: {
+    title: 'Manage',
+    navs: [
+      {
+        name: 'New Unit',
+        path: '/salesu',
+      },
+    ],
+  },
+};

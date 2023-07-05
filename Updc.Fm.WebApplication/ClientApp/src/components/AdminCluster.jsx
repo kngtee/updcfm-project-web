@@ -5,6 +5,7 @@ import AdminCard from '../Utilities/AdminCard';
 import { GetRequest } from '../Auth/hooks/useGet';
 import Loader from './Loader';
 import Estate from '../../src/assets/img/estate.svg';
+import { Link } from 'react-router-dom';
 
 const AdminCluster = () => {
   const [clusters, setClusters] = useState([]);
@@ -97,16 +98,18 @@ const AdminCluster = () => {
               <div className="grid grid-cols-3 gap-4">
                 {clusters.map((cluster) => (
                   <div>
-                    <AdminCard
-                      Header="Yaba Cluster"
-                      Name={cluster.cluster_name}
-                      Manager={
-                        cluster.manager.first_Name +
-                        ' ' +
-                        cluster.manager.last_Name
-                      }
-                      Icon={Estate}
-                    />
+                    <Link to="/admin/admincluster_info">
+                      <AdminCard
+                        Header="Yaba Cluster"
+                        Name={cluster.cluster_name}
+                        Manager={
+                          cluster.manager.first_Name +
+                          ' ' +
+                          cluster.manager.last_Name
+                        }
+                        Icon={Estate}
+                      />
+                    </Link>
                   </div>
                 ))}
               </div>

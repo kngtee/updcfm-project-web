@@ -24,6 +24,7 @@ import AdminNewCluster from './components/AdminNewCluster';
 import AdminStaff from './components/AdminStaff';
 import AdminNewStaff from './components/AdminNewStaff';
 import AdminStaffOverView from './components/AdminStaffOverView';
+import AdminClusterInfo from './components/AdminClusterInfo';
 
 function App() {
   return (
@@ -41,6 +42,15 @@ function App() {
           element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/admincluster_info"
+          element={
+            <ProtectedRoute>
+              <AdminClusterInfo />
             </ProtectedRoute>
           }
         />

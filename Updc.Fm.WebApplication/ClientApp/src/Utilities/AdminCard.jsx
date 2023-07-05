@@ -6,7 +6,7 @@ const AdminCard = (props) => {
   };
 
   return (
-    <div className="flex flex-col space-y-1 relative bg-white w-[240px] h-[120px] rounded-md shadow-sm shadow-[#a73439]/25">
+    <div className="flex flex-col space-y-1 relative bg-white w-[240px] h-[120px] hover:cursor-pointer rounded-md shadow-sm shadow-[#a73439]/25">
       <div className="flex absolute right-0 flex-row justify-end">
         <div>
           <input type="checkbox" />
@@ -20,7 +20,7 @@ const AdminCard = (props) => {
         <div>
           <img
             src={props.Icon}
-            alt="Estate Image"
+            alt="Estate pics"
             className="h-[40px] w-[40px]"
           />
         </div>
