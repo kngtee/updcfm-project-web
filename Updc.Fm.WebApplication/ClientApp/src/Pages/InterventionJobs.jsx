@@ -5,6 +5,7 @@ import { viewallJobs } from '../components/NavLists';
 import { GetRequest } from '../Auth/hooks/useGet';
 import Loader from '../components/Loader';
 import Table from '../Utilities/Table';
+import SearchBox from '../Utilities/SearchBox';
 
 const viewJobs = viewallJobs;
 let tableHeader = [
@@ -17,7 +18,7 @@ let tableHeader = [
 export const InterventionJobs = () => {
   // const [hidden, setHidden] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [searchQuery, setSearchQuery] = useState('');
   const [interventionJob, setInterventionJob] = useState([]);
 
   useEffect(() => {
@@ -44,11 +45,11 @@ export const InterventionJobs = () => {
     getInterventionJob();
   }, []);
 
-  // const handleHidden = () => {
-  //   setHidden(!hidden);
-  //   console.log('object');
-  //   console.log(hidden);
-  // };
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
+  
 
   return (
     <>
@@ -91,70 +92,11 @@ export const InterventionJobs = () => {
               </ol>
             </div>
             <div className="flex flex-row justify-end">
-              {/* Filter 
-              <div className="flex-col items-start justify-start">
-                <button
-                  id="dropdownDefault"
-                  data-dropdown-toggle="dropdown"
-                  className="text-gray-400 bg-white font-medium text-sm h-[35px] px-3 py-2.5 text-center inline-flex items-center rounded shadow-sm shadow-[#a73439]/25"
-                  type="button"
-                  onClick={handleHidden}
-                >
-                  Filter
-                  <div className="ml-5 text-black text-sm">
-                    <MdFilterAlt />
-                  </div>
-                </button>
-                {/* Filter dropdown */}
-              {/* <div
-                  id="dropdown"
-                  className={
-                    hidden
-                      ? 'z-10 w-fit p-3 absolute bg-white rounded shadow-sm shadow-[#a73439]/25'
-                      : 'hidden'
-                  }
-                >
-                  <h6 className="mb-3 text-sm font-medium text-gray-400">
-                    Status
-                  </h6>
-                  <ul
-                    className="space-y-2 text-sm"
-                    aria-labelledby="dropdownDefault"
-                  >
-                    <li className="flex items-center">
-                      <input
-                        id=""
-                        type="checkbox"
-                        value=""
-                        className="w-3 h-3 bg-gray-100 focus:ring-blue-500"
-                      />
-                      <label
-                        htmlFor="pending"
-                        className="ml-2 text-xs font-medium text-gray-900"
-                      >
-                        Pending
-                      </label>
-                    </li>
-                    <li className="flex items-center">
-                      <input
-                        id=""
-                        type="checkbox"
-                        value=""
-                        className="w-3 h-3 bg-gray-100 focus:ring-blue-500"
-                      />
-                      <label
-                        htmlFor="pending"
-                        className="ml-2 text-xs font-medium text-gray-900"
-                      >
-                        Completed
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-             {/* </div> */}
+              
               {/* Search Bar */}
               <div className="">
-                <label htmlFor="search" className="sr-only">
+                <SearchBox query={handleSearch} />
+                {/* <label htmlFor="search" className="sr-only">
                   Search
                 </label>
                 <div className="flex flex-row">
@@ -194,8 +136,8 @@ export const InterventionJobs = () => {
                         ></path>
                       </g>
                     </svg>
-                  </button> */}
-                </div>
+                  </button>
+                </div> */}
               </div>
             </div>
             {/* Table */}
@@ -204,7 +146,7 @@ export const InterventionJobs = () => {
                 header={tableHeader}
                 data={interventionJob && interventionJob}
                 filter={['categoryId', 'issueId']}
-                query={''}
+                query={searchQuery}
               />
             ) : null}
           </div>

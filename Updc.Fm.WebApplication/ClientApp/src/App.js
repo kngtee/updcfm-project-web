@@ -24,6 +24,9 @@ import AdminNewCluster from './components/AdminNewCluster';
 import AdminStaff from './components/AdminStaff';
 import AdminNewStaff from './components/AdminNewStaff';
 import AdminStaffOverView from './components/AdminStaffOverView';
+import AdminClusterInfo from './components/AdminClusterInfo';
+import ForgetPassword from './components/ForgetPassword';
+import VerifyOtp from './components/VerifyOtp';
 
 function App() {
   return (
@@ -41,6 +44,15 @@ function App() {
           element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/admincluster_info"
+          element={
+            <ProtectedRoute>
+              <AdminClusterInfo />
             </ProtectedRoute>
           }
         />
@@ -147,6 +159,8 @@ function App() {
         <Route path="/jobs" element={<InterventionJobs />} />
         <Route path="/jobs/:id" element={<SingleJob />} />
         <Route path="/inspectjob" element={<CreateInspection />} />
+        <Route path="/forgetpassword" element={<ForgetPassword />} />
+        <Route path="/verifyotp" element={<VerifyOtp />} />
       </Routes>
     </AuthProvider>
   );

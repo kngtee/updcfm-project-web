@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdFilterAlt } from 'react-icons/md';
+// import { MdFilterAlt } from 'react-icons/md';
 import { accountDashboard } from '../components/NavLists';
 import Jobs from '../assets/img/jobs.svg';
 import JobsDone from '../assets/img/job-done-ok.svg';
@@ -37,9 +37,9 @@ export const Accounts = () => {
             >
               <option selected>Select Estate</option>
             </select>
-            <button className="inline-flex w-[35px] h-[35px] bg-[#a73439] text-white items-center justify-center rounded shadow-sm shadow-[#a73439]/25">
+            {/* <button className="inline-flex w-[35px] h-[35px] bg-[#a73439] text-white items-center justify-center rounded shadow-sm shadow-[#a73439]/25">
               <MdFilterAlt />
-            </button>
+            </button> */}
           </div>
           {/* Info Cards */}
           <div className="flex flex-row space-x-12">

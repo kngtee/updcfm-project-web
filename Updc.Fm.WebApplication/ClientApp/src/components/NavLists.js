@@ -12,7 +12,7 @@ export const salesDashboard = {
     title: 'Manage',
     navs: [
       {
-        name: 'Alocation',
+        name: 'Allocation',
         path: '/sales/allocation',
       },
     ],
@@ -240,14 +240,14 @@ export const accountDashboard = {
         name: 'Intervention Jobs',
         path: '/jobs',
       },
-      {
-        name: 'Service Charge',
-        path: '',
-      },
-      {
-        name: 'Vendors',
-        path: '',
-      },
+      // {
+      //   name: 'Service Charge',
+      //   path: '',
+      // },
+      // {
+      //   name: 'Vendors',
+      //   path: '',
+      // },
     ],
   },
 };
@@ -300,21 +300,42 @@ export const singleJob = {
   manage: {
     title: 'Manage',
     navs: [
-      {
-        name: 'Site Worker',
-        path: '',
-      },
+      // {
+      //   name: 'Site Worker',
+      //   path: '',
+      // },
       {
         name: 'Inspection',
         path: '/inspectjob',
       },
+      // {
+      //   name: 'Work Order',
+      //   path: '',
+      // },
+      // {
+      //   name: 'Invoice',
+      //   path: '',
+      // },
+    ],
+  },
+};
+
+export const adminClusterInfos = {
+  overview: {
+    title: 'Cluster Info',
+    navs: [
       {
-        name: 'Work Order',
+        name: 'Yaba Cluster',
         path: '',
       },
+    ],
+  },
+  manage: {
+    title: 'Manage',
+    navs: [
       {
-        name: 'Invoice',
-        path: '',
+        name: 'New Unit',
+        path: '/salesu',
       },
     ],
   },

@@ -7,6 +7,7 @@ import { PostRequest } from '../Auth/hooks/useGet';
 import { stringToBase64 } from '../Services/Converter';
 import { useNavigate } from 'react-router-dom';
 import Loader from './Loader';
+import staffCreationSchema from '../Validators/staffCreation.validator';
 
 const AdminNewStaff = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,6 +20,9 @@ const AdminNewStaff = () => {
       phone_number: '',
       role: '',
     },
+
+    validationSchema: staffCreationSchema,
+
     onSubmit: async (values) => {
       console.log(values);
       setIsLoading(true);
@@ -108,7 +112,7 @@ const AdminNewStaff = () => {
             <form onSubmit={formik.handleSubmit}>
               <div className="flex flex-col space-y-5">
                 <div className="flex flex-row space-x-5">
-                  <div className="flex flex-row">
+                  <div className="flex flex-col">
                     <div>
                       <label className="font-medium text-sm text-[#0F0F0F]">
                         First Name:
@@ -124,74 +128,108 @@ const AdminNewStaff = () => {
                   font-medium text-xs pl-2"
                       />
                     </div>
+                    {formik.errors.first_name && formik.touched.first_name && (
+                      <span className="text-[red] text-[12px] ml-[90px] mt-[10px]">
+                        {formik.errors.first_name}
+                      </span>
+                    )}
                   </div>
-                  <div className="flex flex-row">
-                    <label className="font-medium text-sm text-[#0F0F0F] pt-2">
-                      Last Name:
-                    </label>
-                    <input
-                      type="text"
-                      name="last_name"
-                      onChange={formik.handleChange}
-                      placeholder="Enter last name"
-                      className="rounded-md bg-white 
+                  <div className="flex flex-col">
+                    <div>
+                      <label className="font-medium text-sm text-[#0F0F0F] pt-2">
+                        Last Name:
+                      </label>
+                      <input
+                        type="text"
+                        name="last_name"
+                        onChange={formik.handleChange}
+                        placeholder="Enter last name"
+                        className="rounded-md bg-white 
                   shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-3 
                   text-gray-400 
                   font-medium text-xs pl-2"
-                    />
+                      />
+                    </div>
+                    {formik.errors.last_name && formik.touched.last_name && (
+                      <span className="text-[red] text-[12px] ml-[90px] mt-[10px]">
+                        {formik.errors.last_name}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-row space-x-5">
-                  <div className="flex flex-row">
-                    <label className="font-medium text-sm text-[#0F0F0F] ml-[-0rem] pt-2">
-                      Email:
-                    </label>
-                    <input
-                      type="text"
-                      name="email"
-                      onChange={formik.handleChange}
-                      placeholder="Enter email address"
-                      className="rounded-md bg-white 
+                  <div className="flex flex-col">
+                    <div>
+                      <label className="font-medium text-sm text-[#0F0F0F] ml-[-0rem] pt-2">
+                        Email:
+                      </label>
+                      <input
+                        type="text"
+                        name="email"
+                        onChange={formik.handleChange}
+                        placeholder="Enter email address"
+                        className="rounded-md bg-white 
                   shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-[2.9rem] 
                   text-gray-400
                   font-medium text-xs pl-2"
-                    />
+                      />
+                    </div>
+                    {formik.errors.email && formik.touched.email && (
+                      <span className="text-[red] text-[12px] ml-[90px] mt-[10px]">
+                        {formik.errors.email}
+                      </span>
+                    )}
                   </div>
-                  <div className="flex flex-row">
-                    <label className="font-medium text-sm text-[#0F0F0F] pt-2">
-                      Phone no:
-                    </label>
-                    <input
-                      type="text"
-                      name="phone_number"
-                      onChange={formik.handleChange}
-                      placeholder="Enter phone number"
-                      className="rounded-md bg-white 
+                  <div className="flex flex-col">
+                    <div>
+                      <label className="font-medium text-sm text-[#0F0F0F] pt-2">
+                        Phone no:
+                      </label>
+                      <input
+                        type="text"
+                        name="phone_number"
+                        onChange={formik.handleChange}
+                        placeholder="Enter phone number"
+                        className="rounded-md bg-white 
                   shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-[1.2rem] 
                   ext-gray-400
                   font-medium text-xs pl-2"
-                    />
+                      />
+                    </div>
+                    {formik.errors.phone_number &&
+                      formik.touched.phone_number && (
+                        <span className="text-[red] text-[12px] ml-[90px] mt-[10px]">
+                          {formik.errors.phone_number}
+                        </span>
+                      )}
                   </div>
                 </div>
                 <div className="flex">
-                  <div className="flex flex-row">
-                    <label className="font-medium text-sm text-[#0F0F0F] pt-2">
-                      Role:
-                    </label>
-                    <select
-                      name="role"
-                      onChange={formik.handleChange}
-                      id=""
-                      className="rounded-md bg-white 
+                  <div className="flex flex-col">
+                    <div>
+                      <label className="font-medium text-sm text-[#0F0F0F] pt-2">
+                        Role:
+                      </label>
+                      <select
+                        name="role"
+                        onChange={formik.handleChange}
+                        id=""
+                        className="rounded-md bg-white 
                     shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-[3.3rem]
                     text-gray-400 
                     font-medium text-xs pl-2"
-                    >
-                      <option>--- select role ---</option>
-                      <option value={'FM'}>Facility Manager</option>
-                      <option className="CM">Cluster Manager</option>
-                      <option value={'BS'}>Backend Office Staff</option>
-                    </select>
+                      >
+                        <option>--- select role ---</option>
+                        <option value={'FM'}>Facility Manager</option>
+                        <option className="CM">Cluster Manager</option>
+                        <option value={'BS'}>Backend Office Staff</option>
+                      </select>
+                    </div>
+                    {formik.errors.role && formik.touched.role && (
+                      <span className="text-[red] text-[12px] ml-[90px] mt-[10px]">
+                        {formik.errors.role}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-row space-x-5 justify-end pr-[7.5rem] pt-20">
