@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import estate from '../assets/img/estate.jpg';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Auth/hooks/useAuth';
 // import Loader from '../components/Loader';
 // import { useNavigate } from 'react-router-dom';
@@ -31,6 +32,7 @@ function Login() {
   // const handleClick = () => {
 
   // };
+  const nav = useNavigate();
 
   return (
     <>
@@ -91,12 +93,14 @@ function Login() {
                     <input type="checkbox" className="mr-1" />
                     Remember me
                   </span>
-                  <span
-                    href="#"
+                  <button
+                    onClick={() => {
+                      nav('/forgetpassword');
+                    }}
                     className="font-medium text-xs text-indigo-600 cursor-pointer"
                   >
                     Forgot Password?
-                  </span>
+                  </button>
                 </div>
               </div>
 
