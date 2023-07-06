@@ -3,9 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Auth/hooks/useAuth';
 
-
 function ResetPassword() {
-  
   const { handleLogin, isLoading } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,41 +14,18 @@ function ResetPassword() {
       email,
       password,
     };
-    
+
     handleLogin(payload);
-   
   }
 
-  
   const nav = useNavigate();
 
   return (
     <>
-      <div className="h-screen w-screen flex items-center justify-center bg-[#A73439]">
-        <div className=" bg-white w-96 h-80 px-8 pt-4 rounded shadow-md">
-          <h2 className=' text-xl font-bold capitalize text-[#A73439] text-center pb-3'>Change Password</h2>
-        <form className="space-y-2" onSubmit={handleSubmit}>
-            {/* <div>
-              <label
-                htmlFor="email"
-                className="text-sm text-[#0f0f0f] font-medium leading-6"
-              >
-                New Password
-              </label>
-              <div className="mt-2">
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  autoComplete="email"
-                  className="block w-full p-1.5 rounded border-0 bg-[#D9D9D9] shadow-sm"
-                  required
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-            </div> */}
-
-<div>
+      <div className="h-screen w-screen flex items-center justify-center bg-slate-300">
+        <div className=" bg-white w-96 h-80 p-8 rounded shadow-md">
+          <form className="space-y-4" onSubmit={handleSubmit}>
+            <div>
               <label
                 htmlFor="password"
                 className="text-sm text-[#0f0f0f] font-medium leading-6"
@@ -68,7 +43,6 @@ function ResetPassword() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              
             </div>
 
             <div>
@@ -89,7 +63,6 @@ function ResetPassword() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              
             </div>
 
             <div className="pt-5">
@@ -116,7 +89,7 @@ function ResetPassword() {
                     />
                   </svg>
                 ) : (
-                  'Reset Password'
+                  'Change Password'
                 )}
               </button>
             </div>
