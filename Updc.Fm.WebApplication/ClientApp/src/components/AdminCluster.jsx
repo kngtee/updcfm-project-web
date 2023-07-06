@@ -6,11 +6,17 @@ import { GetRequest } from '../Auth/hooks/useGet';
 import Loader from './Loader';
 import Estate from '../../src/assets/img/estate.svg';
 import { Link } from 'react-router-dom';
+import SearchBox from '../Utilities/SearchBox';
 
 const AdminCluster = () => {
   const [clusters, setClusters] = useState([]);
+  const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const handleQuery = (query) => {
+    setSearch(query);
+    // console.log(query);
+  };
   useEffect(() => {
     const getCluster = async () => {
       // setIsLoading(true);
@@ -83,35 +89,34 @@ const AdminCluster = () => {
             {/* Dropdown, prev and nxt btn */}
             <div className="flex flex-row ml-[44rem]">
               {/* Search */}
-              <div className="font-medium">
-                <input
-                  type="search"
-                  id="search"
-                  placeholder="Search for clusters..."
-                  className="bg-white text-gray-400 h-[35px] text-sm font-medium rounded shadow-sm shadow-[#a73439]/25 block px-3 py-2.5"
-                />
+              <div>
+                <SearchBox query={handleQuery} />
               </div>
             </div>
             {/* Admin cards alignment*/}
             <div className="flex flex-col overflow-y-scroll h-[22rem]">
               {/* Admin card contents */}
               <div className="grid grid-cols-3 gap-4">
-                {clusters.map((cluster) => (
-                  <div>
-                    <Link to="/admin/admincluster_info">
-                      <AdminCard
-                        Header="Yaba Cluster"
-                        Name={cluster.cluster_name}
-                        Manager={
-                          cluster.manager.first_Name +
-                          ' ' +
-                          cluster.manager.last_Name
-                        }
-                        Icon={Estate}
-                      />
-                    </Link>
-                  </div>
-                ))}
+                {clusters
+                  .filter((e) =>
+                    e.cluster_name.toLowerCase().includes(search.toLowerCase()),
+                  )
+                  .map((cluster) => (
+                    <div>
+                      <Link to="/admin/admincluster_info">
+                        <AdminCard
+                          Header="Yaba Cluster"
+                          Name={cluster.cluster_name}
+                          Manager={
+                            cluster.manager?.first_Name +
+                            ' ' +
+                            cluster.manager?.last_Name
+                          }
+                          Icon={Estate}
+                        />
+                      </Link>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>

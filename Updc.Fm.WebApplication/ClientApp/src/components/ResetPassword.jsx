@@ -1,61 +1,69 @@
 import React, { useState } from 'react';
-// import estate from '../assets/img/estate.jpg';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../Auth/hooks/useAuth';
-// import Loader from '../components/Loader';
-// import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import { PostRequest } from '../Auth/hooks/useGet';
+import { stringToBase64 } from '../Services/Converter';
+import { errorMessage, successMessage } from '../toast-message/toastMessage';
+import { useNavigate } from 'react-router';
 
-function Login() {
-  // const [isLoading, setIsLoading] = useState(false);
-  const { handleLogin, isLoading } = useAuth();
-  //  const navigate = useNavigate();
+function ResetPassword() {
+  const [isLoading, setIsloading] = useState(false);
+  const email = localStorage.getItem('email');
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    const payload = {
+  const formik = useFormik({
+    initialValues: {
+      password: '',
+      confirmPassword: '',
       email,
-      password,
-    };
-    // setIsLoading(true);
+    },
 
-    // Loading delay simulation timer
-    // setTimeout(async () => {
-    //   setIsLoading(false);
-    handleLogin(payload);
-    // console.log(loading);
-    // }, 3000);
-  }
+    onSubmit: async (values) => {
+      setIsloading(true);
+      const headers = {
+        headers: {
+          'x-access-pwd': `Bearer ${stringToBase64(values.password)}`,
+        },
+      };
+      const { status, data } = await PostRequest(
+        '/api/auths/update-password',
+        {
+          email: values.email,
+        },
+        headers,
+      );
 
-  // const handleClick = () => {
-
-  // };
-  const nav = useNavigate();
+      if (status === 200) {
+        setIsloading(false);
+        successMessage({ message: data, title: 'Change Password' });
+        navigate('/login');
+      } else {
+        setIsloading(false);
+        errorMessage({ message: data, title: data });
+      }
+    },
+  });
 
   return (
     <>
-      <div className="h-screen w-screen flex items-center justify-center bg-[#A73439]">
-        <div className=" bg-white w-96 h-80 px-8 pt-4 rounded shadow-md">
-          <h2 className=' text-xl font-bold capitalize text-[#A73439] text-center pb-3'>FACILITY MANAGER</h2>
-        <form className="space-y-2" onSubmit={handleSubmit}>
+      <div className="h-screen w-screen flex items-center justify-center bg-slate-300">
+        <div className=" bg-white w-96 h-80 p-8 rounded shadow-md">
+          <form className="space-y-4" onSubmit={formik.handleSubmit}>
             <div>
               <label
-                htmlFor="email"
+                htmlFor="password"
                 className="text-sm text-[#0f0f0f] font-medium leading-6"
               >
-                Email
+                New Password
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  autoComplete="email"
-                  className="block w-full p-1.5 rounded border-0 bg-[#D9D9D9] shadow-sm"
+                  id="password"
+                  type="password"
+                  name="password"
                   required
-                  onChange={(e) => setEmail(e.target.value)}
+                  className="block w-full p-1.5 rounded border-0 bg-[#D9D9D9] shadow-sm"
+                  onChange={formik.handleChange}
                 />
               </div>
             </div>
@@ -65,32 +73,17 @@ function Login() {
                 htmlFor="password"
                 className="text-sm text-[#0f0f0f] font-medium leading-6"
               >
-                Password
+                Confirm Password
               </label>
               <div className="mt-2">
                 <input
                   id="password"
                   type="password"
-                  name="password"
-                  autoComplete="current-password"
+                  name="confirmPassword"
                   required
                   className="block w-full p-1.5 rounded border-0 bg-[#D9D9D9] shadow-sm"
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={formik.handleChange}
                 />
-              </div>
-              <div className="flex items-center pt-2 justify-end align-middle">
-                {/* <span className="font-medium text-xs text-gray-800">
-                  <input type="checkbox" className="mr-1" />
-                  Remember me
-                </span> */}
-                <button
-                  onClick={() => {
-                    nav('/forgetpassword');
-                  }}
-                  className="font-medium text-xs text-indigo-600 cursor-pointer"
-                >
-                  Forgot Password?
-                </button>
               </div>
             </div>
 
@@ -118,7 +111,7 @@ function Login() {
                     />
                   </svg>
                 ) : (
-                  'Login'
+                  'Change Password'
                 )}
               </button>
             </div>
@@ -129,4 +122,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ResetPassword;

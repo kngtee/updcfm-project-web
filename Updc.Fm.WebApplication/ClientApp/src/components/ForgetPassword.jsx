@@ -15,7 +15,7 @@ const ForgetPassword = () => {
       email: '',
     },
     onSubmit: async (values) => {
-      alert(values.email);
+      localStorage.setItem('email', values.email);
       const { status, data } = await PostRequest('api/auths/forget-password', {
         email: values.email,
       });
@@ -81,11 +81,8 @@ const ForgetPassword = () => {
             cursor-pointer text-[#FFF] 
             text-sm font-medium rounded-md"
               onClick={() => {
-                // alert(pin);
-                // alert(otp);
                 if (otp === parseInt(pin)) {
-                  alert(pin);
-                  nav('/login');
+                  nav('/resetpassword');
                 } else {
                   alert('wrong otp');
                 }

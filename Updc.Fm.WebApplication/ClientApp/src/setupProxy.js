@@ -11,6 +11,7 @@ const context = [
   '/weatherforecast',
   '/api/auths',
   '/api/auths/forget-password',
+  '/api/auths/update-password',
   '/api/residents',
   '/api/residents/clusters',
   '/api/residents/clusters/:id/estates',
