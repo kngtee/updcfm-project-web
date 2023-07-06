@@ -41,5 +41,25 @@ namespace Updc.Fm.WebApplication.Controllers
 
             return StatusCode(400, response);
         }
+
+        [HttpPost]
+        [Route("forget-password")]
+        public async Task<IActionResult> ForgetPassword(Email email)
+        {
+            var client = _httpClientFactory.CreateClient("api");
+            var body = JsonSerializer.Serialize(email);
+            var requestBody = new StringContent(body, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync("/api/admins/forget-password", requestBody);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var res = await response.Content.ReadAsStringAsync();
+
+                return StatusCode(200, res);
+            }
+
+            return StatusCode(400, response);
+        }
     }
 }

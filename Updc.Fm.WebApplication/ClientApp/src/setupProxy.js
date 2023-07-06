@@ -10,6 +10,7 @@ const target = env.ASPNETCORE_HTTPS_PORT
 const context = [
   '/weatherforecast',
   '/api/auths',
+  '/api/auths/forget-password',
   '/api/residents',
   '/api/residents/clusters',
   '/api/residents/clusters/:id/estates',

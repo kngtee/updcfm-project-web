@@ -20,6 +20,8 @@ namespace Updc.Fm.WebApplication.Controllers
         public async Task<IActionResult> GetAllStaff()
         {
             var client = _httpClientFactory.CreateClient("api");
+            var header = Request.Headers["Authorization"].ToString();
+            client.DefaultRequestHeaders.Add("Authorization", header);
             var response = await client.GetAsync("/api/admins/staffs");
             if (response.IsSuccessStatusCode)
             {

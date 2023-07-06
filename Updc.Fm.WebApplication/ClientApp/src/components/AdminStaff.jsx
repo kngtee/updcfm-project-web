@@ -5,6 +5,7 @@ import Table from '../Utilities/Table';
 import Loader from '../components/Loader';
 import { GetRequest } from '../Auth/hooks/useGet';
 import SearchBox from '../Utilities/SearchBox';
+import { errorMessage } from '../toast-message/toastMessage';
 
 let tableHeader = [
   { first_Name: 'First Name' },
@@ -18,10 +19,22 @@ const AdminStaff = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const headers = {
+    headers: {
+      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      'Content-Type': 'application/json',
+    },
+  };
+
   useEffect(() => {
     const getStaff = async () => {
       setIsLoading(true);
-      const { status, data } = await GetRequest('/api/staffs');
+      const { status, data } = await GetRequest('/api/staffs', {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+          'Content-Type': 'application/json',
+        },
+      });
       if (status === 200) {
         data.forEach((staff) => {
           let newE = {
@@ -35,6 +48,13 @@ const AdminStaff = () => {
         });
         setIsLoading(false);
         // console.log('Staffs: ' + data);
+      } else {
+        setIsLoading(false);
+        console.log(data);
+        errorMessage({
+          title: 'Something went wrong!',
+          message: 'could not load data.',
+        });
       }
     };
 
