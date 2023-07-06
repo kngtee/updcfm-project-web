@@ -5,14 +5,14 @@ import { useAuth } from '../Auth/hooks/useAuth';
 
 function ResetPassword() {
   const { handleLogin, isLoading } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [newPwd, setNewPwd] = useState('');
+  const [cmPwd, setCmPwd] = useState('');
 
   async function handleSubmit(event) {
     event.preventDefault();
     const payload = {
-      email,
-      password,
+      newPwd,
+      cmPwd,
     };
 
     handleLogin(payload);
@@ -40,7 +40,7 @@ function ResetPassword() {
                   autoComplete="current-password"
                   required
                   className="block w-full p-1.5 rounded border-0 bg-[#D9D9D9] shadow-sm"
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => setNewPwd(e.target.value)}
                 />
               </div>
             </div>
@@ -60,7 +60,7 @@ function ResetPassword() {
                   autoComplete="current-password"
                   required
                   className="block w-full p-1.5 rounded border-0 bg-[#D9D9D9] shadow-sm"
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => setCmPwd(e.target.value)}
                 />
               </div>
             </div>
