@@ -30,7 +30,7 @@ const ForgetPassword = () => {
           </button>
           <button
             onClick={() => {
-              nav('/login');
+              nav('/resetpassword');
             }}
             className=" text-sm"
           >

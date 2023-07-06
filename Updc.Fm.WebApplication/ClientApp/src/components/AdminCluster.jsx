@@ -108,9 +108,9 @@ const AdminCluster = () => {
                           Header="Yaba Cluster"
                           Name={cluster.cluster_name}
                           Manager={
-                            cluster.manager.first_Name +
+                            cluster.manager?.first_Name +
                             ' ' +
-                            cluster.manager.last_Name
+                            cluster.manager?.last_Name
                           }
                           Icon={Estate}
                         />

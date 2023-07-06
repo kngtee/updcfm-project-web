@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-// import estate from '../assets/img/estate.jpg';
+
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Auth/hooks/useAuth';
-// import Loader from '../components/Loader';
-// import { useNavigate } from 'react-router-dom';
 
-function Login() {
-  // const [isLoading, setIsLoading] = useState(false);
+
+function ResetPassword() {
+  
   const { handleLogin, isLoading } = useAuth();
-  //  const navigate = useNavigate();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -19,33 +16,26 @@ function Login() {
       email,
       password,
     };
-    // setIsLoading(true);
-
-    // Loading delay simulation timer
-    // setTimeout(async () => {
-    //   setIsLoading(false);
+    
     handleLogin(payload);
-    // console.log(loading);
-    // }, 3000);
+   
   }
 
-  // const handleClick = () => {
-
-  // };
+  
   const nav = useNavigate();
 
   return (
     <>
       <div className="h-screen w-screen flex items-center justify-center bg-[#A73439]">
         <div className=" bg-white w-96 h-80 px-8 pt-4 rounded shadow-md">
-          <h2 className=' text-xl font-bold capitalize text-[#A73439] text-center pb-3'>FACILITY MANAGER</h2>
+          <h2 className=' text-xl font-bold capitalize text-[#A73439] text-center pb-3'>Change Password</h2>
         <form className="space-y-2" onSubmit={handleSubmit}>
-            <div>
+            {/* <div>
               <label
                 htmlFor="email"
                 className="text-sm text-[#0f0f0f] font-medium leading-6"
               >
-                Email
+                New Password
               </label>
               <div className="mt-2">
                 <input
@@ -58,14 +48,14 @@ function Login() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-            </div>
+            </div> */}
 
-            <div>
+<div>
               <label
                 htmlFor="password"
                 className="text-sm text-[#0f0f0f] font-medium leading-6"
               >
-                Password
+                New Password
               </label>
               <div className="mt-2">
                 <input
@@ -78,20 +68,28 @@ function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <div className="flex items-center pt-2 justify-end align-middle">
-                {/* <span className="font-medium text-xs text-gray-800">
-                  <input type="checkbox" className="mr-1" />
-                  Remember me
-                </span> */}
-                <button
-                  onClick={() => {
-                    nav('/forgetpassword');
-                  }}
-                  className="font-medium text-xs text-indigo-600 cursor-pointer"
-                >
-                  Forgot Password?
-                </button>
+              
+            </div>
+
+            <div>
+              <label
+                htmlFor="password"
+                className="text-sm text-[#0f0f0f] font-medium leading-6"
+              >
+                Confirm Password
+              </label>
+              <div className="mt-2">
+                <input
+                  id="password"
+                  type="password"
+                  name="password"
+                  autoComplete="current-password"
+                  required
+                  className="block w-full p-1.5 rounded border-0 bg-[#D9D9D9] shadow-sm"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </div>
+              
             </div>
 
             <div className="pt-5">
@@ -118,7 +116,7 @@ function Login() {
                     />
                   </svg>
                 ) : (
-                  'Login'
+                  'Reset Password'
                 )}
               </button>
             </div>
@@ -129,4 +127,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ResetPassword;
