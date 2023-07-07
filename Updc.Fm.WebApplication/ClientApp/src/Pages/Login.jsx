@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
-// import estate from '../assets/img/estate.jpg';
-import { useNavigate } from 'react-router-dom';
+
 import { useAuth } from '../Auth/hooks/useAuth';
-// import Loader from '../components/Loader';
-// import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  // const [isLoading, setIsLoading] = useState(false);
   const { handleLogin, isLoading } = useAuth();
-  //  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,31 +14,22 @@ function Login() {
       email,
       password,
     };
-    // setIsLoading(true);
 
-    // Loading delay simulation timer
-    // setTimeout(async () => {
-    //   setIsLoading(false);
     handleLogin(payload);
-    // console.log(loading);
-    // }, 3000);
   }
-
-  // const handleClick = () => {
-
-  // };
-  const nav = useNavigate();
 
   return (
     <>
       <div className="h-screen w-screen flex items-center justify-center bg-[#A73439]">
         <div className=" bg-white w-96 h-80 px-8 pt-4 rounded shadow-md">
-          <h2 className=' text-xl font-bold capitalize text-[#A73439] text-center pb-3'>FACILITY MANAGER</h2>
-        <form className="space-y-2" onSubmit={handleSubmit}>
+          <h2 className=" text-xl font-bold capitalize text-[#A73439] text-center pb-3">
+            FACILITY MANAGER
+          </h2>
+          <form className="space-y-2" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
-                className="text-sm text-[#0f0f0f] font-medium leading-6"
+                className="text-sm text-gray-500 font-medium leading-6"
               >
                 Email
               </label>
@@ -63,7 +49,7 @@ function Login() {
             <div>
               <label
                 htmlFor="password"
-                className="text-sm text-[#0f0f0f] font-medium leading-6"
+                className="text-sm text-gray-500 font-medium leading-6"
               >
                 Password
               </label>
@@ -79,18 +65,12 @@ function Login() {
                 />
               </div>
               <div className="flex items-center pt-2 justify-end align-middle">
-                {/* <span className="font-medium text-xs text-gray-800">
-                  <input type="checkbox" className="mr-1" />
-                  Remember me
-                </span> */}
-                <button
-                  onClick={() => {
-                    nav('/forgetpassword');
-                  }}
+                <a
+                  href="/forgetpassword"
                   className="font-medium text-xs text-indigo-600 cursor-pointer"
                 >
                   Forgot Password?
-                </button>
+                </a>
               </div>
             </div>
 

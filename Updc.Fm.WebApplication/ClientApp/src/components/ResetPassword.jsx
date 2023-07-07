@@ -52,7 +52,7 @@ function ResetPassword() {
             <div>
               <label
                 htmlFor="password"
-                className="text-sm text-[#0f0f0f] font-medium leading-6"
+                className="text-sm text-gray-500 font-medium leading-6"
               >
                 New Password
               </label>
@@ -71,7 +71,7 @@ function ResetPassword() {
             <div>
               <label
                 htmlFor="password"
-                className="text-sm text-[#0f0f0f] font-medium leading-6"
+                className="text-sm text-gray-500 font-medium leading-6"
               >
                 Confirm Password
               </label>
