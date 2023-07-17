@@ -17,8 +17,10 @@ toastr.options = {
 
 export const successMessage = (message) => {
   toastr.success(message.message, message.title);
+  return clearInterval(toastr);
 };
 
 export const errorMessage = (message) => {
   toastr.error(message.message, message.title);
+  return clearInterval(toastr);
 };

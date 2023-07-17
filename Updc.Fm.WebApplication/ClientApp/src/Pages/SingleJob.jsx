@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { GetRequest } from '../Auth/hooks/useGet';
 import Loader from '../components/Loader';
 import TruncatedText from '../components/TruncatedText';
+import LogoutTimer from '../components/LogoutTimer';
 
 const viewSingleJob = singleJob;
 
@@ -12,7 +13,6 @@ export const SingleJob = () => {
   const [interventionJob, setInterventionJob] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
-  
 
   useEffect(() => {
     const interventionJob = async () => {
@@ -168,6 +168,7 @@ export const SingleJob = () => {
           </div>
         </NavContainer>
       )}
+      <LogoutTimer timeout={10} />
     </>
   );
 };

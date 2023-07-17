@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-
 import { useAuth } from '../Auth/hooks/useAuth';
 
 function Login() {
   const { handleLogin, isLoading } = useAuth();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

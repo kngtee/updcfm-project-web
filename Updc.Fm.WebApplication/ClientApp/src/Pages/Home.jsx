@@ -3,6 +3,7 @@ import NavMenu from '../components/NavMenu';
 import AdminIcon from '../assets/img/admin.svg';
 import AccountIcon from '../assets/img/account.svg';
 import SalesIcon from '../assets/img/sales.svg';
+import LogoutTimer from '../components/LogoutTimer';
 
 const Home = () => {
   return (
@@ -40,6 +41,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <LogoutTimer timeout={10} />
     </>
   );
 };

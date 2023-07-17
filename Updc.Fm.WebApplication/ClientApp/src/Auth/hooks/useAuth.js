@@ -27,10 +27,10 @@ export const AuthProvider = ({ children }) => {
         setToken(res.data.token);
         setIsLoading(false);
         navigate('/');
-        successMessage({
-          message: 'Login successful.',
-          title: 'Login Attempt.',
-        });
+        // successMessage({
+        //   message: 'Login successful.',
+        //   title: 'Login Attempt.',
+        // });
       })
       .catch((err) => {
         setIsLoading(false);
@@ -42,7 +42,8 @@ export const AuthProvider = ({ children }) => {
   const handleLogout = () => {
     setToken(null);
     navigate('/login');
-    successMessage({ title: 'Logout successful.' });
+    // successMessage({ title: 'Logout successful.' });
+    console.log('first')
   };
 
   const value = useMemo(

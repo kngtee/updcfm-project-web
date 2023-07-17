@@ -125,7 +125,7 @@ const SalesNewUnit = () => {
               firstUrl="/sales/allocation"
               secondUrl="/salesu"
               first="Allocation"
-              second="New Units"
+              second="unit allocation"
             />
           </div>
           <form

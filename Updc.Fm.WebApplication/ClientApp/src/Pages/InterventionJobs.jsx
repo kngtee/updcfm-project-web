@@ -6,6 +6,7 @@ import { GetRequest } from '../Auth/hooks/useGet';
 import Loader from '../components/Loader';
 import Table from '../Utilities/Table';
 import SearchBox from '../Utilities/SearchBox';
+import LogoutTimer from '../components/LogoutTimer';
 
 const viewJobs = viewallJobs;
 let tableHeader = [
@@ -152,6 +153,8 @@ export const InterventionJobs = () => {
           </div>
         </NavContainer>
       )}
+      
+      <LogoutTimer timeout={10} />
     </>
   );
 };
