@@ -7,7 +7,7 @@ import './ModalForm.css'; // CSS file for modal styles
 
 // Modal.setAppElement('#root'); // The root element of the app
 
-function ModalForm() {
+function ModalForm({ addRow }) {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '', // Inspected by
@@ -33,6 +33,7 @@ function ModalForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData); // Handle form submission here
+    addRow(formData);
     closeModal();
   };
 
