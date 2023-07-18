@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useAuth } from '../Auth/hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const LogoutTimer = () => {
   const { handleLogout } = useAuth();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   let idleTimer;
-  const IDLE_TIMEOUT = 30000; // 5 minutes (in milliseconds)
+  const IDLE_TIMEOUT = 1200000; // 20 minutes (in milliseconds)
 
   function resetIdleTimer() {
     clearTimeout(idleTimer);
@@ -17,7 +17,7 @@ const LogoutTimer = () => {
   function handleIdle() {
     // Perform idle actions (e.g., show a modal, log out the user, etc.)
     handleLogout();
-    navigate('/login');
+    // navigate('/login');
   }
 
   useEffect(() => {
