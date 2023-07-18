@@ -7,7 +7,7 @@ const NavContainer = ({ children, dashboard }) => {
       <div>
         <NavMenu />
       </div>
-      <div className="h-[calc(100vh - 50px)]">
+      <div className="h-screen">
         <SideNav dashboard={dashboard}>{children}</SideNav>
       </div>
     </div>

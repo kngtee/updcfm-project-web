@@ -2,7 +2,7 @@ const SideNav = ({ children, dashboard }) => {
   const overview = dashboard.overview;
   const manage = dashboard.manage;
   return (
-    <div className="flex items-center justify-center w-full h-[calc(100vh-45px)] py-4 overflow-hidden">
+    <div className="flex items-center justify-center w-full h-screen py-4 overflow-hidden">
       <div className="grid grid-cols-[200px_minmax(1000px,_1fr)_0px] gap-0 h-full rounded-lg border-[#bd4143] border-2">
         <div className=" bg-[#bd4143] pl-5">
           <div className="h-[12rem]">

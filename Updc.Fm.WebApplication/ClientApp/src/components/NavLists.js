@@ -190,7 +190,7 @@ export const adminEstate = {
 };
 export const newUnitDashboard = {
   overview: {
-    title: 'New Unit',
+    title: 'Allocate Unit',
     navs: [
       {
         name: 'Form',
@@ -217,7 +217,7 @@ export const allocationDashboard = {
     title: 'Manage',
     navs: [
       {
-        name: 'New Unit',
+        name: 'Allocate Unit',
         path: '/salesu',
       },
     ],
