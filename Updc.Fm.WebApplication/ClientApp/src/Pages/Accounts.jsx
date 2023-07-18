@@ -5,6 +5,7 @@ import Jobs from '../assets/img/jobs.svg';
 import JobsDone from '../assets/img/job-done-ok.svg';
 import Vendors from '../assets/img/staff.svg';
 import NavContainer from '../components/NavContainer';
+import LogoutTimer from '../components/LogoutTimer';
 
 const accounts = accountDashboard;
 
@@ -73,6 +74,9 @@ export const Accounts = () => {
           </div>
         </div>
       </NavContainer>
+      
+        
+      <LogoutTimer timeout={10} />
     </>
   );
 };

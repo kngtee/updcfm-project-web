@@ -7,6 +7,7 @@ import DropDownButton from '../Utilities/DropDownButton';
 import Jobs from '../assets/img/jobs.svg';
 import JobsDone from '../assets/img/job-done-ok.svg';
 import Vendors from '../assets/img/staff.svg';
+import LogoutTimer from '../components/LogoutTimer';
 
 const sales = salesDashboard;
 
@@ -15,6 +16,7 @@ const Sales = () => {
   //   const getUnits = () => {};
   // });
   return (
+    <>
     <NavContainer dashboard={sales}>
       <div className="space-y-8 px-4 py-8">
         <div className="flex flex-row" aria-label="Breadcrumb">
@@ -48,6 +50,8 @@ const Sales = () => {
         </div>
       </div>
     </NavContainer>
+      <LogoutTimer timeout={10} />
+    </>
   );
 };
 

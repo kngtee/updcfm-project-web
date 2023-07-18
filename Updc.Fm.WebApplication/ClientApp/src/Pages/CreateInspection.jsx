@@ -9,6 +9,7 @@ import NavContainer from '../components/NavContainer';
 import ModalForm from '../components/ScheduleInspectionModal';
 import AddNote from '../components/AddNoteModal';
 import { formatDate } from '../Services/Converter';
+import LogoutTimer from '../components/LogoutTimer';
 
 const inspectJob = createInspection;
 
@@ -207,6 +208,7 @@ export const CreateInspection = () => {
           </div>
         </div>
       </NavContainer>
+      <LogoutTimer timeout={10} />
     </>
   );
 };
