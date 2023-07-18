@@ -154,7 +154,7 @@ export const InterventionJobs = () => {
         </NavContainer>
       )}
       
-      <LogoutTimer timeout={10} />
+      <LogoutTimer  />
     </>
   );
 };

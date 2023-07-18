@@ -208,7 +208,7 @@ export const CreateInspection = () => {
           </div>
         </div>
       </NavContainer>
-      <LogoutTimer timeout={10} />
+      <LogoutTimer  />
     </>
   );
 };

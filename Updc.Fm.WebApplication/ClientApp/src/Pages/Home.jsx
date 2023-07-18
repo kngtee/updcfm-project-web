@@ -41,7 +41,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <LogoutTimer timeout={10} />
+      <LogoutTimer  />
     </>
   );
 };

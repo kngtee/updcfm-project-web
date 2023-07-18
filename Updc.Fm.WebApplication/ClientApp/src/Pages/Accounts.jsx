@@ -76,7 +76,7 @@ export const Accounts = () => {
       </NavContainer>
       
         
-      <LogoutTimer timeout={10} />
+      <LogoutTimer  />
     </>
   );
 };
