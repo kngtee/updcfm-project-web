@@ -10,8 +10,8 @@ import { useAuth } from '../Auth/hooks/useAuth';
 const NavMenu = () => {
   const { handleLogout } = useAuth();
   return (
-    <div className="flex items-center justify-center h-[50px]">
-      <div className=" flex items-center justify-between  w-[1200px]">
+    <div className="flex items-center mx-10 h-[50px]">
+      <div className=" flex items-center justify-between w-screen">
         <NavLink
           tag={Link}
           className="font-bold text-lg text-[#a73439] hover:text-[#bd4143]"
