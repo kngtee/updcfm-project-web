@@ -1,14 +1,15 @@
 import React from 'react';
-import NavMenu from '../components/NavMenu';
+// import NavMenu from '../components/NavMenu';
 import AdminIcon from '../assets/img/admin.svg';
 import AccountIcon from '../assets/img/account.svg';
 import SalesIcon from '../assets/img/sales.svg';
 import LogoutTimer from '../components/LogoutTimer';
+import HomeNavMenu from '../components/HomeNavMenu';
 
 const Home = () => {
   return (
     <>
-      <NavMenu />
+      <HomeNavMenu />
       <div className="flex flex-row space-x-6 items-center justify-center pt-24">
         <div className="">
           <a href="/admin">
