@@ -14,12 +14,16 @@ function ModalForm({ addRow }) {
     selectedDate: null, // New state for the selected date
   });
 
+  const [formErrors, setFormErrors] = useState({});
+
   const openModal = () => {
     setIsOpen(true);
   };
 
   const closeModal = () => {
     setIsOpen(false);
+    setFormData({ name: '', selectedDate: null });
+    setFormErrors({});
   };
 
   const handleChange = (e) => {
@@ -32,9 +36,24 @@ function ModalForm({ addRow }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData); // Handle form submission here
-    addRow(formData);
-    closeModal();
+    const errors = validateForm(formData);
+    if (Object.keys(errors).length === 0) {
+      addRow(formData);
+      closeModal();
+    } else {
+      setFormErrors(errors);
+    }
+  };
+
+  const validateForm = (data) => {
+    const errors = {};
+    if (!data.selectedDate) {
+      errors.selectedDate = 'Please select a date.';
+    }
+    if (!data.name.trim()) {
+      errors.name = 'Please enter a name.';
+    }
+    return errors;
   };
 
   return (
@@ -49,7 +68,7 @@ function ModalForm({ addRow }) {
         Schedule
       </button>
 
- {/* Modal Contents */}
+      {/* Modal Contents */}
       <Modal
         isOpen={isOpen}
         onRequestClose={closeModal}
@@ -70,6 +89,7 @@ function ModalForm({ addRow }) {
                 dateFormat="dd/MM/yyyy"
                 placeholderText="Pick a date"
               />
+              {formErrors.selectedDate && (<p className='text-red-500'>{formErrors.selectedDate}</p>)}
             </label>
 
             <label>
@@ -78,10 +98,11 @@ function ModalForm({ addRow }) {
                 type="text"
                 name="name"
                 className="border border-gray-400 rounded-md p-1.5"
-                placeholder='Enter a name'
+                placeholder="Enter a name"
                 value={formData.name}
                 onChange={handleChange}
               />
+              {formErrors.name && (<p className='text-red-500'>{formErrors.name}</p>)}
             </label>
           </div>
 
