@@ -325,7 +325,7 @@ export const adminClusterInfos = {
     title: 'Cluster Info',
     navs: [
       {
-        name: 'Yaba Cluster',
+        name: 'Cluster',
         path: '',
       },
     ],
@@ -334,8 +334,8 @@ export const adminClusterInfos = {
     title: 'Manage',
     navs: [
       {
-        name: 'New Unit',
-        path: '/salesu',
+        name: 'New Estate',
+        path: '/admin/new_estate',
       },
     ],
   },
