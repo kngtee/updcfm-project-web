@@ -87,7 +87,7 @@ const Allocation = () => {
               />
             </div>
             <div className=" space-y-2 px-4 py-4">
-              <div className=" flex justify-end px-1 py-4">
+              <div className=" flex justify-start px-1 py-4">
                 <div>
                   <SearchBox query={handleSearch} />
                 </div>

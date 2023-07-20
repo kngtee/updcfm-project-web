@@ -144,7 +144,7 @@ const TableVariantA = ({ header, data, query, filter }) => {
       >
         <div
           onClick={() => setSelected(false)}
-          className={`w-screen h-screen absolute top-0 left-0 bg-black/50`}
+          className={`w-screen h-screen flex justify-center absolute top-0 left-0 bg-black/50`}
         ></div>
         <SalesAllocatedUnit selectedRow={selectedRow} />
       </div>
