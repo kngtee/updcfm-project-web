@@ -322,8 +322,8 @@ export const adminClusterInfos = {
     title: 'Manage',
     navs: [
       {
-        name: 'New Unit',
-        path: '/salesu',
+        name: 'New Cluster',
+        path: 'admin/new_cluster',
       },
     ],
   },

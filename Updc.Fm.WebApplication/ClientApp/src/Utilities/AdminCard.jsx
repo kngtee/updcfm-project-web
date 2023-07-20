@@ -13,7 +13,7 @@ const AdminCard = (props) => {
         </div>
       </div>
       {/* Estate name and Icon */}
-      <div className="flex flex-row justify-center space-x-20 pt-2">
+      <div className="flex flex-row justify-center space-x-16 pt-2">
         <div>
           <h1 className="font-medium text-[#B9B0B0]">{props.Header}</h1>
         </div>

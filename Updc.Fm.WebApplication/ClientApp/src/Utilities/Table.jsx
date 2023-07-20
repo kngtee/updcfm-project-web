@@ -18,8 +18,8 @@ const Table = ({ header, data, query, filter }) => {
     return str.length > 15 ? str.substring(0, 12) + '....' : str;
   };
 
-  const navigate = useNavigate();
-  console.log(data);
+  // const navigate = useNavigate();
+  // console.log(data);
 
   const handleChange = (event) => {
     setCheckedAll(!checkedAll);
@@ -92,6 +92,8 @@ const Table = ({ header, data, query, filter }) => {
                   console.log(row.id);
                   console.log(row.path);
                   navigate(row.path);
+                  // navigate(row.path);
+                  console.log(row);
                 }}
               >
                 <td className="px-3 py-2">

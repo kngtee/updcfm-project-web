@@ -105,7 +105,7 @@ const AdminCluster = () => {
                     <div>
                       <Link to="/admin/admincluster_info">
                         <AdminCard
-                          Header="Yaba Cluster"
+                          Header="Cluster"
                           Name={cluster.cluster_name}
                           Manager={
                             cluster.manager?.first_Name +
