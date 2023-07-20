@@ -18,17 +18,15 @@ const Table = ({ header, data, query, filter }) => {
     return str.length > 15 ? str.substring(0, 12) + '....' : str;
   };
 
-  const navigate = useNavigate();
-  console.log(data);
+  // const navigate = useNavigate();
+  // console.log(data);
 
   const handleChange = (event) => {
-   
     setCheckedAll(!checkedAll);
     setChecked(!checkedAll);
   };
 
   const handleCheckOne = (event) => {
-   
     setChecked(!checked);
   };
 
@@ -91,8 +89,8 @@ const Table = ({ header, data, query, filter }) => {
                 className="bg-white odd:bg-[#D9D9D9] ... border-b  justify-center"
                 key={row.id}
                 onClick={() => {
-                  console.log(row.id);
-                  console.log(row.path)
+                  // navigate(row.path);
+                  console.log(row);
                 }}
               >
                 <td className="px-3 py-2">

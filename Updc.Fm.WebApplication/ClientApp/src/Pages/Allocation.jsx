@@ -1,5 +1,5 @@
 
-import Table from '../Utilities/Table';
+
 import NavContainer from '../components/NavContainer';
 import { allocationDashboard } from '../components/NavLists';
 import { GetRequest } from '../Auth/hooks/useGet';
@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import SearchBox from '../Utilities/SearchBox';
 import Loader from '../components/Loader';
 import LogoutTimer from '../components/LogoutTimer';
+import TableVariantA from '../Utilities/TableVariantA';
 
 let tableHeader = [
   { first_name: 'First Name' },
@@ -93,7 +94,7 @@ const Allocation = () => {
               </div>
               <div className="">
                 {residents ? (
-                  <Table
+                  <TableVariantA
                     filter={['first_name', 'last_name']}
                     header={tableHeader}
                     data={residents && residents}
