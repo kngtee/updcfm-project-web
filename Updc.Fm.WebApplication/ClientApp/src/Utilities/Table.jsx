@@ -18,7 +18,7 @@ const Table = ({ header, data, query, filter }) => {
     return str.length > 15 ? str.substring(0, 12) + '....' : str;
   };
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // console.log(data);
 
   const handleChange = (event) => {

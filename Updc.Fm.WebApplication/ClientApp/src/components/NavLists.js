@@ -303,7 +303,7 @@ export const singleJob = {
       {
         name: 'Inspection',
         path: '/inspectjob',
-      }
+      },
     ],
   },
 };
@@ -313,7 +313,7 @@ export const adminClusterInfos = {
     title: 'Cluster Info',
     navs: [
       {
-        name: 'Yaba Cluster',
+        name: 'Cluster',
         path: '',
       },
     ],
@@ -322,8 +322,8 @@ export const adminClusterInfos = {
     title: 'Manage',
     navs: [
       {
-        name: 'New Cluster',
-        path: 'admin/new_cluster',
+        name: 'New Estate',
+        path: '/admin/new_estate',
       },
     ],
   },

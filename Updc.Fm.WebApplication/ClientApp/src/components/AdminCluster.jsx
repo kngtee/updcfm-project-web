@@ -5,18 +5,21 @@ import AdminCard from '../Utilities/AdminCard';
 import { GetRequest } from '../Auth/hooks/useGet';
 import Loader from './Loader';
 import Estate from '../../src/assets/img/estate.svg';
-import { Link } from 'react-router-dom';
 import SearchBox from '../Utilities/SearchBox';
+import AdminClusterInfo from '../components/AdminClusterInfo';
 
 const AdminCluster = () => {
   const [clusters, setClusters] = useState([]);
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [selected, setSelected] = useState(false);
+  const [managerName, setManagerName] = useState('');
+  const [clusterName, setClusterName] = useState('');
 
   const handleQuery = (query) => {
     setSearch(query);
-    // console.log(query);
   };
+
   useEffect(() => {
     const getCluster = async () => {
       // setIsLoading(true);
@@ -39,88 +42,107 @@ const AdminCluster = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <NavContainer dashboard={adminCluster}>
-          <div className="flex flex-col px-4 py-8 space-y-8">
-            {/* Breadcrumbs and delete button */}
-            <div className="flex flex-row space-x-10">
-              <div className="flex flex-row" aria-label="Breadcrumb">
-                <ol className="inline-flex items-center space-x-1 md:space-x-2 font-normal">
-                  <li className="items-center">
-                    <a
-                      href="/admin"
-                      className="inline-flex items-center text-sm text-gray-500 hover:text-[#a73439]"
-                    >
-                      Dashboard
-                    </a>
-                  </li>
+        <>
+          {selected === true ? (
+            <AdminClusterInfo
+              clusterName={clusterName}
+              managerName={managerName}
+            />
+          ) : (
+            <NavContainer dashboard={adminCluster}>
+              <div className="flex flex-col px-4 py-8 space-y-8">
+                {/* Breadcrumbs and delete button */}
+                <div className="flex flex-row space-x-10">
+                  <div className="flex flex-row" aria-label="Breadcrumb">
+                    <ol className="inline-flex items-center space-x-1 md:space-x-2 font-normal">
+                      <li className="items-center">
+                        <a
+                          href="/admin"
+                          className="inline-flex items-center text-sm text-gray-500 hover:text-[#a73439]"
+                        >
+                          Dashboard
+                        </a>
+                      </li>
 
-                  <li aria-current="page" className="inline-flex">
-                    <div className="inline-flex items-center">
-                      <svg
-                        aria-hidden="true"
-                        fill="currentColor"
-                        className="w-3 h-3 text-gray-400 ml-1 md:ml-2"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        stroke="currentColor"
-                        transform="rotate(160)"
-                      >
-                        <g id="SVGRepo_iconCarrier">
-                          <path d="M21.71,3.29a1,1,0,0,0-1.42,0l-18,18a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l18-18A1,1,0,0,0,21.71,3.29Z"></path>
-                        </g>
-                      </svg>
-                      <span className="ml-1 text-sm text-[#d36360] md:ml-2">
-                        Cluster
-                      </span>
-                    </div>
-                  </li>
-                </ol>
-              </div>
-              <div>
-                <button
-                  className="border-2 rounded 
+                      <li aria-current="page" className="inline-flex">
+                        <div className="inline-flex items-center">
+                          <svg
+                            aria-hidden="true"
+                            fill="currentColor"
+                            className="w-3 h-3 text-gray-400 ml-1 md:ml-2"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            stroke="currentColor"
+                            transform="rotate(160)"
+                          >
+                            <g id="SVGRepo_iconCarrier">
+                              <path d="M21.71,3.29a1,1,0,0,0-1.42,0l-18,18a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l18-18A1,1,0,0,0,21.71,3.29Z"></path>
+                            </g>
+                          </svg>
+                          <span className="ml-1 text-sm text-[#d36360] md:ml-2">
+                            Cluster
+                          </span>
+                        </div>
+                      </li>
+                    </ol>
+                  </div>
+                  <div>
+                    <button
+                      className="border-2 rounded 
             border-[#bd4143] w-[80px] 
             h-[40px] cursor-pointer text-[#bd4143] text-sm font-medium ml-[39.5rem]"
-                >
-                  Delete
-                </button>
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+                {/* Dropdown, prev and nxt btn */}
+                <div className="flex flex-row ml-[44rem]">
+                  {/* Search */}
+                  <div>
+                    <SearchBox query={handleQuery} />
+                  </div>
+                </div>
+                {/* Admin cards alignment*/}
+                <div className="flex flex-col overflow-y-scroll h-[22rem]">
+                  {/* Admin card contents */}
+                  <div className="grid grid-cols-3 gap-4">
+                    {clusters
+                      .filter((e) =>
+                        e.cluster_name
+                          .toLowerCase()
+                          .includes(search.toLowerCase()),
+                      )
+                      .map((cluster) => (
+                        <div
+                          onClick={() => {
+                            setSelected(!selected);
+                            setManagerName(
+                              cluster.manager?.first_Name +
+                                ' ' +
+                                cluster.manager?.last_Name,
+                            );
+                            setClusterName(cluster.cluster_name);
+                          }}
+                        >
+                          <AdminCard
+                            Header="Cluster Info"
+                            Name={cluster.cluster_name}
+                            Manager={
+                              cluster.manager?.first_Name +
+                              ' ' +
+                              cluster.manager?.last_Name
+                            }
+                            Icon={Estate}
+                          />
+                        </div>
+                      ))}
+                  </div>
+                </div>
               </div>
-            </div>
-            {/* Dropdown, prev and nxt btn */}
-            <div className="flex flex-row ml-[44rem]">
-              {/* Search */}
-              <div>
-                <SearchBox query={handleQuery} />
-              </div>
-            </div>
-            {/* Admin cards alignment*/}
-            <div className="flex flex-col overflow-y-scroll h-[22rem]">
-              {/* Admin card contents */}
-              <div className="grid grid-cols-3 gap-4">
-                {clusters
-                  .filter((e) =>
-                    e.cluster_name.toLowerCase().includes(search.toLowerCase()),
-                  )
-                  .map((cluster) => (
-                    <div>
-                      <Link to="/admin/admincluster_info">
-                        <AdminCard
-                          Header="Cluster"
-                          Name={cluster.cluster_name}
-                          Manager={
-                            cluster.manager?.first_Name +
-                            ' ' +
-                            cluster.manager?.last_Name
-                          }
-                          Icon={Estate}
-                        />
-                      </Link>
-                    </div>
-                  ))}
-              </div>
-            </div>
-          </div>
-        </NavContainer>
+            </NavContainer>
+          )}
+        </>
       )}
     </>
   );
