@@ -1,10 +1,68 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NavContainer from './NavContainer';
 import { adminClusterInfos } from './NavLists';
+import { GetRequest } from '../Auth/hooks/useGet';
+import { errorMessage } from '../toast-message/toastMessage';
+import TableVariantAdminClusterInfo from '../Utilities/TableVariantAdminClusterInfo';
+
+let tableHeader = [
+  { cluster_Id: 'Cluster Id' },
+  { estate_Address: 'Estate Address' },
+  { estate_Name: 'Estate Name' },
+  { facility_Manager: 'Facility Manager' },
+  { Manager: 'Manager' },
+  { unit: 'Unit' },
+];
 
 const AdminClusterInfo = (props) => {
+  const [residents, setResidents] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+
   const truncateText = (str) => {
     return str.length > 15 ? str.substring(0, 12) + '....' : str;
+  };
+
+  useEffect(() => {
+    const getResident = async () => {
+      const { status, data } = await GetRequest('/api/estates');
+      console.log(data);
+      if (status === 200) {
+        data.forEach((e) => {
+          let newE = {
+            cluster_Id: e.cluster_Id,
+            estate_Address: e.estate?.estate_Address,
+            estate_Name: e.estate?.estateName,
+            facility_Manager: e.facility_Manager,
+            Manager: 'Abel',
+            unit: '1',
+          };
+          const contacts = e.contacts;
+          console.log(contacts);
+
+          contacts.forEach((e) => {
+            if (e.type === 'EMAIL' && e.default === 'Y') {
+              newE.email = e.value;
+              console.log(e);
+            }
+            if (
+              e.type.toLowerCase() === 'phone' &&
+              e.default.toLowerCase() === 'y'
+            ) {
+              newE.phone_number = e.value;
+            }
+          });
+          setResidents((i) => [...i, newE]);
+        });
+        setIsLoading(false);
+      }
+    };
+
+    getResident();
+  }, []);
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
   };
   //00006065
   return (
@@ -70,17 +128,13 @@ const AdminClusterInfo = (props) => {
           </div>
         </div>
         <div className="flex flex-col md:flex-row md:space-x-12">
-          <div className="flex flex-col items-start justify-between px-6 py-4 w-fit bg-white rounded-md shadow-sm shadow-[#a73439]/25 md:flex-row md:w-[230px] md:max-h-[200px]">
+          <div className="flex flex-col items-start justify-between px-6 py-4 w-fit bg-white rounded-md shadow-sm shadow-[#a73439]/25 md:flex-row md:w-[300px] md:max-h-[300px]">
             <div className="text-xs font-medium justify-between leading-normal">
               <p className="text-gray-400 text-sm">{props.clusterName}</p>
               <ol className="mt-1 text-[#0f0f0f]">
-                <li>
+                <li className="font-bold">
                   Manager:
-                  <span className="font-bold">{props.managerName}</span>
-                </li>
-                <li>
-                  Units:
-                  <span className="font-bold"> johndoe@example.com</span>
+                  <span className="font-medium"> {props.managerName}</span>
                 </li>
                 {/* <li>
                   Estate:<span className="font-bold"> Victoria Bay</span>
@@ -91,6 +145,16 @@ const AdminClusterInfo = (props) => {
               </ol>
             </div>
           </div>
+        </div>
+        <div className="mt-4">
+          {residents ? (
+            <TableVariantAdminClusterInfo
+              filter={['first_name', 'last_name']}
+              header={tableHeader}
+              data={residents && residents}
+              query={searchQuery}
+            />
+          ) : null}
         </div>
       </NavContainer>
     </>

@@ -14,7 +14,7 @@ const AdminCluster = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selected, setSelected] = useState(false);
   const [managerName, setManagerName] = useState('');
-  const [name, setName] = useState('');
+  const [clusterName, setClusterName] = useState('');
 
   const handleQuery = (query) => {
     setSearch(query);
@@ -45,7 +45,7 @@ const AdminCluster = () => {
         <>
           {selected === true ? (
             <AdminClusterInfo
-              clusterName="Yaba Cluster"
+              clusterName={clusterName}
               managerName={managerName}
             />
           ) : (
@@ -122,11 +122,11 @@ const AdminCluster = () => {
                                 ' ' +
                                 cluster.manager?.last_Name,
                             );
-                            setName(cluster.cluster_name);
+                            setClusterName(cluster.cluster_name);
                           }}
                         >
                           <AdminCard
-                            Header="Yaba Cluster"
+                            Header="Cluster Info"
                             Name={cluster.cluster_name}
                             Manager={
                               cluster.manager?.first_Name +
