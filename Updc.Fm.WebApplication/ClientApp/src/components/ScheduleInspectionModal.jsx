@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { MdAdd } from 'react-icons/md';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; // Datepicker default styles
 import './ModalForm.css'; // CSS file for modal styles
-
 
 function ModalForm({ addRow }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,6 +53,8 @@ function ModalForm({ addRow }) {
     return errors;
   };
 
+  const currentDate = new Date().toISOString().split('T')[0];
+
   return (
     <div>
       {/* Modal Button */}
@@ -78,30 +78,32 @@ function ModalForm({ addRow }) {
         <h2 className="text-2xl font-bold mb-5">Schedule an Inspection</h2>
 
         <form className="flex flex-col space-y-10" onSubmit={handleSubmit}>
-          <div className="flex sm:flex-col md:flex-row">
-            <label>
-              Date:
-              <DatePicker
-                className="border border-gray-400 rounded-md p-1.5"
-                selected={formData.selectedDate}
+          <div className="flex sm:flex-col md:flex-row justify-between">
+            <label className="flex flex-col">
+              <span>Date:</span>
+              <input
+                type="date"
+                min={currentDate}
+                className="border border-gray-400 rounded-md p-1.5 w-52"
                 onChange={handleDateChange}
-                dateFormat="dd/MM/yyyy"
-                placeholderText="Pick a date"
               />
-              {formErrors.selectedDate && (<p className='text-red-500'>{formErrors.selectedDate}</p>)}
+              {formErrors.selectedDate && (
+                <p className="text-red-500">{formErrors.selectedDate}</p>
+              )}
             </label>
 
             <label>
-              <p>Inspected by:</p>
+              <span className="flex flex-col">Inspected by:</span>
               <input
                 type="text"
-                name="name"
-                className="border border-gray-400 rounded-md p-1.5"
+                className="border border-gray-400 rounded-md p-1.5 w-52"
                 placeholder="Enter a name"
                 value={formData.name}
                 onChange={handleChange}
               />
-              {formErrors.name && (<p className='text-red-500'>{formErrors.name}</p>)}
+              {formErrors.name && (
+                <p className="text-red-500">{formErrors.name}</p>
+              )}
             </label>
           </div>
 
