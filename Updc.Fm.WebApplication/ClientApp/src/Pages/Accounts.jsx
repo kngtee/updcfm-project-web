@@ -20,9 +20,9 @@ export const Accounts = () => {
         // const response = await fetch('api/interventionjobs');
         // const data = await response.json();
         // setTotalJobs(data.totalJobs);
-        if(status === 200){
-          setTotalJobs(data.length)
-        }else{
+        if (status === 200) {
+          setTotalJobs(data.length);
+        } else {
           setTotalJobs(0);
         }
       } catch (error) {
@@ -60,9 +60,6 @@ export const Accounts = () => {
             >
               <option selected>Select Estate</option>
             </select>
-            {/* <button className="inline-flex w-[35px] h-[35px] bg-[#a73439] text-white items-center justify-center rounded shadow-sm shadow-[#a73439]/25">
-              <MdFilterAlt />
-            </button> */}
           </div>
           {/* Info Cards */}
           <div className="flex flex-row space-x-12">
@@ -76,7 +73,7 @@ export const Accounts = () => {
                     {totalJobs}
                   </p>
                 ) : (
-                  <p className=" text-4xl font-bold text-gray-400">null...</p>
+                  <p className=" text-4xl font-bold text-[#0f0f0f]">0</p>
                 )}
               </div>
               <img src={Jobs} alt="jobs" className="ml-6 w-14 h-14" />

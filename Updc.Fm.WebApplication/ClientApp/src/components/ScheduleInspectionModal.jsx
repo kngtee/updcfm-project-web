@@ -5,7 +5,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; // Datepicker default styles
 import './ModalForm.css'; // CSS file for modal styles
 
-// Modal.setAppElement('#root'); // The root element of the app
 
 function ModalForm({ addRow }) {
   const [isOpen, setIsOpen] = useState(false);
