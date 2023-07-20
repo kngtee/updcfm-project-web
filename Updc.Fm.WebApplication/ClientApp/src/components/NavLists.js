@@ -300,22 +300,10 @@ export const singleJob = {
   manage: {
     title: 'Manage',
     navs: [
-      // {
-      //   name: 'Site Worker',
-      //   path: '',
-      // },
       {
         name: 'Inspection',
         path: '/inspectjob',
-      },
-      // {
-      //   name: 'Work Order',
-      //   path: '',
-      // },
-      // {
-      //   name: 'Invoice',
-      //   path: '',
-      // },
+      }
     ],
   },
 };

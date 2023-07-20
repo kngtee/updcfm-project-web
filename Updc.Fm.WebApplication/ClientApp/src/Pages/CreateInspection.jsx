@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   MdArrowCircleLeft,
   MdArrowCircleRight,
@@ -10,15 +10,29 @@ import ModalForm from '../components/ScheduleInspectionModal';
 import AddNote from '../components/AddNoteModal';
 import { formatDate } from '../Services/Converter';
 import LogoutTimer from '../components/LogoutTimer';
+import { GetRequest } from '../Auth/hooks/useGet';
+import { useParams } from 'react-router-dom';
 
 const inspectJob = createInspection;
 
 export const CreateInspection = () => {
+  const { id } = useParams();
   const [tableData, setTableData] = useState([]);
-  const addRow = (formData) => {
-    setTableData([...tableData, formData]);
+  const [isNewRow, setIsNewRow] = useState(false);
+  const addRow = () => {
+    setIsNewRow(true);
   };
 
+  useEffect(() => {
+    const getInspections = async () => {
+      const { status, data } = await GetRequest('/api/interventionjobs/' + id);
+      setTableData(data.inspection);
+      console.log(data);
+      setIsNewRow(false);
+    };
+
+    getInspections();
+  }, [isNewRow]);
   return (
     <>
       <NavContainer dashboard={inspectJob}>
@@ -144,13 +158,15 @@ export const CreateInspection = () => {
                     >
                       {index + 1}
                     </th>
-                    <td className="px-3 py-2">
-                      {formatDate(formData.selectedDate)}
-                    </td>
-                    <td className="px-3 py-2">{formData.name}</td>
+                    <td className="px-3 py-2">{formData.dateOfInspection}</td>
+                    <td className="px-3 py-2">{formData.inspectorName}</td>
                     <td className="px-3 py-2">
                       <span className="flex items-center text-yellow-600">
-                        {formData.status}
+                        {formData.shortDescription === 'n/a' ? (
+                          <span>pending</span>
+                        ) : (
+                          <span>done</span>
+                        )}
                       </span>
                     </td>
                     <td className="px-3 py-2">

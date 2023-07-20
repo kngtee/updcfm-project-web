@@ -22,13 +22,11 @@ const Table = ({ header, data, query, filter }) => {
   console.log(data);
 
   const handleChange = (event) => {
-   
     setCheckedAll(!checkedAll);
     setChecked(!checkedAll);
   };
 
   const handleCheckOne = (event) => {
-   
     setChecked(!checked);
   };
 
@@ -92,7 +90,8 @@ const Table = ({ header, data, query, filter }) => {
                 key={row.id}
                 onClick={() => {
                   console.log(row.id);
-                  console.log(row.path)
+                  console.log(row.path);
+                  navigate(row.path);
                 }}
               >
                 <td className="px-3 py-2">

@@ -4,10 +4,14 @@ import { MdAdd } from 'react-icons/md';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; // Datepicker default styles
 import './ModalForm.css'; // CSS file for modal styles
-
+import { PostRequest } from '../Auth/hooks/useGet';
+import { useParams } from 'react-router-dom';
+import { errorMessage, successMessage } from '../toast-message/toastMessage';
+import { formatDate } from '../Services/Converter';
 // Modal.setAppElement('#root'); // The root element of the app
 
 function ModalForm({ addRow }) {
+  const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '', // Inspected by
@@ -30,10 +34,31 @@ function ModalForm({ addRow }) {
     setFormData({ ...formData, selectedDate: date });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData); // Handle form submission here
-    addRow(formData);
+    addRow();
+    const { status, data, error } = await PostRequest(
+      `/api/interventionjobs/${id}/inspection`,
+      {
+        inspectorName: formData.name,
+        createdBy: formData.name,
+        dateOfInspection: formatDate(formData.selectedDate),
+      },
+    );
+    if (status === 200) {
+      successMessage({
+        title: 'Inspection Creation.',
+        message: 'inspection created successfully.',
+      });
+    } else {
+      errorMessage({
+        title: 'Something went wrong',
+        message: error,
+      });
+      console.log(error);
+    }
+    // console.log(id)
     closeModal();
   };
 
@@ -49,7 +74,7 @@ function ModalForm({ addRow }) {
         Schedule
       </button>
 
- {/* Modal Contents */}
+      {/* Modal Contents */}
       <Modal
         isOpen={isOpen}
         onRequestClose={closeModal}
@@ -78,7 +103,7 @@ function ModalForm({ addRow }) {
                 type="text"
                 name="name"
                 className="border border-gray-400 rounded-md p-1.5"
-                placeholder='Enter a name'
+                placeholder="Enter a name"
                 value={formData.name}
                 onChange={handleChange}
               />
