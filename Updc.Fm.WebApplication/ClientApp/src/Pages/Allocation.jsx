@@ -107,7 +107,7 @@ const Allocation = () => {
       )}
       
         
-      <LogoutTimer timeout={10} />
+      <LogoutTimer  />
     </>
   );
 };

@@ -50,7 +50,7 @@ const Sales = () => {
         </div>
       </div>
     </NavContainer>
-      <LogoutTimer timeout={10} />
+      <LogoutTimer  />
     </>
   );
 };

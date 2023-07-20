@@ -15,10 +15,6 @@ export const stringToBase64 = (payload) => {
 // }
 
 export function formatDate(selectedDate) {
-  const date = new Date(selectedDate);
-  const month = date.toLocaleString('default', { month: 'long' });
-  const day = date.getDate();
-  const year = date.getFullYear();
-
-  return `${day} ${month.toUpperCase()} ${year}`;
+  const [year, month, day] = selectedDate.split('-');
+  return `${day}/${month}/${year}`;
 }

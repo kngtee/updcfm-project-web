@@ -170,7 +170,7 @@ export const CreateInspection = () => {
                       </span>
                     </td>
                     <td className="px-3 py-2">
-                      <AddNote />
+                      <AddNote addRow={addRow} inspectionId={formData.id} />
                     </td>
                     <td className="px-3 py-2">
                       <div className="border-dashed border border-red-600 w-fit px-2 py-1 rounded-md">
@@ -224,7 +224,7 @@ export const CreateInspection = () => {
           </div>
         </div>
       </NavContainer>
-      <LogoutTimer timeout={10} />
+      <LogoutTimer />
     </>
   );
 };

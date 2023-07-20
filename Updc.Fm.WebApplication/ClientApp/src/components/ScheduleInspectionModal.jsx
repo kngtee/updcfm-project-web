@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { MdAdd } from 'react-icons/md';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; // Datepicker default styles
 import './ModalForm.css'; // CSS file for modal styles
 import { PostRequest } from '../Auth/hooks/useGet';
@@ -18,49 +17,70 @@ function ModalForm({ addRow }) {
     selectedDate: null, // New state for the selected date
   });
 
+  const [formErrors, setFormErrors] = useState({});
+
   const openModal = () => {
     setIsOpen(true);
   };
 
   const closeModal = () => {
     setIsOpen(false);
+    setFormData({ name: '', selectedDate: null });
+    setFormErrors({});
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, name: e.target.value });
   };
 
-  const handleDateChange = (date) => {
-    setFormData({ ...formData, selectedDate: date });
+  const handleDateChange = (e) => {
+    setFormData({ ...formData, selectedDate: e.target.value });
+    console.log(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData); // Handle form submission here
     addRow();
-    const { status, data, error } = await PostRequest(
-      `/api/interventionjobs/${id}/inspection`,
-      {
-        inspectorName: formData.name,
-        createdBy: formData.name,
-        dateOfInspection: formatDate(formData.selectedDate),
-      },
-    );
-    if (status === 200) {
-      successMessage({
-        title: 'Inspection Creation.',
-        message: 'inspection created successfully.',
-      });
+    const errors = validateForm(formData);
+    if (Object.keys(errors).length === 0) {
+      const { status, data, error } = await PostRequest(
+        `/api/interventionjobs/${id}/inspection`,
+        {
+          inspectorName: formData.name,
+          createdBy: formData.name,
+          dateOfInspection: formatDate(formData.selectedDate),
+        },
+      );
+      if (status === 200) {
+        successMessage({
+          title: 'Inspection Creation.',
+          message: 'inspection created successfully.',
+        });
+      } else {
+        errorMessage({
+          title: 'Something went wrong',
+          message: error,
+        });
+      }
+      closeModal();
     } else {
-      errorMessage({
-        title: 'Something went wrong',
-        message: error,
-      });
-      console.log(error);
+      setFormErrors(errors);
     }
-    // console.log(id)
-    closeModal();
   };
+
+  const validateForm = (data) => {
+    const errors = {};
+    if (!data.selectedDate) {
+      errors.selectedDate = 'Please select a date.';
+    }
+    if (!data.name.trim()) {
+      errors.name = 'Please enter a name.';
+    }
+    return errors;
+  };
+
+  const currentDate = new Date().toISOString().split('T')[0];
 
   return (
     <div>
@@ -85,28 +105,31 @@ function ModalForm({ addRow }) {
         <h2 className="text-2xl font-bold mb-5">Schedule an Inspection</h2>
 
         <form className="flex flex-col space-y-10" onSubmit={handleSubmit}>
-          <div className="flex sm:flex-col md:flex-row">
-            <label>
-              Date:
-              <DatePicker
-                className="border border-gray-400 rounded-md p-1.5"
-                selected={formData.selectedDate}
+          <div className="flex sm:flex-col md:flex-row justify-between">
+            <label className="flex flex-col">
+              <span>Date:</span>
+              <input
+                type="date"
+                min={currentDate}
+                className="border border-gray-400 rounded-md p-1.5 w-52"
                 onChange={handleDateChange}
-                dateFormat="dd/MM/yyyy"
-                placeholderText="Pick a date"
               />
+              {formErrors.selectedDate && (
+                <p className="text-red-500">{formErrors.selectedDate}</p>
+              )}
             </label>
 
             <label>
-              <p>Inspected by:</p>
+              <span className="flex flex-col">Inspected by:</span>
               <input
                 type="text"
-                name="name"
-                className="border border-gray-400 rounded-md p-1.5"
+                className="border border-gray-400 rounded-md p-1.5 w-52"
                 placeholder="Enter a name"
-                value={formData.name}
                 onChange={handleChange}
               />
+              {formErrors.name && (
+                <p className="text-red-500">{formErrors.name}</p>
+              )}
             </label>
           </div>
 

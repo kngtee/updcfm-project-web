@@ -186,7 +186,7 @@ export const SingleJob = () => {
           </div>
         </NavContainer>
       )}
-      <LogoutTimer timeout={10} />
+      <LogoutTimer  />
     </>
   );
 };

@@ -2,10 +2,10 @@ const SideNav = ({ children, dashboard }) => {
   const overview = dashboard.overview;
   const manage = dashboard.manage;
   return (
-    <div className="flex items-center justify-center w-full h-[calc(100vh-45px)] py-4 overflow-hidden">
-      <div className="grid grid-cols-[200px_minmax(1000px,_1fr)_0px] gap-0 h-full rounded-lg border-[#bd4143] border-2">
+    <div className="flex flex-row items-center justify-center w-screen h-screen sm:px-10 py-4 overflow-hidden">
+      <div className="flex flex-row gap-0 w-[max(1200px)] h-full rounded-lg border-[#bd4143] border-2">
         <div className=" bg-[#bd4143] pl-5">
-          <div className="h-[12rem]">
+          <div className="h-[12rem] w-[12rem]">
             <div className="mt-7 mb-3 mr-7 px-3 py-2 text-[#fff] text-medium border-b-[2px]">
               {overview.title}
             </div>
@@ -33,7 +33,7 @@ const SideNav = ({ children, dashboard }) => {
           </div>
         </div>
         {/* <div className="bg-[#fff] rounded-r-lg px-8">{children}</div> */}
-        <div className="bg-gray rounded-r-lg px-8">{children}</div>
+        <div className="bg-gray rounded-r-lg px-8 w-full">{children}</div>
       </div>
     </div>
   );

@@ -92,7 +92,7 @@ export const InterventionJobs = () => {
                 </li>
               </ol>
             </div>
-            <div className="flex flex-row justify-end">
+            <div className="flex flex-row justify-start">
               
               {/* Search Bar */}
               <div className="">
@@ -154,7 +154,7 @@ export const InterventionJobs = () => {
         </NavContainer>
       )}
       
-      <LogoutTimer timeout={10} />
+      <LogoutTimer  />
     </>
   );
 };
