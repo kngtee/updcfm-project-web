@@ -4,6 +4,7 @@ import { adminClusterInfos } from './NavLists';
 import { GetRequest } from '../Auth/hooks/useGet';
 import { errorMessage } from '../toast-message/toastMessage';
 import TableVariantAdminClusterInfo from '../Utilities/TableVariantAdminClusterInfo';
+import { useParams } from 'react-router-dom';
 
 let tableHeader = [
   { cluster_Id: 'Cluster Id' },
@@ -18,6 +19,7 @@ const AdminClusterInfo = (props) => {
   const [residents, setResidents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const { id } = useParams();
 
   const truncateText = (str) => {
     return str.length > 15 ? str.substring(0, 12) + '....' : str;
@@ -25,46 +27,45 @@ const AdminClusterInfo = (props) => {
 
   useEffect(() => {
     const getResident = async () => {
-      const { status, data } = await GetRequest('/api/estates');
+      const { status, data } = await GetRequest(
+        '/api/clusters/' + id + '/estates ',
+      );
       console.log(data);
       if (status === 200) {
-        data.forEach((e) => {
-          let newE = {
-            cluster_Id: e.cluster_Id,
-            estate_Address: e.estate?.estate_Address,
-            estate_Name: e.estate?.estateName,
-            facility_Manager: e.facility_Manager,
-            Manager: 'Abel',
-            unit: '1',
-          };
-          const contacts = e.contacts;
-          console.log(contacts);
+        // data.forEach((e) => {
+        //   let newE = {
+        //     cluster_Id: e.cluster_Id,
+        //     estate_Address: e.estate?.estate_Address,
+        //     estate_Name: e.estate?.estateName,
+        //     facility_Manager: e.facility_Manager,
+        //     Manager: 'Abel',
+        //     unit: '1',
+        //   };
+        //   const contacts = e.contacts;
+        //   console.log(contacts);
 
-          contacts.forEach((e) => {
-            if (e.type === 'EMAIL' && e.default === 'Y') {
-              newE.email = e.value;
-              console.log(e);
-            }
-            if (
-              e.type.toLowerCase() === 'phone' &&
-              e.default.toLowerCase() === 'y'
-            ) {
-              newE.phone_number = e.value;
-            }
-          });
-          setResidents((i) => [...i, newE]);
-        });
+        //   contacts.forEach((e) => {
+        //     if (e.type === 'EMAIL' && e.default === 'Y') {
+        //       newE.email = e.value;
+        //       console.log(e);
+        //     }
+        //     if (
+        //       e.type.toLowerCase() === 'phone' &&
+        //       e.default.toLowerCase() === 'y'
+        //     ) {
+        //       newE.phone_number = e.value;
+        //     }
+        //   });
+        //   setResidents((i) => [...i, newE]);
+        // });
         setIsLoading(false);
       }
     };
-
+    //log selected cluster id in the browser console.
+    console.log(id);
     getResident();
   }, []);
 
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-  };
-  //00006065
   return (
     <>
       <NavContainer dashboard={adminClusterInfos}>
@@ -146,7 +147,7 @@ const AdminClusterInfo = (props) => {
             </div>
           </div>
         </div>
-        <div className="mt-4">
+        {/* <div className="mt-4">
           {residents ? (
             <TableVariantAdminClusterInfo
               filter={['first_name', 'last_name']}
@@ -155,7 +156,7 @@ const AdminClusterInfo = (props) => {
               query={searchQuery}
             />
           ) : null}
-        </div>
+        </div> */}
       </NavContainer>
     </>
   );

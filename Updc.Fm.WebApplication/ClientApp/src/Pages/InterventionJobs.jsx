@@ -49,8 +49,6 @@ export const InterventionJobs = () => {
     setSearchQuery(query);
   };
 
-  
-
   return (
     <>
       {isLoading ? (
@@ -92,7 +90,6 @@ export const InterventionJobs = () => {
               </ol>
             </div>
             <div className="flex flex-row justify-end">
-              
               {/* Search Bar */}
               <div className="">
                 <SearchBox query={handleSearch} />
