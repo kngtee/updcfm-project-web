@@ -12,7 +12,7 @@ function AddNote({ inspectionId, addRow }) {
   const [formData, setFormData] = useState({
     note: '',
   });
-  const [updateRow, setUpdateRow] = useState(false);
+  // const [updateRow, setUpdateRow] = useState(false);
 
   const openModal = () => {
     setIsOpen(true);
@@ -29,6 +29,15 @@ function AddNote({ inspectionId, addRow }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.note.trim()) {
+      errorMessage({
+        title: 'Error',
+        message: 'Please enter a note before submitting.',
+      });
+      return;
+    }
+
     const { status, data, error } = await PostRequest(
       `/api/interventionjobs/${id}/inspection/${inspectionId}`,
       {
