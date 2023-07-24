@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   MdArrowCircleLeft,
   MdArrowCircleRight,
@@ -8,10 +8,31 @@ import { createInspection } from '../components/NavLists';
 import NavContainer from '../components/NavContainer';
 import ModalForm from '../components/ScheduleInspectionModal';
 import AddNote from '../components/AddNoteModal';
+import { formatDate } from '../Services/Converter';
+import LogoutTimer from '../components/LogoutTimer';
+import { GetRequest } from '../Auth/hooks/useGet';
+import { useParams } from 'react-router-dom';
 
 const inspectJob = createInspection;
 
 export const CreateInspection = () => {
+  const { id } = useParams();
+  const [tableData, setTableData] = useState([]);
+  const [isNewRow, setIsNewRow] = useState(false);
+  const addRow = () => {
+    setIsNewRow(true);
+  };
+
+  useEffect(() => {
+    const getInspections = async () => {
+      const { status, data } = await GetRequest('/api/interventionjobs/' + id);
+      setTableData(data.inspection);
+      console.log(data);
+      setIsNewRow(false);
+    };
+
+    getInspections();
+  }, [isNewRow]);
   return (
     <>
       <NavContainer dashboard={inspectJob}>
@@ -100,7 +121,7 @@ export const CreateInspection = () => {
           <div className="flex flex-row justify-end">
             {/* Schedule Modal Button */}
             <div className="flex flex-row">
-              <ModalForm />
+              <ModalForm addRow={addRow} setTableData={setTableData} />
             </div>
           </div>
 
@@ -128,80 +149,46 @@ export const CreateInspection = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-white border-b">
-                  <th
-                    scope="row"
-                    className="px-3 py-2 font-normal whitespace-nowrap"
-                  >
-                    1
-                  </th>
-                  <td className="px-3 py-2">29-APRIL-2023</td>
-                  <td className="px-3 py-2">Abel Ayinla</td>
-                  <td className="px-3 py-2">
-                    <span className="flex items-center">
-                      <span className="flex w-2.5 h-2.5 bg-yellow-400 rounded-full mr-1.5 flex-shrink-0"></span>
-                      New
-                    </span>
-                  </td>
-                  <td className="px-3 py-2">
-                    {/* <a
-                      href="/singlejob"
-                      className="inline-flex items-center font-medium text-red-600 underline"
+                {/* Rendering table rows based on table data */}
+                {tableData.map((formData, index) => (
+                  <tr key={index} className="bg-white border-b">
+                    <th
+                      scope="row"
+                      className="px-3 py-2 font-normal whitespace-nowrap"
                     >
-                      <MdNoteAdd className="mr-1" /> Add Note
-                    </a> */}
-                    <AddNote />
-                  </td>
-                  <td className="px-3 py-2">
-                    <div className="border-dashed border border-red-600 w-fit px-2 py-1 rounded-md">
-                      <label
-                        id="inspection_file"
-                        className="inline-flex items-center font-medium text-red-600 cursor-pointer"
-                      >
-                        <MdUploadFile className="mr-1" /> Upload Report
-                        <input
+                      {index + 1}
+                    </th>
+                    <td className="px-3 py-2">{formData.dateOfInspection}</td>
+                    <td className="px-3 py-2">{formData.inspectorName}</td>
+                    <td className="px-3 py-2">
+                      <span className="flex items-center text-yellow-600">
+                        {formData.shortDescription === 'n/a' ? (
+                          <span>pending</span>
+                        ) : (
+                          <span>done</span>
+                        )}
+                      </span>
+                    </td>
+                    <td className="px-3 py-2">
+                      <AddNote addRow={addRow} inspectionId={formData.id} />
+                    </td>
+                    <td className="px-3 py-2">
+                      <div className="border-dashed border border-red-600 w-fit px-2 py-1 rounded-md">
+                        <label
                           id="inspection_file"
-                          type="file"
-                          className="hidden"
-                        />
-                      </label>
-                    </div>
-                  </td>
-                </tr>
-                {/* <tr className="bg-[#D9D9D9] border-b">
-                  <th
-                    scope="row"
-                    className="px-3 py-2 font-normal whitespace-nowrap"
-                  >
-                    2
-                  </th>
-                  <td className="px-3 py-2">29-APRIL-2023</td>
-                  <td className="px-3 py-2">Abel Ayinla</td>
-                  <td className="px-3 py-2">
-                    <span className="flex items-center">
-                      <span className="flex w-2.5 h-2.5 bg-green-600 rounded-full mr-1.5 flex-shrink-0"></span>
-                      Done
-                    </span>
-                  </td>
-                  <td className="px-3 py-2">
-                    <a
-                      href="/singlejob"
-                      className="inline-flex items-center font-medium text-red-600 underline"
-                    >
-                      <MdNoteAdd className="mr-1" /> Add Note
-                    </a>
-                  </td>
-                  <td className="px-3 py-2">
-                    <div className="border-dashed border border-red-600 w-fit px-2 py-1 rounded-md">
-                      <a
-                        href="/singlejob"
-                        className="inline-flex items-center font-medium text-red-600"
-                      >
-                        <MdUploadFile className="mr-1" /> Upload Report
-                      </a>
-                    </div>
-                  </td>
-                </tr> */}
+                          className="inline-flex items-center font-medium text-red-600 cursor-pointer"
+                        >
+                          <MdUploadFile className="mr-1" /> Upload Report
+                          <input
+                            id="inspection_file"
+                            type="file"
+                            className="hidden"
+                          />
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
             {/* Pagination */}
@@ -209,9 +196,15 @@ export const CreateInspection = () => {
               {/* Pagination Details */}
               <span className="text-xs text-gray-600">
                 Showing
-                <span className="font-semibold text-[#0f0f0f] "> 1 </span>
+                <span className="font-semibold text-[#0f0f0f] ">
+                  {' '}
+                  {tableData.length > 0 ? 1 : 0}{' '}
+                </span>
                 to
-                <span className="font-semibold text-[#0f0f0f] "> 10 </span>
+                <span className="font-semibold text-[#0f0f0f] ">
+                  {' '}
+                  {tableData.length}{' '}
+                </span>
                 of
                 <span className="font-semibold text-[#0f0f0f] "> 100 </span>
                 Entries
@@ -231,6 +224,7 @@ export const CreateInspection = () => {
           </div>
         </div>
       </NavContainer>
+      <LogoutTimer />
     </>
   );
 };

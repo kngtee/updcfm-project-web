@@ -5,15 +5,33 @@ import { useParams } from 'react-router-dom';
 import { GetRequest } from '../Auth/hooks/useGet';
 import Loader from '../components/Loader';
 import TruncatedText from '../components/TruncatedText';
-
-const viewSingleJob = singleJob;
+import LogoutTimer from '../components/LogoutTimer';
 
 export const SingleJob = () => {
   const [interventionJob, setInterventionJob] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
-  
 
+  const viewSingleJob = {
+    overview: {
+      title: 'Single Job',
+      navs: [
+        {
+          name: 'Dashboard',
+          path: '',
+        },
+      ],
+    },
+    manage: {
+      title: 'Manage',
+      navs: [
+        {
+          name: 'Inspection',
+          path: `/jobs/${id}/inspectjob`,
+        },
+      ],
+    },
+  };
   useEffect(() => {
     const interventionJob = async () => {
       setIsLoading(true);
@@ -168,6 +186,7 @@ export const SingleJob = () => {
           </div>
         </NavContainer>
       )}
+      <LogoutTimer  />
     </>
   );
 };

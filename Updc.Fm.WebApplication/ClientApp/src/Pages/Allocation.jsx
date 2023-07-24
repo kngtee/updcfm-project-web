@@ -1,5 +1,5 @@
 
-import Table from '../Utilities/Table';
+
 import NavContainer from '../components/NavContainer';
 import { allocationDashboard } from '../components/NavLists';
 import { GetRequest } from '../Auth/hooks/useGet';
@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 // import { DataKey } from '../Services/GetDataKey';
 import SearchBox from '../Utilities/SearchBox';
 import Loader from '../components/Loader';
+import LogoutTimer from '../components/LogoutTimer';
+import TableVariantA from '../Utilities/TableVariantA';
 
 let tableHeader = [
   { first_name: 'First Name' },
@@ -85,29 +87,14 @@ const Allocation = () => {
               />
             </div>
             <div className=" space-y-2 px-4 py-4">
-              <div className=" flex justify-end px-1 py-4">
-                {/* <div className="flex flex-col space-x-1 md:flex-row md:space-x-3 font-medium items-center ">
-                <DropDownButton
-                  first="Select Cluster"
-                  second="Select Estate"
-                  third="Unit"
-                />
-                <DropDownButton
-                  first="Select Estate"
-                  second="Select Cluster"
-                  third="Jobs"
-                />
-                <button className=" inline-flex w-[35px] h-[35px] bg-[#a73439] text-white items-center justify-center rounded shadow-sm shadow-[#a73439]/25">
-                  <MdFilterAlt />
-                </button>{' '}
-              </div> */}
+              <div className=" flex justify-start px-1 py-4">
                 <div>
                   <SearchBox query={handleSearch} />
                 </div>
               </div>
               <div className="">
                 {residents ? (
-                  <Table
+                  <TableVariantA
                     filter={['first_name', 'last_name']}
                     header={tableHeader}
                     data={residents && residents}
@@ -119,6 +106,9 @@ const Allocation = () => {
           </div>
         </NavContainer>
       )}
+      
+        
+      <LogoutTimer  />
     </>
   );
 };

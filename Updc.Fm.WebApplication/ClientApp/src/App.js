@@ -26,7 +26,6 @@ import AdminNewStaff from './components/AdminNewStaff';
 import AdminStaffOverView from './components/AdminStaffOverView';
 import AdminClusterInfo from './components/AdminClusterInfo';
 import ForgetPassword from './components/ForgetPassword';
-import VerifyOtp from './components/VerifyOtp';
 import ResetPassword from './components/ResetPassword';
 
 function App() {
@@ -159,9 +158,8 @@ function App() {
         <Route path="/accounts" element={<Accounts />} />
         <Route path="/jobs" element={<InterventionJobs />} />
         <Route path="/jobs/:id" element={<SingleJob />} />
-        <Route path="/inspectjob" element={<CreateInspection />} />
+        <Route path="/jobs/:id/inspectjob" element={<CreateInspection />} />
         <Route path="/forgetpassword" element={<ForgetPassword />} />
-        <Route path="/verifyotp" element={<VerifyOtp />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
       </Routes>
     </AuthProvider>

@@ -2,15 +2,21 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { MdNoteAdd } from 'react-icons/md';
 import './ModalForm.css'; // CSS file for modal styles
+import { PostRequest } from '../Auth/hooks/useGet';
+import { errorMessage, successMessage } from '../toast-message/toastMessage';
+import { useParams } from 'react-router-dom';
 
-function AddNote() {
+function AddNote({ inspectionId, addRow }) {
+  const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     note: '',
   });
+  const [updateRow, setUpdateRow] = useState(false);
 
   const openModal = () => {
     setIsOpen(true);
+    // alert(id);
   };
 
   const closeModal = () => {
@@ -18,12 +24,30 @@ function AddNote() {
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ note: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData); // Handle form submission here
+    const { status, data, error } = await PostRequest(
+      `/api/interventionjobs/${id}/inspection/${inspectionId}`,
+      {
+        shortDescription: formData.note,
+      },
+    );
+    if (status === 200) {
+      addRow();
+      successMessage({
+        title: 'Inspection Creation.',
+        message: 'inspection created successfully.',
+      });
+    } else {
+      errorMessage({
+        title: 'Something went wrong',
+        message: error,
+      });
+      console.log(data);
+    }
     closeModal();
   };
 

@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import Pagination from './Pagination';
 import { DataKey } from '../Services/GetDataKey';
-// import { data } from 'jquery';
 import { ArrangeData } from '../Services/sortData';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,6 +9,7 @@ let pageSize = 8;
 const Table = ({ header, data, query, filter }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [checked, setChecked] = useState(false);
+  const [checkedAll, setCheckedAll] = useState(false);
   const [tableData, setTableData] = useState(data);
   const [sorting, setSorting] = useState({ field: DataKey(header[0]) });
   const [totalCount, setTotalCount] = useState(data && data.length);
@@ -19,29 +19,16 @@ const Table = ({ header, data, query, filter }) => {
   };
 
   const navigate = useNavigate();
-  console.log(data);
+  // console.log(data);
 
   const handleChange = (event) => {
-    const val = event.target.checked;
-    const updateCheckedItems = {};
-    tableData.forEach((item) => {
-      updateCheckedItems[item.id] = val;
-    });
-
-    setChecked(updateCheckedItems);
+    setCheckedAll(!checkedAll);
+    setChecked(!checkedAll);
   };
 
   const handleCheckOne = (event) => {
-    const { id, checked } = event.target;
-    setChecked((item) => ({
-      ...item,
-      [id]: checked,
-    }));
+    setChecked(!checked);
   };
-
-  // const rowClickedAction = (event) => {
-  //   console.log(event);
-  // };
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
@@ -76,7 +63,7 @@ const Table = ({ header, data, query, filter }) => {
               <th scope="col" className="px-3 py-1.5">
                 <input
                   type="checkbox"
-                  defaultChecked={checked}
+                  defaultChecked={checkedAll}
                   onChange={handleChange}
                 />
               </th>
@@ -102,7 +89,11 @@ const Table = ({ header, data, query, filter }) => {
                 className="bg-white odd:bg-[#D9D9D9] ... border-b  justify-center"
                 key={row.id}
                 onClick={() => {
+                  console.log(row.id);
+                  console.log(row.path);
                   navigate(row.path);
+                  // navigate(row.path);
+                  console.log(row);
                 }}
               >
                 <td className="px-3 py-2">
@@ -110,7 +101,8 @@ const Table = ({ header, data, query, filter }) => {
                     type="checkbox"
                     // defaultChecked={checked}
                     id={row.id}
-                    checked={checked[row.id] || false}
+                    // checked={checked[row.id] || false}
+                    checked={checked}
                     onChange={handleCheckOne}
                   />
                 </td>

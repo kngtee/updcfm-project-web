@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // import { MdFilterAlt } from 'react-icons/md';
 import { accountDashboard } from '../components/NavLists';
 import Jobs from '../assets/img/jobs.svg';
 import JobsDone from '../assets/img/job-done-ok.svg';
 import Vendors from '../assets/img/staff.svg';
 import NavContainer from '../components/NavContainer';
+import LogoutTimer from '../components/LogoutTimer';
+import { GetRequest } from '../Auth/hooks/useGet';
 
 const accounts = accountDashboard;
 
 export const Accounts = () => {
+  const [totalJobs, setTotalJobs] = useState(null);
+
+  useEffect(() => {
+    const fetchTotalJobs = async () => {
+      try {
+        const { status, data } = await GetRequest('api/interventionjobs');
+        // const response = await fetch('api/interventionjobs');
+        // const data = await response.json();
+        // setTotalJobs(data.totalJobs);
+        if (status === 200) {
+          setTotalJobs(data.length);
+        } else {
+          setTotalJobs(0);
+        }
+      } catch (error) {
+        console.error('Error fetching total jobs:', error);
+      }
+    };
+    fetchTotalJobs();
+  }, []);
+
   return (
     <>
       <NavContainer dashboard={accounts}>
@@ -37,9 +60,6 @@ export const Accounts = () => {
             >
               <option selected>Select Estate</option>
             </select>
-            {/* <button className="inline-flex w-[35px] h-[35px] bg-[#a73439] text-white items-center justify-center rounded shadow-sm shadow-[#a73439]/25">
-              <MdFilterAlt />
-            </button> */}
           </div>
           {/* Info Cards */}
           <div className="flex flex-row space-x-12">
@@ -48,7 +68,13 @@ export const Accounts = () => {
                 <p className="text-xs font-medium text-gray-400">
                   Pending Jobs
                 </p>
-                <p className="text-4xl font-bold text-[#0f0f0f]">10</p>
+                {totalJobs !== null ? (
+                  <p className="text-4xl font-bold text-[#0f0f0f]">
+                    {totalJobs}
+                  </p>
+                ) : (
+                  <p className=" text-4xl font-bold text-[#0f0f0f]">0</p>
+                )}
               </div>
               <img src={Jobs} alt="jobs" className="ml-6 w-14 h-14" />
             </div>
@@ -57,7 +83,7 @@ export const Accounts = () => {
                 <p className="text-xs font-medium text-gray-400">
                   Total Jobs Done
                 </p>
-                <p className="text-4xl font-bold text-[#0f0f0f]">1,000</p>
+                <p className="text-4xl font-bold text-[#0f0f0f]">0</p>
               </div>
               <img src={JobsDone} alt="jobs" className="ml-6 w-14 h-14" />
             </div>
@@ -66,13 +92,15 @@ export const Accounts = () => {
                 <p className="text-xs font-medium text-gray-400">
                   Total Vendors
                 </p>
-                <p className="text-4xl font-bold text-[#0f0f0f]">100</p>
+                <p className="text-4xl font-bold text-[#0f0f0f]">0</p>
               </div>
               <img src={Vendors} alt="jobs" className="ml-6 w-14 h-14" />
             </div>
           </div>
         </div>
       </NavContainer>
+
+      <LogoutTimer />
     </>
   );
 };

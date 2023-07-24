@@ -6,6 +6,7 @@ import { GetRequest } from '../Auth/hooks/useGet';
 import Loader from '../components/Loader';
 import Table from '../Utilities/Table';
 import SearchBox from '../Utilities/SearchBox';
+import LogoutTimer from '../components/LogoutTimer';
 
 const viewJobs = viewallJobs;
 let tableHeader = [
@@ -89,7 +90,12 @@ export const InterventionJobs = () => {
                 </li>
               </ol>
             </div>
+<<<<<<< HEAD
             <div className="flex flex-row justify-end">
+=======
+            <div className="flex flex-row justify-start">
+              
+>>>>>>> origin/develop
               {/* Search Bar */}
               <div className="">
                 <SearchBox query={handleSearch} />
@@ -149,6 +155,8 @@ export const InterventionJobs = () => {
           </div>
         </NavContainer>
       )}
+      
+      <LogoutTimer  />
     </>
   );
 };
