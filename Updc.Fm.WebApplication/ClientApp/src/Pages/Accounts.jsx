@@ -17,9 +17,7 @@ export const Accounts = () => {
     const fetchTotalJobs = async () => {
       try {
         const { status, data } = await GetRequest('api/interventionjobs');
-        // const response = await fetch('api/interventionjobs');
-        // const data = await response.json();
-        // setTotalJobs(data.totalJobs);
+       
         if (status === 200) {
           setTotalJobs(data.length);
         } else {
