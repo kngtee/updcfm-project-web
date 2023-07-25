@@ -90,12 +90,8 @@ export const InterventionJobs = () => {
                 </li>
               </ol>
             </div>
-<<<<<<< HEAD
-            <div className="flex flex-row justify-end">
-=======
             <div className="flex flex-row justify-start">
               
->>>>>>> origin/develop
               {/* Search Bar */}
               <div className="">
                 <SearchBox query={handleSearch} />
