@@ -1,5 +1,3 @@
-
-
 import NavContainer from '../components/NavContainer';
 import { allocationDashboard } from '../components/NavLists';
 import { GetRequest } from '../Auth/hooks/useGet';
@@ -95,7 +93,7 @@ const Allocation = () => {
               <div className="">
                 {residents ? (
                   <TableVariantA
-                    filter={['first_name', 'last_name']}
+                    filter={['first_name', 'last_name', 'email']}
                     header={tableHeader}
                     data={residents && residents}
                     query={searchQuery}
@@ -106,9 +104,8 @@ const Allocation = () => {
           </div>
         </NavContainer>
       )}
-      
-        
-      <LogoutTimer  />
+
+      <LogoutTimer />
     </>
   );
 };

@@ -50,8 +50,6 @@ export const InterventionJobs = () => {
     setSearchQuery(query);
   };
 
-  
-
   return (
     <>
       {isLoading ? (

@@ -42,6 +42,7 @@ const TableVariantA = ({ header, data, query, filter }) => {
       tableData.filter(
         (e) =>
           e[filter[0]].toLowerCase().includes(query.toLowerCase()) ||
+          e[filter[2]].toLowerCase().includes(query.toLowerCase()) ||
           e[filter[1]].toLowerCase().includes(query.toLowerCase()),
       ).length,
     );
@@ -49,6 +50,7 @@ const TableVariantA = ({ header, data, query, filter }) => {
       .filter(
         (e) =>
           e[filter[0]].toLowerCase().includes(query.toLowerCase()) ||
+          e[filter[2]].toLowerCase().includes(query.toLowerCase()) ||
           e[filter[1]].toLowerCase().includes(query.toLowerCase()),
       )
       .slice(firstPageIndex, lastPageIndex);

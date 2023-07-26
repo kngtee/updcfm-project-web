@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { MdUploadFile } from 'react-icons/md';
+import {
+  MdArrowCircleLeft,
+  MdArrowCircleRight,
+  MdUploadFile,
+} from 'react-icons/md';
 import { createInspection } from '../components/NavLists';
 import NavContainer from '../components/NavContainer';
 import ModalForm from '../components/ScheduleInspectionModal';

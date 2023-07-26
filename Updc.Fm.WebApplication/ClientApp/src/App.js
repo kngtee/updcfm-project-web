@@ -49,7 +49,7 @@ function App() {
         />
 
         <Route
-          path="/admin/admincluster_info"
+          path="/admin/admincluster_info/:id"
           element={
             <ProtectedRoute>
               <AdminClusterInfo />

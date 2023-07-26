@@ -17,7 +17,7 @@ export const Accounts = () => {
     const fetchTotalJobs = async () => {
       try {
         const { status, data } = await GetRequest('api/interventionjobs');
-       
+
         if (status === 200) {
           setTotalJobs(data.length);
         } else {
@@ -59,41 +59,28 @@ export const Accounts = () => {
               <option selected>Select Estate</option>
             </select>
           </div> */}
-          {/* Info Cards */}
-          <div className="flex flex-row space-x-12">
-            <div className="flex flex-col items-center justify-between p-6 bg-white rounded-md shadow-sm shadow-[#a73439]/25 md:flex-row md:max-w-[250px] md:max-h-[100px]">
-              <div className="flex flex-col justify-between leading-normal">
-                <p className="text-xs font-medium text-gray-400">
-                  Pending Jobs
-                </p>
-                {totalJobs !== null ? (
-                  <p className="text-4xl font-bold text-[#0f0f0f]">
-                    {totalJobs}
-                  </p>
-                ) : (
-                  <p className=" text-4xl font-bold text-gray-400">n/a</p>
-                )}
-              </div>
-              <img src={Jobs} alt="jobs" className="ml-6 w-14 h-14" />
+        </div>
+        {/* Info Cards */}
+        <div className="flex flex-row space-x-12">
+          <div className="flex flex-col items-center justify-between p-6 bg-white rounded-md shadow-sm shadow-[#a73439]/25 md:flex-row md:max-w-[250px] md:max-h-[100px]">
+            <div className="flex flex-col justify-between leading-normal">
+              <p className="text-xs font-medium text-gray-400">Pending Jobs</p>
+              {totalJobs !== null ? (
+                <p className="text-4xl font-bold text-[#0f0f0f]">{totalJobs}</p>
+              ) : (
+                <p className=" text-4xl font-bold text-[#0f0f0f]">0</p>
+              )}
             </div>
-            <div className="flex flex-col items-center justify-between p-6 bg-white rounded-md shadow-sm shadow-[#a73439]/25 md:flex-row md:max-w-[250px] md:max-h-[100px]">
-              <div className="flex flex-col justify-between leading-normal">
-                <p className="text-xs font-medium text-gray-400">
-                  Total Jobs Done
-                </p>
-                <p className="text-4xl font-bold text-[#0f0f0f]">0</p>
-              </div>
-              <img src={JobsDone} alt="jobs" className="ml-6 w-14 h-14" />
+            <img src={Jobs} alt="jobs" className="ml-6 w-14 h-14" />
+          </div>
+          <div className="flex flex-col items-center justify-between p-6 bg-white rounded-md shadow-sm shadow-[#a73439]/25 md:flex-row md:max-w-[250px] md:max-h-[100px]">
+            <div className="flex flex-col justify-between leading-normal">
+              <p className="text-xs font-medium text-gray-400">
+                Total Jobs Done
+              </p>
+              <p className="text-4xl font-bold text-[#0f0f0f]">0</p>
             </div>
-            {/* <div className="flex flex-col items-center justify-between p-6 bg-white rounded-md shadow-sm shadow-[#a73439]/25 md:flex-row md:max-w-[250px] md:max-h-[100px]">
-              <div className="flex flex-col justify-between leading-normal">
-                <p className="text-xs font-medium text-gray-400">
-                  Total Vendors
-                </p>
-                <p className="text-4xl font-bold text-[#0f0f0f]">0</p>
-              </div>
-              <img src={Vendors} alt="jobs" className="ml-6 w-14 h-14" />
-            </div> */}
+            <img src={JobsDone} alt="jobs" className="ml-6 w-14 h-14" />
           </div>
         </div>
       </NavContainer>
