@@ -46,5 +46,36 @@ namespace Updc.Fm.WebApplication.Controllers
 
             return StatusCode(400, await response.Content.ReadAsStringAsync());
         }
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetEstateById(string id)
+        {
+            var client = _httpClientFactory.CreateClient("api");
+            var response = await client.GetAsync($"/api/estates/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var res = await response.Content.ReadAsStringAsync();
+                return StatusCode(200, res);
+            }
+
+            return StatusCode(400, response.Content.ReadAsStringAsync());
+        }
+
+        [HttpGet]
+        [Route("{id}/units")]
+        public async Task<IActionResult> GetUnitsByEstateId(string id)
+        {
+            var client = _httpClientFactory.CreateClient("api");
+            var response = await client.GetAsync($"/api/estates/{id}/units");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var res = await response.Content.ReadAsStringAsync();
+                return StatusCode(200, res);
+            }
+
+            return StatusCode(400, response.Content.ReadAsStringAsync());
+        }
     }
 }
