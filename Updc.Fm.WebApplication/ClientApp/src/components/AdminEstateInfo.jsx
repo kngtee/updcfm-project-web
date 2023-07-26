@@ -11,7 +11,7 @@ let tableHeader = [
   { estate_Name: 'Estate Name' },
 ];
 
-const AdminClusterInfo = () => {
+const AdminEstateInfo = () => {
   const [clusters, setClusters] = useState({});
   const [estates, setEstates] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -87,10 +87,10 @@ const AdminClusterInfo = () => {
                     </svg>
 
                     <a
-                      href="/admin/cluster"
+                      href="/admin/estate"
                       className="ml-1 items-center text-sm text-gray-500 hover:text-[#a73439] md:ml-2"
                     >
-                      Cluster
+                      Estate
                     </a>
                   </div>
                 </li>
@@ -156,4 +156,4 @@ const AdminClusterInfo = () => {
   );
 };
 
-export default AdminClusterInfo;
+export default AdminEstateInfo;

@@ -27,6 +27,7 @@ import AdminStaffOverView from './components/AdminStaffOverView';
 import AdminClusterInfo from './components/AdminClusterInfo';
 import ForgetPassword from './components/ForgetPassword';
 import ResetPassword from './components/ResetPassword';
+import AdminEstateInfo from './components/AdminEstateInfo';
 
 function App() {
   return (
@@ -56,6 +57,16 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/admin/adminestate_info/:id"
+          element={
+            <ProtectedRoute>
+              <AdminEstateInfo />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="/login" element={<Login />} />
         <Route
           path="/sales"

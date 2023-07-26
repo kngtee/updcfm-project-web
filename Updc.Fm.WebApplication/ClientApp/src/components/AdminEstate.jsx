@@ -6,11 +6,14 @@ import { GetRequest } from '../Auth/hooks/useGet';
 import Loader from './Loader';
 import Estate from '../../src/assets/img/estate.svg';
 import SearchBox from '../Utilities/SearchBox';
+import { useNavigate } from 'react-router-dom';
 
 const AdminEstate = () => {
   const [estates, setEstates] = useState([]);
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  let [id, setId] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getEstates = async () => {
@@ -104,7 +107,14 @@ const AdminEstate = () => {
                         .includes(search.toLowerCase()),
                     )
                     .map((estate) => (
-                      <div key={estate.id}>
+                      <div
+                        key={estate.id}
+                        onClick={() => {
+                          setId((id = estate.id));
+                          console.log(id);
+                          navigate('/admin/adminestate_info/' + id);
+                        }}
+                      >
                         <AdminCard
                           Header="Yaba Estate"
                           Name={estate.estate_Name}

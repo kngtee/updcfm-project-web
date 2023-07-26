@@ -7,7 +7,6 @@ import Loader from './Loader';
 import Estate from '../../src/assets/img/estate.svg';
 import SearchBox from '../Utilities/SearchBox';
 import { useNavigate } from 'react-router-dom';
-//import AdminClusterInfo from '../components/AdminClusterInfo';
 
 const AdminCluster = () => {
   const [clusters, setClusters] = useState([]);
@@ -43,13 +42,6 @@ const AdminCluster = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        // <>
-        //   {selected === true ? (
-        //     <AdminClusterInfo
-        //       clusterName={clusterName}
-        //       managerName={managerName}
-        //     />
-        //   ) : (
         <NavContainer dashboard={adminCluster}>
           <div className="flex flex-col px-4 py-8 space-y-8">
             {/* Breadcrumbs and delete button */}
