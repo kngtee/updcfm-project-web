@@ -8,8 +8,6 @@ let pageSize = 8;
 
 const Table = ({ header, data, query, filter }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [checked, setChecked] = useState(false);
-  const [checkedAll, setCheckedAll] = useState(false);
   const [tableData, setTableData] = useState(data);
   const [sorting, setSorting] = useState({ field: DataKey(header[0]) });
   const [totalCount, setTotalCount] = useState(data && data.length);
@@ -21,13 +19,8 @@ const Table = ({ header, data, query, filter }) => {
   const navigate = useNavigate();
   // console.log(data);
 
-  const handleChange = (event) => {
-    setCheckedAll(!checkedAll);
-    setChecked(!checkedAll);
-  };
-
-  const handleCheckOne = (event) => {
-    setChecked(!checked);
+  const getRowNumber = (index) => {
+    return (currentPage - 1) * pageSize + index + 1;
   };
 
   const currentTableData = useMemo(() => {
@@ -60,13 +53,7 @@ const Table = ({ header, data, query, filter }) => {
         <table className="w-full text-sm text-left text-[#0f0f0f] shadow-md max-w-full max-h-full">
           <thead className="text-xs text-[#F8F7FF] uppercase bg-[#a73439]">
             <tr className="">
-              <th scope="col" className="px-3 py-1.5">
-                <input
-                  type="checkbox"
-                  defaultChecked={checkedAll}
-                  onChange={handleChange}
-                />
-              </th>
+              <th scope="col" className="px-3 py-1.5"></th>
               {header.map((th, index) => (
                 <th
                   key={index}
@@ -84,7 +71,7 @@ const Table = ({ header, data, query, filter }) => {
           </thead>
 
           <tbody>
-            {currentTableData.map((row) => (
+            {currentTableData.map((row, index) => (
               <tr
                 className="bg-white odd:bg-[#D9D9D9] ... border-b  justify-center"
                 key={row.id}
@@ -92,20 +79,10 @@ const Table = ({ header, data, query, filter }) => {
                   console.log(row.id);
                   console.log(row.path);
                   navigate(row.path);
-                  // navigate(row.path);
                   console.log(row);
                 }}
               >
-                <td className="px-3 py-2">
-                  <input
-                    type="checkbox"
-                    // defaultChecked={checked}
-                    id={row.id}
-                    // checked={checked[row.id] || false}
-                    checked={checked}
-                    onChange={handleCheckOne}
-                  />
-                </td>
+                <td className="px-3 py-2">{getRowNumber(index)}</td>
                 {/* {console.log('Keys: ' + props.objectKey[0])} */}
                 {data &&
                   header.map((k, index) => (

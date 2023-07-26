@@ -44,7 +44,7 @@ function ModalForm({ addRow }) {
     addRow();
     const errors = validateForm(formData);
     if (Object.keys(errors).length === 0) {
-      const { status, data, error } = await PostRequest(
+      const { status, error } = await PostRequest(
         `/api/interventionjobs/${id}/inspection`,
         {
           inspectorName: formData.name,
