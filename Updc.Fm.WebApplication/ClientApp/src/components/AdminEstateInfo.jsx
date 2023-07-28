@@ -2,18 +2,15 @@ import React, { useState, useEffect } from 'react';
 import NavContainer from './NavContainer';
 import { adminClusterInfos } from './NavLists';
 import { GetRequest } from '../Auth/hooks/useGet';
-import TableVariantAdminClusterInfo from '../Utilities/TableVariantAdminClusterInfo';
+import TableVariantAdminEstateInfo from '../Utilities/TableVariantAdminEstateInfo';
 import { useParams } from 'react-router-dom';
 import Loader from './Loader';
 
-let tableHeader = [
-  { estate_Address: 'Estate Address' },
-  { estate_Name: 'Estate Name' },
-];
+let tableHeader = [{ unit_number: 'Unit Number' }];
 
 const AdminEstateInfo = () => {
-  const [clusters, setClusters] = useState({});
-  const [estates, setEstates] = useState([]);
+  const [units, setUnits] = useState([]);
+  const [estates, setEstates] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
@@ -21,35 +18,31 @@ const AdminEstateInfo = () => {
     return str.length > 15 ? str.substring(0, 12) + '....' : str;
   };
 
-  const getCluster = async () => {
-    const { status, data } = await GetRequest('/api/clusters/' + id);
+  const getEstates = async () => {
+    const { status, data } = await GetRequest('/api/estates/' + id);
     if (status === 200) {
-      setClusters(data);
-      console.log(clusters);
+      setEstates(data);
+      console.log(data);
     }
   };
 
-  const getEstates = async () => {
-    const { status, data } = await GetRequest(
-      '/api/clusters/' + id + '/estates',
-    );
+  const getUnits = async () => {
+    const { status, data } = await GetRequest('/api/estates/' + id + '/units');
     if (status === 200) {
       data.forEach((e) => {
         let newE = {
-          cluster_Id: e.cluster_Id,
-          estate_Address: e.estate_Address,
-          estate_Name: e.estate_Name,
+          unit_number: e.unit_number,
         };
-        setEstates((i) => [...i, newE]);
+        setUnits((i) => [...i, newE]);
       });
-      console.log(estates);
+      console.log(data);
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    getCluster();
     getEstates();
+    getUnits();
   }, []);
 
   return (
@@ -110,8 +103,8 @@ const AdminEstateInfo = () => {
                       </g>
                     </svg>
                     <span className="ml-1 text-sm text-[#d36360] md:ml-2">
-                      {clusters &&
-                        truncateText(String(clusters.cluster_manager))}
+                      {estates &&
+                        truncateText(String(estates.facility_Manager))}
                     </span>
                   </div>
                 </li>
@@ -122,18 +115,26 @@ const AdminEstateInfo = () => {
             <div className="flex flex-col items-start justify-between px-6 py-4 w-fit bg-white rounded-md shadow-sm shadow-[#a73439]/25 md:flex-row md:w-[300px] md:max-h-[300px]">
               <div className="text-xs font-medium justify-between leading-normal">
                 <p className="text-gray-400 text-sm">
-                  {clusters && clusters.cluster_name}
+                  {estates && estates.estate_Name}
                 </p>
                 <ol className="mt-1 text-[#0f0f0f]">
                   <li className="font-bold">
-                    Manager:
+                    Estate Address:
                     <span className="font-medium">
                       {' '}
-                      {clusters &&
-                        clusters.manager?.first_Name +
+                      {estates && estates.estate_Address}
+                    </span>
+                  </li>
+                </ol>
+                <ol className="mt-1 text-[#0f0f0f]">
+                  <li className="font-bold">
+                    Facility Manager:
+                    <span className="font-medium">
+                      {' '}
+                      {estates &&
+                        String(estates.manager?.first_Name) +
                           ' ' +
-                          clusters.manager?.last_Name}
-                      {clusters && console.log(clusters)}
+                          String(estates.manager?.last_Name)}
                     </span>
                   </li>
                 </ol>
@@ -141,11 +142,11 @@ const AdminEstateInfo = () => {
             </div>
           </div>
           <div className="mt-4">
-            {estates ? (
-              <TableVariantAdminClusterInfo
-                filter={['estate_Address', 'estate_Name']}
+            {units ? (
+              <TableVariantAdminEstateInfo
+                filter={['unit_number']}
                 header={tableHeader}
-                data={estates && estates}
+                data={units && units}
                 query={''}
               />
             ) : null}
