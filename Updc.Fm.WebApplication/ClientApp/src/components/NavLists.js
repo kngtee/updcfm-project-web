@@ -36,10 +36,6 @@ export const adminStaff = {
         name: 'New Staff',
         path: 'admin/new_staff',
       },
-      {
-        name: 'Details',
-        path: 'admin/staff_overview',
-      },
     ],
   },
 };
