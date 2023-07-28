@@ -7,7 +7,6 @@ import { PostRequest } from '../Auth/hooks/useGet';
 import { useParams } from 'react-router-dom';
 import { errorMessage, successMessage } from '../toast-message/toastMessage';
 import { formatDate } from '../Services/Converter';
-// Modal.setAppElement('#root'); // The root element of the app
 
 function ModalForm({ addRow }) {
   const { id } = useParams();
