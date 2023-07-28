@@ -23,7 +23,6 @@ import AdminCluster from './components/AdminCluster';
 import AdminNewCluster from './components/AdminNewCluster';
 import AdminStaff from './components/AdminStaff';
 import AdminNewStaff from './components/AdminNewStaff';
-import AdminStaffOverView from './components/AdminStaffOverView';
 import AdminClusterInfo from './components/AdminClusterInfo';
 import ForgetPassword from './components/ForgetPassword';
 import ResetPassword from './components/ResetPassword';
@@ -145,14 +144,6 @@ function App() {
           element={
             <ProtectedRoute>
               <AdminNewStaff />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="admin/staff_overview"
-          element={
-            <ProtectedRoute>
-              <AdminStaffOverView />
             </ProtectedRoute>
           }
         />

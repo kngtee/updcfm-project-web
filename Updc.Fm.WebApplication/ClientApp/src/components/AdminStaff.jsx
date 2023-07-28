@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import NavContainer from './NavContainer';
 import { adminStaff } from './NavLists';
-import Table from '../Utilities/Table';
+//import Table from '../Utilities/Table';
+import TableVariantAdminStaffOverview from '../Utilities/TableVariantAdminStaffOverView';
 import Loader from '../components/Loader';
 import { GetRequest } from '../Auth/hooks/useGet';
 import SearchBox from '../Utilities/SearchBox';
@@ -19,12 +20,12 @@ const AdminStaff = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const headers = {
-    headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
-      'Content-Type': 'application/json',
-    },
-  };
+  // const headers = {
+  //   headers: {
+  //     Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+  //     'Content-Type': 'application/json',
+  //   },
+  // };
 
   useEffect(() => {
     const getStaff = async () => {
@@ -111,31 +112,18 @@ const AdminStaff = () => {
             <div className="flex flex-row ml-[44rem]">
               {/* Search */}
               <div className="font-medium">
-                {/* <input
-                  type="search"
-                  id="search"
-                  placeholder="Search for staff..."
-                  className="bg-white text-gray-400 h-[35px] text-sm font-medium rounded shadow-sm shadow-[#a73439]/25 block px-3 py-2.5"
-                /> */}
                 <SearchBox query={handleSearch} />
               </div>
             </div>
             <div>
               {staffs ? (
-                <Table
+                <TableVariantAdminStaffOverview
                   filter={['first_Name', 'last_Name']}
                   header={tableHeader}
                   data={staffs && staffs}
                   query={searchQuery}
                 />
-              ) : // <Table
-              //   textCol1="Full Name"
-              //   textCol2="Email"
-              //   textCol3="Phone No"
-              //   textCol4="Estate"
-              //   textCol5="Status"
-              // />
-              null}
+              ) : null}
             </div>
           </div>
         </NavContainer>
