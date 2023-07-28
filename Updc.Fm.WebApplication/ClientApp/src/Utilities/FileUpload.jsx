@@ -85,21 +85,21 @@ export default function FileUpload() {
         overlayClassName="custom-modal-overlay"
       >
         <form onSubmit={handleUpload}>
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col items-center justify-between">
             {/* File Display */}
             <div>
               {fileType === 'image' && previewSrc && (
                 <img
                   src={previewSrc}
                   alt="Preview"
-                  className="max-w-80 max-h-80 mx-auto mb-4"
+                  className="max-w-60 max-h-60 mx-auto mb-4"
                 />
               )}
               {fileType === 'pdf' && previewSrc && (
                 <iframe
                   src={previewSrc}
                   title="PDF Preview"
-                  className="max-w-80 max-h-80 mx-auto mb-4"
+                  className="max-w-60 h-60 mx-auto mb-6 mt-2"
                 />
               )}
               {!previewSrc && (
@@ -109,9 +109,18 @@ export default function FileUpload() {
               )}
             </div>
             {/* Send n Cancel Btn */}
-            <div>
-              <button type="submit">Submit</button>
-              <button type="button" onClick={closeModal}>
+            <div className="flex flex-col">
+              <button
+                type="submit"
+                className=" text-white font-semibold text-sm rounded-sm mb-2 py-2 px-4 w-80 bg-green-600"
+              >
+                Submit
+              </button>
+              <button
+                type="button"
+                className="text-red-600 font-semibold text-sm underline"
+                onClick={closeModal}
+              >
                 Cancel
               </button>
             </div>

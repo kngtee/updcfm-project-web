@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { createInspection } from '../components/NavLists';
 import NavContainer from '../components/NavContainer';
 import ModalForm from '../components/ScheduleInspectionModal';
-import AddNote from '../components/AddNoteModal';
+
 // import { formatDate } from '../Services/Converter';
 import LogoutTimer from '../components/LogoutTimer';
 import { GetRequest } from '../Auth/hooks/useGet';
@@ -12,6 +12,7 @@ import Pagination from '../Utilities/Pagination';
 import { useMemo } from 'react';
 import Loader from '../components/Loader';
 import FileUpload from '../Utilities/FileUpload';
+import AddNote from '../components/AddNote';
 
 const inspectJob = createInspection;
 
