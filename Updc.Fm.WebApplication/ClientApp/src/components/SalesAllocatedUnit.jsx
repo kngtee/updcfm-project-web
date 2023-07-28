@@ -1,11 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FiDownload } from 'react-icons/fi';
 import { FaPen } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { replace } from 'formik';
 
-const SalesAllocatedUnit = ({ selectedRow }) => {
-  console.log(selectedRow);
+const SalesAllocatedUnit = ({ selectedRow, }) => {
+  const [formData, setFormData] = useState({
+    email: selectedRow?.email,
+    first_name: selectedRow?.first_name,
+    last_name: selectedRow?.last_name,
+    unit: selectedRow?.unit,
+    phone_number: selectedRow?.phone_number,
+    // Add other form fields here as needed
+  });
+  const [isEditing, setIsEditing] = useState(false);
+  const [email, setEmail] = useState()
   const nav = useNavigate();
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSave = () => {
+    setIsEditing(false);
+    
+    
+    
+    
+  };
+
   return (
     <div
       onClick={() => {
@@ -22,14 +53,15 @@ const SalesAllocatedUnit = ({ selectedRow }) => {
           </div>
           <div className="pt-2">
             {selectedRow && (
-              <h4 className='text-[20px] font-bold'>
+              <h4 className="text-[20px] font-bold">
                 {selectedRow.first_name + ' ' + selectedRow.last_name}
-                {/* <h4 className="text-gray-400 text-sm">{selectedRow.unit}</h4> */}
               </h4>
             )}
           </div>
           <div className="w-[10%] mt-2">
-            <FaPen size={20} color="#A73439" />
+            {!isEditing && (
+              <FaPen onClick={handleEdit} size={20} color="#A73439" />
+            )}
           </div>
         </div>
         <div className="flex flex-row px-4 mt-4">
@@ -37,14 +69,36 @@ const SalesAllocatedUnit = ({ selectedRow }) => {
             <div className="flex flex-col">
               <div className="ml-2">
                 <span className="mr-8 text-gray-400">Email:</span>
-                {selectedRow.email}
+                {isEditing ? (
+                  <input
+                    type="email"
+                    name="email"
+                    defaultValue={selectedRow?.email}
+                    onChange={handleChange}
+                  />
+                ) : (
+                  <span>{selectedRow?.email}</span>
+                )}
                 <br />
+
                 <span className="mr-6 text-gray-400">Phone:</span>
-                {selectedRow.phone_number}
+                {isEditing ? (
+                  <input />
+                ) : (
+                  <span>{selectedRow?.phone_number}</span>
+                )}
                 <br />
                 <span className="mr-10 text-gray-400">Unit:</span>
-                {selectedRow.unit}
+                {isEditing ? <input /> : <span>{selectedRow?.unit}</span>}
               </div>
+              {isEditing && (
+                <button
+                  className="  bg-green-600 ml-24  text-white mt-4 rounded-md"
+                  onClick={handleSave}
+                >
+                  Save
+                </button>
+              )}
             </div>
           )}
         </div>

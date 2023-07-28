@@ -22,14 +22,14 @@ const TableVariantA = ({ header, data, query, filter }) => {
   };
 
   
-  const handleChange = (event) => {
-    setCheckedAll(!checkedAll);
-    setChecked(!checkedAll);
-  };
+  // const handleChange = (event) => {
+  //   setCheckedAll(!checkedAll);
+  //   setChecked(!checkedAll);
+  // };
 
-  const handleCheckOne = (event) => {
-    setChecked(!checked);
-  };
+  // const handleCheckOne = (event) => {
+  //   setChecked(!checked);
+  // };
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
@@ -148,7 +148,7 @@ const TableVariantA = ({ header, data, query, filter }) => {
           onClick={() => setSelected(false)}
           className={`w-screen h-screen flex justify-center absolute top-0 left-0 bg-black/50`}
         ></div>
-        <SalesAllocatedUnit selectedRow={selectedRow} />
+        <SalesAllocatedUnit selectedRow={selectedRow} setSelectedRow = {setSelectedRow} />
       </div>
     </>
   );
