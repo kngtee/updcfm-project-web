@@ -22,7 +22,7 @@ const AdminEstateInfo = () => {
     const { status, data } = await GetRequest('/api/estates/' + id);
     if (status === 200) {
       setEstates(data);
-      console.log(data);
+      //console.log(data);
     }
   };
 

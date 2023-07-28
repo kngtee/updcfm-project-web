@@ -3,6 +3,10 @@ import StaffOverviewCard from '../Utilities/StaffOverviewCard';
 // import StaffRoleCard from '../Utilities/StaffRoleCard';
 
 const AdminStaffDetails = ({ selectedRow }) => {
+  const truncateText = (str) => {
+    return str.length > 15 ? str.substring(0, 12) + '....' : str;
+  };
+
   console.log(selectedRow);
   return (
     <div className="flex flex-col px-4 py-8 space-y-8">
@@ -67,20 +71,14 @@ const AdminStaffDetails = ({ selectedRow }) => {
       <div className="flex flex-row gap-20 m-auto pt-28 relative">
         <div>
           <StaffOverviewCard
-            StaffName={selectedRow?.first_Name + ' ' + selectedRow?.last_Name}
+            StaffName={truncateText(
+              selectedRow?.first_Name + ' ' + selectedRow?.last_Name,
+            )}
             StaffType="Cluster Manager"
             StaffEmail={selectedRow?.email}
             StaffPhoneNumb={selectedRow?.phoneNumber}
           />
         </div>
-        {/* <div>
-          <StaffRoleCard
-            firstList="Cluster manager (CM)"
-            secondList="Facility manager (FM)"
-            thirdList="Backend Staff (BS)"
-            fourthList="Super Amin (SM)"
-          />
-        </div> */}
       </div>
     </div>
   );

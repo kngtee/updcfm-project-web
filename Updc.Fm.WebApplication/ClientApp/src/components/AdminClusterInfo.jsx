@@ -9,6 +9,7 @@ import Loader from './Loader';
 let tableHeader = [
   { estate_Name: 'Estate Name' },
   { estate_Address: 'Estate Address' },
+  { facility_Manager: 'Facility Manager' },
 ];
 
 const AdminClusterInfo = () => {
@@ -39,10 +40,11 @@ const AdminClusterInfo = () => {
           cluster_Id: e.cluster_Id,
           estate_Name: e.estate_Name,
           estate_Address: e.estate_Address,
+          facility_Manager: e.manager?.first_Name + ' ' + e.manager?.last_Name,
         };
         setEstates((i) => [...i, newE]);
       });
-      console.log(estates);
+      console.log(data);
       setIsLoading(false);
     }
   };
@@ -143,7 +145,7 @@ const AdminClusterInfo = () => {
           <div className="mt-4">
             {estates ? (
               <TableVariantAdminClusterInfo
-                filter={['estate_Name', 'estate_Address']}
+                filter={['estate_Name', 'estate_Address', 'facility_Manager']}
                 header={tableHeader}
                 data={estates && estates}
                 query={''}
