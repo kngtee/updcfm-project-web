@@ -7,8 +7,8 @@ import { useParams } from 'react-router-dom';
 import Loader from './Loader';
 
 let tableHeader = [
-  { estate_Address: 'Estate Address' },
   { estate_Name: 'Estate Name' },
+  { estate_Address: 'Estate Address' },
 ];
 
 const AdminClusterInfo = () => {
@@ -37,8 +37,8 @@ const AdminClusterInfo = () => {
       data.forEach((e) => {
         let newE = {
           cluster_Id: e.cluster_Id,
-          estate_Address: e.estate_Address,
           estate_Name: e.estate_Name,
+          estate_Address: e.estate_Address,
         };
         setEstates((i) => [...i, newE]);
       });
@@ -143,7 +143,7 @@ const AdminClusterInfo = () => {
           <div className="mt-4">
             {estates ? (
               <TableVariantAdminClusterInfo
-                filter={['estate_Address', 'estate_Name']}
+                filter={['estate_Name', 'estate_Address']}
                 header={tableHeader}
                 data={estates && estates}
                 query={''}
