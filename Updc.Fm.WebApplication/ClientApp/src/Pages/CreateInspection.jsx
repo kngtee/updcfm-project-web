@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import {
-  MdArrowCircleLeft,
-  MdArrowCircleRight,
-  MdUploadFile,
-} from 'react-icons/md';
+// import { MdUploadFile } from 'react-icons/md';
 import { createInspection } from '../components/NavLists';
 import NavContainer from '../components/NavContainer';
 import ModalForm from '../components/ScheduleInspectionModal';
-import AddNote from '../components/AddNoteModal';
-import { formatDate } from '../Services/Converter';
+
+// import { formatDate } from '../Services/Converter';
 import LogoutTimer from '../components/LogoutTimer';
 import { GetRequest } from '../Auth/hooks/useGet';
 import { useParams } from 'react-router-dom';
 import Pagination from '../Utilities/Pagination';
 import { useMemo } from 'react';
 import Loader from '../components/Loader';
+import FileUpload from '../Utilities/FileUpload';
+import AddNote from '../components/AddNote';
 
 const inspectJob = createInspection;
 
@@ -46,7 +44,7 @@ export const CreateInspection = () => {
     };
 
     getInspections();
-  }, [isNewRow]);
+  }, [isNewRow, id]);
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
@@ -201,11 +199,15 @@ export const CreateInspection = () => {
                           </span>
                         </td>
                         <td className="px-3 py-2">
-                          <AddNote addRow={addRow} inspectionId={formData.id} />
+                          <AddNote
+                            addRow={addRow}
+                            note={formData.shortDescription}
+                            inspectionId={formData.id}
+                          />
                         </td>
                         <td className="px-3 py-2">
                           <div className="border-dashed border border-red-600 w-fit px-2 py-1 rounded-md">
-                            <label
+                            {/* <label
                               id="inspection_file"
                               className="inline-flex items-center font-medium text-red-600 cursor-pointer"
                             >
@@ -215,7 +217,8 @@ export const CreateInspection = () => {
                                 type="file"
                                 className="hidden"
                               />
-                            </label>
+                            </label> */}
+                            <FileUpload />
                           </div>
                         </td>
                       </tr>
