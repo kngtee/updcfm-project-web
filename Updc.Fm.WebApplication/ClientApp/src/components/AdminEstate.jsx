@@ -112,12 +112,12 @@ const AdminEstate = () => {
                         onClick={() => {
                           setId((id = estate.id));
                           console.log(id);
-                          navigate('/admin/adminestate_info/' + id);
+                          navigate('/admin/estates/' + id);
                         }}
                       >
                         <AdminCard
-                          Header="Yaba Estate"
-                          Name={estate.estate_Name}
+                          Header={estate.estate_Name}
+                          Name={estate.estate_Address}
                           // Manager={''}
                           Manager={
                             estate.manager?.first_Name +

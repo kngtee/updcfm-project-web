@@ -6,9 +6,7 @@ const clusterCreationSchema = object({
     .min(2, 'minimum 20 character allowed')
     .max(20, 'maximum 20 character allowed')
     .required('cluster name is required.'),
-  clusterManager: string().required('cluster manager is required.')
-  .min(2, 'minimum 20 character allowed')
-    .max(20, 'maximum 20 character allowed'),
+  clusterManager: string().required('cluster manager is required.'),
 });
 
 export default clusterCreationSchema;

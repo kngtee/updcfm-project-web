@@ -4,7 +4,7 @@ import { adminNewEstate } from './NavLists';
 import Buton from '../Utilities/Buton';
 import { useFormik } from 'formik';
 import { GetRequest, PostRequest } from '../Auth/hooks/useGet';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useRoutes } from 'react-router-dom';
 import Loader from './Loader';
 import estateCreationSchema from '../Validators/estateCreation.validator';
 
@@ -15,12 +15,21 @@ const AdminNewEstate = () => {
   const [clusterIsloading, setClusterIsLoading] = useState(false);
   const [StaffIsloading, setStaffIsLoading] = useState(false);
 
+  const route = useParams();
+
+  // const id = route.params;
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const getStaffs = async () => {
       setStaffIsLoading(true);
-      const { status, data } = await GetRequest('/api/staffs');
+      const { status, data } = await GetRequest('/api/staffs', {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+          'Content-Type': 'application/json',
+        },
+      });
       if (status === 200) {
         setStaffIsLoading(false);
         setStaffs(data);
@@ -43,11 +52,12 @@ const AdminNewEstate = () => {
     };
     getClusters();
   }, []);
+
   const formik = useFormik({
     initialValues: {
       estate_name: '',
       estate_address: '',
-      cluster_id: '',
+      cluster_id: route ? route.id : '',
       facility_manager: '',
     },
 
@@ -60,8 +70,15 @@ const AdminNewEstate = () => {
 
       if (status === 201) {
         setIsLoading(false);
-        console.log(data);
-        navigate('/admin/estate');
+        // console.log(data);
+        if (route.id) {
+          navigate('/admin/clusters/' + route.id);
+        } else {
+          navigate('/admin/estate');
+        }
+      } else {
+        setIsLoading(false);
+        console.log(data, status);
       }
     },
   });
@@ -190,7 +207,9 @@ const AdminNewEstate = () => {
                       </label>
                       <select
                         name="cluster_id"
+                        defaultValue={route.id}
                         onChange={formik.handleChange}
+                        disabled={route && route.id}
                         className="rounded-md bg-white 
                     shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-12
                     text-gray-400 
@@ -201,7 +220,11 @@ const AdminNewEstate = () => {
                           <option>Loading...</option>
                         ) : (
                           clusters.map((cluster) => (
-                            <option key={cluster.id} value={cluster.id}>
+                            <option
+                              key={cluster.id}
+                              value={cluster.id}
+                              selected={route && route.id === cluster.id}
+                            >
                               {cluster.cluster_name}
                             </option>
                           ))
@@ -228,7 +251,7 @@ const AdminNewEstate = () => {
                     font-medium text-xs pl-2"
                       >
                         <option>--- select facility manager ---</option>
-                        {clusterIsloading ? (
+                        {StaffIsloading ? (
                           <option>Loading...</option>
                         ) : (
                           staffs.map((staff) => (

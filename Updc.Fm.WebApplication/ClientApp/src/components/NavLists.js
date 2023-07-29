@@ -34,7 +34,7 @@ export const adminStaff = {
     navs: [
       {
         name: 'New Staff',
-        path: 'admin/new_staff',
+        path: 'admin/staffs/new',
       },
     ],
   },
@@ -97,15 +97,15 @@ export const adminOverView = {
     navs: [
       {
         name: 'Staff',
-        path: '/admin/staff',
+        path: '/admin/staffs',
       },
       {
         name: 'Cluster',
-        path: '/admin/cluster',
+        path: '/admin/clusters',
       },
       {
         name: 'Estate',
-        path: '/admin/estate',
+        path: '/admin/estates',
       },
     ],
   },
@@ -126,7 +126,7 @@ export const adminCluster = {
     navs: [
       {
         name: 'New Cluster',
-        path: 'admin/new_cluster',
+        path: 'admin/clusters/new',
       },
     ],
   },
@@ -179,7 +179,7 @@ export const adminEstate = {
     navs: [
       {
         name: 'New Estate',
-        path: '/admin/new_estate',
+        path: '/admin/estates/new',
       },
     ],
   },
@@ -318,8 +318,8 @@ export const adminClusterInfos = {
     title: 'Manage',
     navs: [
       {
-        name: 'New Unit',
-        path: '/salesu',
+        name: 'Add New Estate',
+        path: '/admin/estates/new',
       },
     ],
   },

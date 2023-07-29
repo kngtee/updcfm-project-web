@@ -73,7 +73,7 @@ const AdminCluster = () => {
                         </g>
                       </svg>
                       <span className="ml-1 text-sm text-[#d36360] md:ml-2">
-                        Cluster
+                        Clusters
                       </span>
                     </div>
                   </li>
@@ -109,7 +109,7 @@ const AdminCluster = () => {
                       onClick={() => {
                         setId((id = cluster.id));
                         console.log(id);
-                        navigate('/admin/admincluster_info/' + id);
+                        navigate('/admin/clusters/' + id);
                       }}
                     >
                       <AdminCard

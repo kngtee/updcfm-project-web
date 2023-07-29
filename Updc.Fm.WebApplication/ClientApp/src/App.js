@@ -27,6 +27,7 @@ import AdminClusterInfo from './components/AdminClusterInfo';
 import ForgetPassword from './components/ForgetPassword';
 import ResetPassword from './components/ResetPassword';
 import AdminEstateInfo from './components/AdminEstateInfo';
+import CreateNewUnit from './Pages/CreateNewUnit';
 
 function App() {
   return (
@@ -49,7 +50,7 @@ function App() {
         />
 
         <Route
-          path="/admin/admincluster_info/:id"
+          path="/admin/clusters/:id"
           element={
             <ProtectedRoute>
               <AdminClusterInfo />
@@ -58,7 +59,7 @@ function App() {
         />
 
         <Route
-          path="/admin/adminestate_info/:id"
+          path="/admin/estates/:id"
           element={
             <ProtectedRoute>
               <AdminEstateInfo />
@@ -92,7 +93,7 @@ function App() {
           }
         />
         <Route
-          path="/admin/estate"
+          path="/admin/estates"
           element={
             <ProtectedRoute>
               <AdminEstate />
@@ -100,7 +101,7 @@ function App() {
           }
         />
         <Route
-          path="admin/new_estate"
+          path="admin/estates/new"
           element={
             <ProtectedRoute>
               <AdminNewEstate />
@@ -108,7 +109,7 @@ function App() {
           }
         />
         <Route
-          path="admin/cluster"
+          path="admin/clusters"
           element={
             <ProtectedRoute>
               <AdminCluster />
@@ -116,10 +117,18 @@ function App() {
           }
         />
         <Route
-          path="admin/new_cluster"
+          path="admin/clusters/new"
           element={
             <ProtectedRoute>
               <AdminNewCluster />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="admin/clusters/:id/new-estate"
+          element={
+            <ProtectedRoute>
+              <AdminNewEstate />
             </ProtectedRoute>
           }
         />
@@ -132,7 +141,7 @@ function App() {
           }
         />
         <Route
-          path="admin/staff"
+          path="admin/staffs"
           element={
             <ProtectedRoute>
               <AdminStaff />
@@ -152,6 +161,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Loader />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/estates/:id/unit/new"
+          element={
+            <ProtectedRoute>
+              <CreateNewUnit />
             </ProtectedRoute>
           }
         />

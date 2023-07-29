@@ -10,7 +10,7 @@ function AddNoteModal({
   isEditMode,
   handleChange,
   handleSubmit,
-  handleEditNote
+  handleEditNote,
 }) {
   return (
     <Modal
@@ -30,7 +30,7 @@ function AddNoteModal({
               id="message"
               rows="6"
               className="block p-2.5 w-full text-sm rounded-lg border border-gray-400 focus:ring-blue-500 focus:border-blue-500"
-              value={formData}
+              defaultValue={viewNote}
               onChange={handleChange}
             ></textarea>
           </div>
@@ -47,13 +47,12 @@ function AddNoteModal({
         <div>
           <p>{viewNote}</p>
           <button
-          type='button'
-          onClick={handleEditNote}
-          className="py-1 px-3 rounded-sm text-base font-normal text-white items-center justify-center bg-green-600 hover:bg-green-500 shadow-sm shadow-[#a73439]/25"
+            type="button"
+            onClick={handleEditNote}
+            className="py-1 px-3 rounded-sm text-base font-normal text-white items-center justify-center bg-green-600 hover:bg-green-500 shadow-sm shadow-[#a73439]/25"
           >
             Edit
           </button>
-
         </div>
       )}
     </Modal>

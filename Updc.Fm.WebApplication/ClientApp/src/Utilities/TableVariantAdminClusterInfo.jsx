@@ -17,6 +17,8 @@ const TableVariantAdminClusterInfo = ({ header, data, query, filter }) => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [selected, setSelected] = useState(false);
 
+  const navigate = useNavigate();
+
   const truncateText = (str) => {
     return str.length > 15 ? str.substring(0, 12) + '....' : str;
   };
@@ -96,7 +98,7 @@ const TableVariantAdminClusterInfo = ({ header, data, query, filter }) => {
                   onClick={() => {
                     setSelectedRow(row);
                     setSelected(true);
-                    // navigate('/salesau');
+                    navigate('/admin/estates/' + row.id);
                     console.log(row);
                   }}
                 >

@@ -7,7 +7,7 @@ import { PostRequest } from '../Auth/hooks/useGet';
 import { useParams } from 'react-router-dom';
 import AddNoteModal from './AddNoteModal';
 
-function AddNote({ inspectionId, addRow }) {
+function AddNote({ inspectionId, addRow, note }) {
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState('');
@@ -38,7 +38,7 @@ function AddNote({ inspectionId, addRow }) {
 
   const handleSubmit = async () => {
     try {
-      const { status, data,} = await PostRequest(
+      const { status, data } = await PostRequest(
         `/api/interventionjobs/${id}/inspection/${inspectionId}`,
         {
           shortDescription: formData,
@@ -60,7 +60,7 @@ function AddNote({ inspectionId, addRow }) {
 
   return (
     <div>
-      {viewNote ? (
+      {note !== 'n/a' ? (
         <button
           type="button"
           onClick={handleViewNote}
@@ -82,7 +82,7 @@ function AddNote({ inspectionId, addRow }) {
         isOpen={isOpen}
         closeModal={closeModal}
         formData={formData}
-        viewNote={viewNote}
+        viewNote={note}
         isEditMode={isEditMode}
         handleChange={handleChange}
         handleSubmit={handleSubmit}

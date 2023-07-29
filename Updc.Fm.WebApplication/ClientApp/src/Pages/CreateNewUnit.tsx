@@ -1,73 +1,83 @@
-import React, { useEffect, useState } from 'react';
-import NavContainer from './NavContainer';
-import { adminNewCluster } from './NavLists';
-import Buton from '../Utilities/Buton';
-import { GetRequest, PostRequest } from '../Auth/hooks/useGet';
+import React from 'react';
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
-import Loader from './Loader';
-import { successMessage } from '../toast-message/toastMessage';
-import clusterCreationSchema from '../Validators/clusterCreation.validator';
+import { useEffect, useState } from 'react';
+import { GetRequest, PostRequest } from '../Auth/hooks/useGet';
+import Loader from '../components/Loader';
+import NavContainer from '../components/NavContainer';
+import unitCreationSchema from '../Validators/unitCreation.validator';
+import { adminNewCluster } from '../components/NavLists';
+import Buton from '../Utilities/Buton';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const AdminNewCluster = () => {
-  const [staffs, setStaffs] = useState([]);
+const CreateNewUnit = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [estates, setEstates] = useState([]);
+
+  const { id } = useParams();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getStaff = async () => {
+    const getEstates = async () => {
       setIsLoading(true);
-      const { status, data } = await GetRequest('api/staffs', {
-        headers: {
-          Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const { status, data } = await GetRequest('/api/estates');
 
       if (status === 200) {
-        setStaffs(data);
+        setEstates(data);
         setIsLoading(false);
-        console.log(data);
       } else {
-        setStaffs([]);
+        setIsLoading(false);
       }
     };
 
-    getStaff();
+    getEstates();
   }, []);
 
   const formik = useFormik({
     initialValues: {
-      clusterName: '',
-      clusterManager: '',
+      estate_id: id,
+      unit_number: '',
     },
-
-    validationSchema: clusterCreationSchema,
-
+    validationSchema: unitCreationSchema,
     onSubmit: async (values) => {
-      console.log(values);
       setIsLoading(true);
-      const { status, data } = await PostRequest('/api/clusters', values);
+      const { status, data } = await PostRequest(
+        `/api/estates/${id}/units`,
+        values,
+      );
+
       if (status === 201) {
-        navigate('/admin/cluster');
-        successMessage({
-          message: 'Cluster Created Successfully.',
-          title: 'Creation of Cluster',
-        });
+        navigate('/admin/estates/' + id);
         setIsLoading(false);
-      } else {
         console.log(data, status);
+      } else {
         setIsLoading(false);
+        console.log(data, status);
       }
     },
   });
+
+  const unitCreation = {
+    overview: {
+      title: 'Create Unit',
+      navs: [
+        {
+          name: 'New Unit',
+          path: '',
+        },
+      ],
+    },
+    manage: {
+      title: 'Manage',
+      navs: [],
+    },
+  };
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
-        <NavContainer dashboard={adminNewCluster}>
+        <NavContainer dashboard={unitCreation}>
           <div className="flex flex-col px-4 py-8 space-y-8">
             <div className="flex flex-row">
               <div className="flex flex-row" aria-label="Breadcrumb">
@@ -133,55 +143,59 @@ const AdminNewCluster = () => {
                   <div className="flex flex-col">
                     <div>
                       <label className="pt-2 font-medium text-sm text-[#0F0F0F]">
-                        Cluster Name:
-                      </label>
-                      <input
-                        type="text"
-                        name="clusterName"
-                        placeholder="Enter cluster name"
-                        className="rounded-md bg-white 
-                    shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-3 
-                    text-gray-400 
-                      font-medium text-xs pl-2"
-                        onChange={formik.handleChange}
-                      />
-                    </div>
-                    {formik.errors.clusterName &&
-                      formik.touched.clusterName && (
-                        <span className="text-[red] text-[12px] ml-[110px] mt-[10px]">
-                          {formik.errors.clusterName}
-                        </span>
-                      )}
-                  </div>
-                  <div className="flex flex-col">
-                    <div>
-                      <label className="pt-2 font-medium text-sm text-[#0F0F0F]">
-                        Cluster Manager:
+                        Estate:
                       </label>
                       <select
-                        name="clusterManager"
+                        name="estate_id"
                         className="rounded-md bg-white 
                       shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-3 
                       text-gray-400 
                       font-medium text-xs pl-2"
                         onChange={formik.handleChange}
+                        disabled
                       >
-                        <option>--- select manager ---</option>
+                        <option>--- select estate ---</option>
                         {isLoading ? (
                           <option>Loading...</option>
                         ) : (
-                          staffs.map((staff) => (
-                            <option key={staff.id} value={staff.id}>
-                              {staff.first_Name + ' ' + staff.last_Name}
+                          estates.map((estate) => (
+                            <option
+                              key={estate.id}
+                              value={estate.id}
+                              selected={id && id === estate.id}
+                            >
+                              {estate.estate_Name}
                             </option>
                           ))
                         )}
                       </select>
                     </div>
-                    {formik.errors.clusterManager &&
-                      formik.touched.clusterManager && (
+                    {formik.errors.estate_id && formik.touched.estate_id && (
+                      <span className="text-[red] text-[12px] ml-[110px] mt-[10px]">
+                        {formik.errors.estate_id}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex flex-col">
+                    <div>
+                      <label className="pt-2 font-medium text-sm text-[#0F0F0F]">
+                        Unit Name
+                      </label>
+                      <input
+                        type="text"
+                        name="unit_number"
+                        placeholder="Enter unit name"
+                        className="rounded-md bg-white 
+                        shadow-sm shadow-[#a73439]/25 w-[300px] h-[40px] ml-3 
+                        text-gray-400 
+                          font-medium text-xs pl-2"
+                        onChange={formik.handleChange}
+                      />
+                    </div>
+                    {formik.errors.unit_number &&
+                      formik.touched.unit_number && (
                         <span className="text-[red] text-[12px] ml-[110px] mt-[10px]">
-                          {formik.errors.clusterManager}
+                          {formik.errors.unit_number}
                         </span>
                       )}
                   </div>
@@ -190,8 +204,8 @@ const AdminNewCluster = () => {
                   <div>
                     <Buton
                       className="border border-[#bd4143] w-[80px] h-[40px]
-                    cursor-pointer text-[#0F0F0F] 
-                    text-sm font-medium rounded-md"
+                        cursor-pointer text-[#0F0F0F] 
+                        text-sm font-medium rounded-md"
                       text="Cancel"
                       type="cancel"
                     />
@@ -199,8 +213,8 @@ const AdminNewCluster = () => {
                   <div>
                     <Buton
                       className="border border-[#34A739] w-[80px] 
-                    h-[40px] cursor-pointer bg-[#34A739] 
-                    text-white text-sm font-medium rounded-md"
+                        h-[40px] cursor-pointer bg-[#34A739] 
+                        text-white text-sm font-medium rounded-md"
                       text="Create"
                       type="submit"
                     />
@@ -215,4 +229,4 @@ const AdminNewCluster = () => {
   );
 };
 
-export default AdminNewCluster;
+export default CreateNewUnit;

@@ -33,7 +33,7 @@ namespace Updc.Fm.WebApplication.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateEstate(CreateEstate estate)
         {
-                var client = _httpClientFactory.CreateClient("api");
+            var client = _httpClientFactory.CreateClient("api");
             var content = JsonSerializer.Serialize(estate);
             var body = new StringContent(content, Encoding.UTF8, "application/json");
             var response = await client.PostAsync("/api/estates/create", body);
@@ -76,6 +76,26 @@ namespace Updc.Fm.WebApplication.Controllers
             }
 
             return StatusCode(400, response.Content.ReadAsStringAsync());
+        }
+
+        [HttpPost]
+        [Route("{id}/units")]
+        public async Task<IActionResult> CreateAUnitInEstate(CreateUnitDto unit)
+        {
+            var client = _httpClientFactory.CreateClient("api");
+            var content = JsonSerializer.Serialize(unit);
+            var body = new StringContent(content, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync("/api/units/create", body);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var res = await response.Content.ReadAsStringAsync();
+                return StatusCode(201, res);
+            }
+
+            return StatusCode(400, await response.Content.ReadAsStringAsync());
+
         }
     }
 }

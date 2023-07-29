@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import NavContainer from './NavContainer';
-import { adminClusterInfos } from './NavLists';
 import { GetRequest } from '../Auth/hooks/useGet';
 import TableVariantAdminClusterInfo from '../Utilities/TableVariantAdminClusterInfo';
 import { useParams } from 'react-router-dom';
@@ -18,6 +17,27 @@ const AdminClusterInfo = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
+  const adminClusterInfos = {
+    overview: {
+      title: 'Cluster Info',
+      navs: [
+        {
+          name: 'Cluster',
+          path: '',
+        },
+      ],
+    },
+    manage: {
+      title: 'Manage',
+      navs: [
+        {
+          name: 'Add New Estate',
+          path: `/admin/clusters/${id}/new-estate`,
+        },
+      ],
+    },
+  };
+
   const truncateText = (str) => {
     return str.length > 15 ? str.substring(0, 12) + '....' : str;
   };
@@ -26,7 +46,6 @@ const AdminClusterInfo = () => {
     const { status, data } = await GetRequest('/api/clusters/' + id);
     if (status === 200) {
       setClusters(data);
-      console.log(clusters);
     }
   };
 
@@ -36,7 +55,9 @@ const AdminClusterInfo = () => {
     );
     if (status === 200) {
       data.forEach((e) => {
+        console.log(e);
         let newE = {
+          id:e.id,
           cluster_Id: e.cluster_Id,
           estate_Name: e.estate_Name,
           estate_Address: e.estate_Address,
@@ -89,10 +110,10 @@ const AdminClusterInfo = () => {
                     </svg>
 
                     <a
-                      href="/admin/cluster"
+                      href="/admin/clusters"
                       className="ml-1 items-center text-sm text-gray-500 hover:text-[#a73439] md:ml-2"
                     >
-                      Cluster
+                      Clusters
                     </a>
                   </div>
                 </li>
@@ -112,8 +133,7 @@ const AdminClusterInfo = () => {
                       </g>
                     </svg>
                     <span className="ml-1 text-sm text-[#d36360] md:ml-2">
-                      {clusters &&
-                        truncateText(String(clusters.cluster_manager))}
+                      {clusters && truncateText(String(clusters.id))}
                     </span>
                   </div>
                 </li>

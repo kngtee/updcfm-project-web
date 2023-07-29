@@ -45,12 +45,33 @@ const AdminEstateInfo = () => {
     getUnits();
   }, []);
 
+  const estateNav = {
+    overview: {
+      title: 'Cluster Info',
+      navs: [
+        {
+          name: 'Estate',
+          path: '',
+        },
+      ],
+    },
+    manage: {
+      title: 'Manage',
+      navs: [
+        {
+          name: 'Add New Unit',
+          path: '/admin/estates/' + id + '/unit/new',
+        },
+      ],
+    },
+  };
+
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
-        <NavContainer dashboard={adminClusterInfos}>
+        <NavContainer dashboard={estateNav}>
           <div className="space-y-8 px-4 py-8">
             <div className="flex flex-row" aria-label="Breadcrumb">
               <ol className="inline-flex items-center space-x-1 md:space-x-2 font-normal">
