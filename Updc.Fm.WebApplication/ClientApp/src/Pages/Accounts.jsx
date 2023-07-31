@@ -7,45 +7,55 @@ import JobsDone from '../assets/img/job-done-ok.svg';
 import NavContainer from '../components/NavContainer';
 import LogoutTimer from '../components/LogoutTimer';
 import { GetRequest } from '../Auth/hooks/useGet';
+import Loader from 'src/components/Loader';
 
 const accounts = accountDashboard;
 
 export const Accounts = () => {
   const [totalJobs, setTotalJobs] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchTotalJobs = async () => {
+      setIsLoading(true);
       try {
         const { status, data } = await GetRequest('api/interventionjobs');
 
         if (status === 200) {
           setTotalJobs(data.length);
+          setIsLoading(false);
         } else {
           setTotalJobs(0);
+          setIsLoading(false);
         }
       } catch (error) {
+        setIsLoading(false);
         console.error('Error fetching total jobs:', error);
       }
     };
+
     fetchTotalJobs();
   }, []);
 
   return (
     <>
-      <NavContainer dashboard={accounts}>
-        <div className="space-y-8 px-4 py-8">
-          {/* Breadcrumb */}
-          <div className="flex flex-row" aria-label="Breadcrumb">
-            <ol className="inline-flex items-center space-x-1 md:space-x-2 font-normal">
-              <li aria-current="page" className="inline-flex">
-                <span className="inline-flex items-center text-sm text-[#d36360]">
-                  Dashboard
-                </span>
-              </li>
-            </ol>
-          </div>
-          {/* Select Box Filter */}
-          {/* <div className="flex flex-col space-x-1 md:flex-row md:space-x-3 font-medium items-center">
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <NavContainer dashboard={accounts}>
+          <div className="space-y-8 px-4 py-8">
+            {/* Breadcrumb */}
+            <div className="flex flex-row" aria-label="Breadcrumb">
+              <ol className="inline-flex items-center space-x-1 md:space-x-2 font-normal">
+                <li aria-current="page" className="inline-flex">
+                  <span className="inline-flex items-center text-sm text-[#d36360]">
+                    Dashboard
+                  </span>
+                </li>
+              </ol>
+            </div>
+            {/* Select Box Filter */}
+            {/* <div className="flex flex-col space-x-1 md:flex-row md:space-x-3 font-medium items-center">
             <select
               id="clusters"
               className="bg-white text-gray-400 text-xs rounded focus:ring-blue-500 focus:border-blue-500 block w-[200px] h-[35px] p-1 shadow-sm shadow-[#a73439]/25"
@@ -59,18 +69,19 @@ export const Accounts = () => {
               <option selected>Select Estate</option>
             </select>
           </div> */}
-          
-          {/* Info Cards */}
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12">
-            <InfoCard
-              title="Pending Jobs"
-              value={totalJobs !== null ? totalJobs : 'n/a'}
-              icon={Jobs}
-            />
-            <InfoCard title="Total Jobs Done" value={0} icon={JobsDone} />
+
+            {/* Info Cards */}
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12">
+              <InfoCard
+                title="Pending Jobs"
+                value={totalJobs !== null ? totalJobs : 'n/a'}
+                icon={Jobs}
+              />
+              <InfoCard title="Total Jobs Done" value={0} icon={JobsDone} />
+            </div>
           </div>
-        </div>
-      </NavContainer>
+        </NavContainer>
+      )}
       <LogoutTimer />
     </>
   );
