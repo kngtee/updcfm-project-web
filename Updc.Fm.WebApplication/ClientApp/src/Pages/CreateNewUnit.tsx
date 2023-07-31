@@ -5,7 +5,6 @@ import { GetRequest, PostRequest } from '../Auth/hooks/useGet';
 import Loader from '../components/Loader';
 import NavContainer from '../components/NavContainer';
 import unitCreationSchema from '../Validators/unitCreation.validator';
-import { adminNewCluster } from '../components/NavLists';
 import Buton from '../Utilities/Buton';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -107,7 +106,7 @@ const CreateNewUnit = () => {
                         </g>
                       </svg>
                       <a
-                        href="/admin/cluster"
+                        href="/admin/clusters"
                         className="inline-flex ml-1 items-center text-sm text-gray-500 hover:text-[#a73439]"
                       >
                         Cluster

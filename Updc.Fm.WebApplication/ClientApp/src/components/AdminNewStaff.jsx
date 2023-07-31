@@ -79,7 +79,7 @@ const AdminNewStaff = () => {
                         </g>
                       </svg>
                       <a
-                        href="/admin/staff"
+                        href="/admin/staffs"
                         className="inline-flex ml-1 items-center text-sm text-gray-500 hover:text-[#a73439]"
                       >
                         Staffs

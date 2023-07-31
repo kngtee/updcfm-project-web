@@ -97,7 +97,7 @@ const AdminNewCluster = () => {
                         </g>
                       </svg>
                       <a
-                        href="/admin/cluster"
+                        href="/admin/clusters"
                         className="inline-flex ml-1 items-center text-sm text-gray-500 hover:text-[#a73439]"
                       >
                         Cluster
