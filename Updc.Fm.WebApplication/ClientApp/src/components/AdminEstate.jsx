@@ -117,7 +117,7 @@ const AdminEstate = () => {
                       >
                         <AdminCard
                           Header={estate.estate_Name}
-                          Name={estate.estate_Address}
+                          Name={estate.estate_Name}
                           // Manager={''}
                           Manager={
                             estate.manager?.first_Name +

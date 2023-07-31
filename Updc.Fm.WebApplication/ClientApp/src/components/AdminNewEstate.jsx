@@ -4,7 +4,7 @@ import { adminNewEstate } from './NavLists';
 import Buton from '../Utilities/Buton';
 import { useFormik } from 'formik';
 import { GetRequest, PostRequest } from '../Auth/hooks/useGet';
-import { useNavigate, useParams, useRoutes } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Loader from './Loader';
 import estateCreationSchema from '../Validators/estateCreation.validator';
 
@@ -117,7 +117,7 @@ const AdminNewEstate = () => {
                         </g>
                       </svg>
                       <a
-                        href="/admin/estate"
+                        href="/admin/estates"
                         className="inline-flex ml-1 items-center text-sm text-gray-500 hover:text-[#a73439]"
                       >
                         Estate

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import NavContainer from './NavContainer';
-import { adminClusterInfos } from './NavLists';
 import { GetRequest } from '../Auth/hooks/useGet';
 import TableVariantAdminEstateInfo from '../Utilities/TableVariantAdminEstateInfo';
 import { useParams } from 'react-router-dom';
@@ -101,7 +100,7 @@ const AdminEstateInfo = () => {
                     </svg>
 
                     <a
-                      href="/admin/estate"
+                      href="/admin/estates"
                       className="ml-1 items-center text-sm text-gray-500 hover:text-[#a73439] md:ml-2"
                     >
                       Estate

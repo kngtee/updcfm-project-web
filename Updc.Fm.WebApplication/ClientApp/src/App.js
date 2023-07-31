@@ -149,7 +149,7 @@ function App() {
           }
         />
         <Route
-          path="admin/new_staff"
+          path="admin/staffs/new"
           element={
             <ProtectedRoute>
               <AdminNewStaff />
