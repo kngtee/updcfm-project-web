@@ -36,8 +36,6 @@ namespace Updc.Fm.WebApplication.Controllers
         public async Task<IActionResult> CreateBackEndStaff(CreateBackEndStaff staff)
         {
             var client = _httpClientFactory.CreateClient("api");
-            var header = Request.Headers["x-access-pwd"].ToString();
-            client.DefaultRequestHeaders.Add("Authorization", header);
             var content = JsonSerializer.Serialize(staff);
             var body = new StringContent(content, Encoding.UTF8, "application/json");
             var response = await client.PostAsync("/api/admins/profile/create", body);
