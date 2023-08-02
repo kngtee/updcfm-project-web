@@ -2,7 +2,6 @@ import React, { useMemo, useState } from 'react';
 import Pagination from './Pagination';
 import { DataKey } from '../Services/GetDataKey';
 import { ArrangeData } from '../Services/sortData';
-import SalesAllocatedUnit from '../components/SalesAllocatedUnit';
 
 let pageSize = 8;
 
@@ -47,6 +46,7 @@ const TableVariantAdminEstateInfo = ({ header, data, query, filter }) => {
           <table className="w-full text-sm text-left text-[#0f0f0f] shadow-md max-w-full max-h-full">
             <thead className="text-xs text-[#F8F7FF] uppercase bg-[#a73439]">
               <tr className="">
+                <th className="px-3 py-1.5">S/N</th>
                 {header.map((th, index) => (
                   <th
                     key={index}
@@ -63,7 +63,7 @@ const TableVariantAdminEstateInfo = ({ header, data, query, filter }) => {
             </thead>
 
             <tbody>
-              {currentTableData.map((row) => (
+              {currentTableData.map((row, index) => (
                 <tr
                   className="bg-white odd:bg-[#D9D9D9] border-b  justify-center"
                   key={row.id}
@@ -73,6 +73,7 @@ const TableVariantAdminEstateInfo = ({ header, data, query, filter }) => {
                     console.log(row);
                   }}
                 >
+                  <td className="cursor-pointer px-3 py-2">{index + 1}</td>
                   {data &&
                     header.map((k, index) => (
                       <td key={index} className="cursor-pointer px-3 py-2">

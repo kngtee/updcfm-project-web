@@ -16,7 +16,16 @@ namespace Updc.Fm.WebApplication.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllUnits()
         {
-            throw new NotImplementedException();
+            var client = _httpClientFactory.CreateClient("api");
+            var response = await client.GetAsync("api/units");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var res = await response.Content.ReadAsStringAsync();
+                return StatusCode(200, res);
+            }
+
+            return StatusCode(400, await response.Content.ReadAsStringAsync());
         }
 
     }

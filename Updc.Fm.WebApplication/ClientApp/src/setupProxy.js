@@ -27,6 +27,7 @@ const context = [
   '/api/estates',
   '/api/estates/:id',
   '/api/estates/:id/units',
+  '/api/units',
 ];
 
 module.exports = function (app) {
