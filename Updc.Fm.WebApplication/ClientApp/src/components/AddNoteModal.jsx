@@ -5,7 +5,6 @@ import './ModalForm.css';
 function AddNoteModal({
   isOpen,
   closeModal,
-  formData,
   viewNote,
   isEditMode,
   handleChange,

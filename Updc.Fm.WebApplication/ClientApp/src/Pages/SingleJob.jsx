@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import NavContainer from '../components/NavContainer';
-// import { singleJob } from '../components/NavLists';
 import { useParams } from 'react-router-dom';
 import { GetRequest } from '../Auth/hooks/useGet';
 import Loader from '../components/Loader';
@@ -125,7 +124,6 @@ export const SingleJob = () => {
                     <li>
                       Unit No:
                       <span className="font-bold"> {interventionJob.unit}</span>
-                      
                     </li>
                     <li>
                       Email:
@@ -174,20 +172,11 @@ export const SingleJob = () => {
                   </ol>
                 </div>
               </div>
-              {/* <div className="flex flex-col items-start justify-between px-6 py-4 w-fit bg-white rounded-md shadow-sm shadow-[#a73439]/25 md:flex-row md:w-[230px] md:max-h-[200px]">
-                <div className="text-xs font-medium justify-between leading-normal">
-                  <p className="text-gray-400 text-sm">Job Status</p>
-                  <span className="inline-flex items-center text-4xl font-medium text-[#0f0f0f]">
-                    <span class="flex w-2.5 h-2.5 bg-yellow-400 rounded-full mr-1.5 flex-shrink-0"></span>
-                    Pending
-                  </span>
-                </div>
-              </div> */}
             </div>
           </div>
         </NavContainer>
       )}
-      <LogoutTimer  />
+      <LogoutTimer />
     </>
   );
 };

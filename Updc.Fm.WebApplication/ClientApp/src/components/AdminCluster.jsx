@@ -22,7 +22,6 @@ const AdminCluster = () => {
 
   useEffect(() => {
     const getCluster = async () => {
-      // setIsLoading(true);
       const { status, data } = await GetRequest('/api/residents/clusters');
       setIsLoading(true);
       if (status === 200) {

@@ -57,7 +57,7 @@ const AdminClusterInfo = () => {
       data.forEach((e) => {
         console.log(e);
         let newE = {
-          id:e.id,
+          id: e.id,
           cluster_Id: e.cluster_Id,
           estate_Name: e.estate_Name,
           estate_Address: e.estate_Address,

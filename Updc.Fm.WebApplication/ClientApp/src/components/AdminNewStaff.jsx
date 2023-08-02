@@ -38,7 +38,7 @@ const AdminNewStaff = () => {
       );
       if (status === 201) {
         console.log(data);
-        navigate('/admin/staff');
+        navigate('/admin/staffs');
         setIsLoading(false);
       }
       setIsLoading(false);

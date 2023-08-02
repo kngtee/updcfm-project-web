@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
-// import { MdNotifications, MdSettings } from 'react-icons/md';
 import './NavMenu.css';
 import ProfilePic from '../assets/img/profilepic.png';
 import LogoutIcon from '../assets/img/logout-circle.svg';
@@ -39,16 +38,6 @@ const NavMenu = () => {
         </div>
 
         <div className="flex md:flex-row space-x-3">
-          {/* <div className="inline-flex items-center justify-center w-8 h-8 bg-[#a73439] rounded-full text-white shadow-md shadow-rose-500/20">
-            <NavLink tag={Link} className="" to="/">
-              <MdNotifications />
-            </NavLink>
-          </div> */}
-          {/* <div className="inline-flex items-center justify-center w-8 h-8 bg-[#a73439] rounded-full text-white shadow-md shadow-rose-500/20">
-            <NavLink tag={Link} className="" to="/">
-              <MdSettings />
-            </NavLink>
-          </div> */}
           <div className="inline-flex items-center justify-center w-8 h-8 bg-[#a73439] rounded-full text-white shadow-md shadow-rose-500/20 group relative">
             <NavLink tag={Link} className="" onClick={handleLogout}>
               <img src={LogoutIcon} alt="logout" className="w-4 h-4" />

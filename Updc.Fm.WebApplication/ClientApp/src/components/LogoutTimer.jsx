@@ -1,10 +1,8 @@
 import { useEffect } from 'react';
 import { useAuth } from '../Auth/hooks/useAuth';
-// import { useNavigate } from 'react-router-dom';
 
 const LogoutTimer = () => {
   const { handleLogout } = useAuth();
-  // const navigate = useNavigate();
 
   let idleTimer;
   const IDLE_TIMEOUT = 1200000; // 20 minutes (in milliseconds)
@@ -15,9 +13,7 @@ const LogoutTimer = () => {
   }
 
   function handleIdle() {
-    // Perform idle actions (e.g., show a modal, log out the user, etc.)
     handleLogout();
-    // navigate('/login');
   }
 
   useEffect(() => {
@@ -29,8 +25,6 @@ const LogoutTimer = () => {
     document.addEventListener('keypress', handleEvent);
     document.addEventListener('mousemove', handleEvent);
     document.addEventListener('touchstart', handleEvent);
-
-    // idleTimer = setTimeout(handleIdle, IDLE_TIMEOUT);
 
     return () => {
       document.removeEventListener('click', handleEvent);

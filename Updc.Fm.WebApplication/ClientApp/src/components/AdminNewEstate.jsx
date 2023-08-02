@@ -17,8 +17,6 @@ const AdminNewEstate = () => {
 
   const route = useParams();
 
-  // const id = route.params;
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -70,11 +68,10 @@ const AdminNewEstate = () => {
 
       if (status === 201) {
         setIsLoading(false);
-        // console.log(data);
         if (route.id) {
           navigate('/admin/clusters/' + route.id);
         } else {
-          navigate('/admin/estate');
+          navigate('/admin/estates');
         }
       } else {
         setIsLoading(false);

@@ -12,11 +12,9 @@ import residentOnboadingSchema from '../Validators/residentOnboarding.validator'
 
 const SalesNewUnit = () => {
   const [clusters, setClusters] = useState([]);
-  //eslint-disable-next-line
   const [clusterIsLoading, setClusterIsLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [estateisLoading, setEstateIsLoading] = useState(false);
-  //eslint-disable-next-line
   const [unitisLoading, setUnitIsLoading] = useState(false);
   const [estates, setEstates] = useState([]);
   const [units, setUnits] = useState([]);
@@ -295,7 +293,6 @@ const SalesNewUnit = () => {
                     </span>
                   )}
                 </div>
-                {/* <div className=""></div> */}
               </div>
             </div>
             <div className=" flex  justify-end gap-4 mr-4">

@@ -3,7 +3,6 @@ import { allocationDashboard } from '../components/NavLists';
 import { GetRequest } from '../Auth/hooks/useGet';
 import BreadCrumb from '../Utilities/BreadCrumb';
 import { useEffect, useState } from 'react';
-// import { DataKey } from '../Services/GetDataKey';
 import SearchBox from '../Utilities/SearchBox';
 import Loader from '../components/Loader';
 import LogoutTimer from '../components/LogoutTimer';
@@ -64,10 +63,6 @@ const Allocation = () => {
   const handleSearch = (query) => {
     setSearchQuery(query);
   };
-
-  // useEffect(() => {
-  //   console.log('Sea: ' + searchQuery);
-  // }, searchQuery);
   return (
     <>
       {isLoading ? (

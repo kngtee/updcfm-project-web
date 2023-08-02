@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { MdAdd } from 'react-icons/md';
-import 'react-datepicker/dist/react-datepicker.css'; // Datepicker default styles
-import './ModalForm.css'; // CSS file for modal styles
+import 'react-datepicker/dist/react-datepicker.css';
+import './ModalForm.css';
 import { PostRequest } from '../Auth/hooks/useGet';
 import { useParams } from 'react-router-dom';
 import { errorMessage, successMessage } from '../toast-message/toastMessage';
@@ -12,8 +12,8 @@ function ModalForm({ addRow }) {
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
-    name: '', // Inspected by
-    selectedDate: null, // New state for the selected date
+    name: '',
+    selectedDate: null,
   });
 
   const [formErrors, setFormErrors] = useState({});
@@ -39,7 +39,7 @@ function ModalForm({ addRow }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData); // Handle form submission here
+    console.log(formData);
     addRow();
     const errors = validateForm(formData);
     if (Object.keys(errors).length === 0) {

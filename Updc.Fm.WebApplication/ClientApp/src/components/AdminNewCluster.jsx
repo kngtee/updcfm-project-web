@@ -50,7 +50,7 @@ const AdminNewCluster = () => {
       setIsLoading(true);
       const { status, data } = await PostRequest('/api/clusters', values);
       if (status === 201) {
-        navigate('/admin/cluster');
+        navigate('/admin/clusters');
         successMessage({
           message: 'Cluster Created Successfully.',
           title: 'Creation of Cluster',

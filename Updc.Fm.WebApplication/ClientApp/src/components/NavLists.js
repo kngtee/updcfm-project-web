@@ -236,14 +236,6 @@ export const accountDashboard = {
         name: 'Intervention Jobs',
         path: '/jobs',
       },
-      // {
-      //   name: 'Service Charge',
-      //   path: '',
-      // },
-      // {
-      //   name: 'Vendors',
-      //   path: '',
-      // },
     ],
   },
 };

@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-// import { MdUploadFile } from 'react-icons/md';
 import { createInspection } from '../components/NavLists';
 import NavContainer from '../components/NavContainer';
 import ModalForm from '../components/ScheduleInspectionModal';
-
-// import { formatDate } from '../Services/Converter';
 import LogoutTimer from '../components/LogoutTimer';
 import { GetRequest } from '../Auth/hooks/useGet';
 import { useParams } from 'react-router-dom';
@@ -53,7 +50,6 @@ export const CreateInspection = () => {
     setTotalCount(tableData?.length);
 
     return tableData.slice(firstPageIndex, lastPageIndex);
-    // eslint-disable-next-line
   }, [currentPage, totalCount, tableData]);
 
   return (
@@ -207,17 +203,6 @@ export const CreateInspection = () => {
                         </td>
                         <td className="px-3 py-2">
                           <div className="border-dashed border border-red-600 w-fit px-2 py-1 rounded-md">
-                            {/* <label
-                              id="inspection_file"
-                              className="inline-flex items-center font-medium text-red-600 cursor-pointer"
-                            >
-                              <MdUploadFile className="mr-1" /> Upload Report
-                              <input
-                                id="inspection_file"
-                                type="file"
-                                className="hidden"
-                              />
-                            </label> */}
                             <FileUpload />
                           </div>
                         </td>

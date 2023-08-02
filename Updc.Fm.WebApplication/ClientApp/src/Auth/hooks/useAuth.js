@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { stringToBase64 } from '../../Services/Converter';
 import axios from 'axios';
 import { useLocalStorage } from './useLocalStorage';
-import { errorMessage, successMessage } from '../../toast-message/toastMessage';
+import { errorMessage } from '../../toast-message/toastMessage';
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
@@ -27,10 +27,6 @@ export const AuthProvider = ({ children }) => {
         setToken(res.data.token);
         setIsLoading(false);
         navigate('/');
-        // successMessage({
-        //   message: 'Login successful.',
-        //   title: 'Login Attempt.',
-        // });
       })
       .catch((err) => {
         setIsLoading(false);
@@ -42,8 +38,7 @@ export const AuthProvider = ({ children }) => {
   const handleLogout = () => {
     setToken(null);
     navigate('/login');
-    // successMessage({ title: 'Logout successful.' });
-    console.log('first')
+    console.log('first');
   };
 
   const value = useMemo(
@@ -53,8 +48,6 @@ export const AuthProvider = ({ children }) => {
       handleLogin,
       handleLogout,
     }),
-
-    // eslint-disable-next-line
     [token, isLoading],
   );
 
