@@ -19,7 +19,6 @@ const Pagination = ({
   let paginationRangeLength = paginationRange && paginationRange.length;
   console.log(paginationRangeLength);
 
-  // If there are less than 2 times in pagination range we shall not render the component
   if (currentPage === 0 || paginationRangeLength < 2) {
     return null;
   }
@@ -37,7 +36,6 @@ const Pagination = ({
   };
 
   let lastPage = paginationRange[paginationRange.length - 1];
-  // console.log("pg: "+)
   return (
     <div className="flex flex-row justify-between mt-4">
       {/* Pagination Details */}

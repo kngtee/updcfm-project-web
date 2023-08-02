@@ -32,7 +32,6 @@ const SideNav = ({ children, dashboard }) => {
             ))}
           </div>
         </div>
-        {/* <div className="bg-[#fff] rounded-r-lg px-8">{children}</div> */}
         <div className="bg-gray rounded-r-lg px-8 w-full">{children}</div>
       </div>
     </div>

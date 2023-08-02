@@ -1,6 +1,5 @@
 import React from 'react';
 import StaffOverviewCard from '../Utilities/StaffOverviewCard';
-// import StaffRoleCard from '../Utilities/StaffRoleCard';
 
 const AdminStaffDetails = ({ selectedRow }) => {
   const truncateText = (str) => {

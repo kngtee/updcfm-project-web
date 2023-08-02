@@ -37,7 +37,6 @@ export const InterventionJobs = () => {
           setInterventionJob((i) => [...i, newE]);
         });
         setIsLoading(false);
-        // setInterventionJob(data);
       }
     };
 
@@ -89,11 +88,9 @@ export const InterventionJobs = () => {
               </ol>
             </div>
             <div className="flex flex-row justify-start">
-              
               {/* Search Bar */}
               <div className="">
                 <SearchBox query={handleSearch} />
-                
               </div>
             </div>
             {/* Table */}
@@ -108,8 +105,8 @@ export const InterventionJobs = () => {
           </div>
         </NavContainer>
       )}
-      
-      <LogoutTimer  />
+
+      <LogoutTimer />
     </>
   );
 };

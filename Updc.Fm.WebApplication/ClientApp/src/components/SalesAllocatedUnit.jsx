@@ -2,19 +2,16 @@ import React, { useState } from 'react';
 import { FiDownload } from 'react-icons/fi';
 import { FaPen } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { replace } from 'formik';
 
-const SalesAllocatedUnit = ({ selectedRow, }) => {
+const SalesAllocatedUnit = ({ selectedRow }) => {
   const [formData, setFormData] = useState({
     email: selectedRow?.email,
     first_name: selectedRow?.first_name,
     last_name: selectedRow?.last_name,
     unit: selectedRow?.unit,
     phone_number: selectedRow?.phone_number,
-    // Add other form fields here as needed
   });
   const [isEditing, setIsEditing] = useState(false);
-  const [email, setEmail] = useState()
   const nav = useNavigate();
 
   const handleEdit = () => {
@@ -31,10 +28,6 @@ const SalesAllocatedUnit = ({ selectedRow, }) => {
 
   const handleSave = () => {
     setIsEditing(false);
-    
-    
-    
-    
   };
 
   return (

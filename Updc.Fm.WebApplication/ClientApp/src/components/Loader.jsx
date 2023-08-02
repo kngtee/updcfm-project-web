@@ -1,17 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Loader.css';
 import { MutatingDots } from 'react-loader-spinner';
 
 const Loader = (props) => {
-  // const [isLoading, setIsLoading] = useState(false);
-
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 5000);
-  // }, []);
-
   return (
     <div className="loader">
       <div className="spinner-container">

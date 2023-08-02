@@ -118,7 +118,6 @@ const AdminEstate = () => {
                         <AdminCard
                           Header={estate.estate_Name}
                           Name={estate.estate_Name}
-                          // Manager={''}
                           Manager={
                             estate.manager?.first_Name +
                             ' ' +
@@ -126,7 +125,6 @@ const AdminEstate = () => {
                           }
                           Icon={Estate}
                         />
-                        {/* {console.log(estate.manager.first_Name)} */}
                       </div>
                     ))}
               </div>

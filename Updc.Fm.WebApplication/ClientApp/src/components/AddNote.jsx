@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-// import Modal from 'react-modal';
 import { MdNoteAdd, MdRemoveRedEye } from 'react-icons/md';
-// import './ModalForm.css';
 import { PostRequest } from '../Auth/hooks/useGet';
-// import { errorMessage, successMessage } from '../toast-message/toastMessage';
 import { useParams } from 'react-router-dom';
 import AddNoteModal from './AddNoteModal';
 

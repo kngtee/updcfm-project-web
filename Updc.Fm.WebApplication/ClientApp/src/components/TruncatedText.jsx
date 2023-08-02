@@ -2,7 +2,7 @@ import React from 'react';
 
 function TruncatedText({ text, maxLength }) {
   if (!text) {
-    return null; // or return an empty string, or any other fallback behavior
+    return null;
   }
 
   const truncatedText =

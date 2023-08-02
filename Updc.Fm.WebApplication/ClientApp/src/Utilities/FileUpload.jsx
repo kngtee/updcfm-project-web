@@ -56,9 +56,7 @@ export default function FileUpload() {
       .then((result) => {
         console.log('succes', result);
       })
-      .catch((error) => {
-        // console.error('Error:', error);
-      });
+      .catch((error) => {});
     console.log('File to upload:', file);
     closeModal();
   }

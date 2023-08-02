@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import NavContainer from './NavContainer';
 import { adminStaff } from './NavLists';
-//import Table from '../Utilities/Table';
 import TableVariantAdminStaffOverview from '../Utilities/TableVariantAdminStaffOverView';
 import Loader from '../components/Loader';
 import { GetRequest } from '../Auth/hooks/useGet';
@@ -19,13 +18,6 @@ const AdminStaff = () => {
   const [staffs, setStaffs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-
-  // const headers = {
-  //   headers: {
-  //     Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
-  //     'Content-Type': 'application/json',
-  //   },
-  // };
 
   useEffect(() => {
     const getStaff = async () => {
@@ -48,7 +40,6 @@ const AdminStaff = () => {
           setStaffs((i) => [...i, newE]);
         });
         setIsLoading(false);
-        // console.log('Staffs: ' + data);
       } else {
         setIsLoading(false);
         console.log(data);
