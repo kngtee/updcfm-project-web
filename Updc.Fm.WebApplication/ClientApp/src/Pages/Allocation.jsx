@@ -63,6 +63,8 @@ const Allocation = () => {
   const handleSearch = (query) => {
     setSearchQuery(query);
   };
+
+
   return (
     <>
       {isLoading ? (
