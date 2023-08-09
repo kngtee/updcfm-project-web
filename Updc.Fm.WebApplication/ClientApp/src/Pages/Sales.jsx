@@ -6,10 +6,44 @@ import Jobs from '../assets/img/jobs.svg';
 import JobsDone from '../assets/img/job-done-ok.svg';
 import Vendors from '../assets/img/staff.svg';
 import LogoutTimer from '../components/LogoutTimer';
+import { useEffect, useState } from 'react';
+import { GetRequest } from 'src/Auth/hooks/useGet';
 
 const sales = salesDashboard;
 
 const Sales = () => {
+  const [allocation, setAllocation] = useState({
+    totalUnit: 0,
+    isAllocated: 0,
+    availableUnit: 0,
+  });
+  const [isLoading, setIsLoading] = useState(false);
+
+  const getAllCountUnit = async () => {
+    setIsLoading(true);
+    try {
+      const { data, status } = await GetRequest('api/units');
+      if (status === 200) {
+        setIsLoading(false);
+        const fetcher = data.map((stat) => stat);
+        console.log(fetcher);
+        setAllocation({
+          totalUnit: data.length,
+          isAllocated: data.filter((unit) => unit.isAllocated === true).length,
+          availableUnit: data.filter((unit) => unit.isAllocated === false)
+            .length,
+        });
+      } else {
+        console.log('error');
+      }
+    } catch (error) {
+      alert('something went wrong');
+    }
+  };
+
+  useEffect(() => {
+    getAllCountUnit();
+  }, []);
   return (
     <>
       <NavContainer dashboard={sales}>
@@ -23,22 +57,25 @@ const Sales = () => {
               </li>
             </ol>
           </div>
-          <div className="flex flex-col space-x-1 md:flex-row md:space-x-3 font-medium items-center ">
-            <DropDownButton
-              first="Select Cluster"
-              second="Select Estate"
-              third="Unit"
-            />
-            <DropDownButton
-              first="Select Estate"
-              second="Select Cluster"
-              third="Jobs"
-            />
-          </div>
           <div className="flex flex-row space-x-12">
-            <Cards title="Total Unit" num="100" icon={Jobs} />
-            <Cards title="Available Unit" num="75" icon={JobsDone} />
-            <Cards title="Allocated Unit" num="50" icon={Vendors} />
+            <Cards
+              title="Total Unit"
+              num={allocation.totalUnit}
+              icon={Jobs}
+              isLoading={isLoading}
+            />
+            <Cards
+              title="Available Unit"
+              num={allocation.availableUnit}
+              icon={JobsDone}
+              isLoading={isLoading}
+            />
+            <Cards
+              title="Allocated Unit"
+              num={allocation.isAllocated}
+              icon={Vendors}
+              isLoading={isLoading}
+            />
           </div>
         </div>
       </NavContainer>
